@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="660.0" prefWidth="385.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <Pane prefHeight="85.0" prefWidth="385.0" style="-fx-background-color: lightblue;">
+         <children>
+            <ImageView fitHeight="77.0" fitWidth="75.0" layoutX="297.0">
+               <image>
+                  <Image url="@Imagenes/Logo_Javeriana.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="85.0" fitWidth="75.0" layoutX="23.0">
+               <image>
+                  <Image url="@Imagenes/Logo.png" />
+               </image>
+            </ImageView>
+         </children>
+      </Pane>
+      <Pane layoutX="51.0" layoutY="351.0" prefHeight="251.0" prefWidth="283.0" style="-fx-background-color: white;">
+         <children>
+            <ImageView fitHeight="70.0" fitWidth="70.0" layoutX="105.0" layoutY="21.0">
+               <image>
+                  <Image url="@Imagenes/consultar.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="70.0" fitWidth="70.0" layoutX="107.0" layoutY="136.0">
+               <image>
+                  <Image url="@Imagenes/tiempo.png" />
+               </image>
+            </ImageView>
+            <Text fill="#0092ff" layoutX="94.0" layoutY="111.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Consultar Objetos" />
+            <Text fill="#0092ff" layoutX="85.0" layoutY="227.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Historial de consultas" />
+         </children>
+      </Pane>
+      <ImageView fitHeight="200.0" fitWidth="161.0" layoutX="112.0" layoutY="130.0">
+         <image>
+            <Image url="@Imagenes/Logo.png" />
+         </image>
+      </ImageView>
+   </children>
+</AnchorPane>

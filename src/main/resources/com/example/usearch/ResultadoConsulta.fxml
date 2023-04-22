@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="660.0" prefWidth="385.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <Pane prefHeight="85.0" prefWidth="385.0" style="-fx-background-color: lightblue;">
+         <children>
+            <ImageView fitHeight="77.0" fitWidth="75.0" layoutX="297.0">
+               <image>
+                  <Image url="@Imagenes/Logo_Javeriana.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="85.0" fitWidth="75.0" layoutX="23.0">
+               <image>
+                  <Image url="@Imagenes/Logo.png" />
+               </image>
+            </ImageView>
+         </children>
+      </Pane>
+      <ImageView fx:id="RegresarButton" fitHeight="40.0" fitWidth="40.0" layoutX="24.0" layoutY="107.0" onMouseClicked="#AccionRegresar">
+         <image>
+            <Image url="@Imagenes/FlechaDevolver.png" />
+         </image>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </ImageView>
+      <Button fx:id="ActualizarButton" layoutX="255.0" layoutY="591.0" mnemonicParsing="false" onAction="#AccionActualizar" text="Actualizar objeto" />
+      <ScrollPane layoutX="56.0" layoutY="162.0" prefHeight="360.0" prefWidth="273.0">
+         <content>
+            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="367.0" prefWidth="273.0">
+               <children>
+                  <VBox prefHeight="351.0" prefWidth="258.0" />
+               </children>
+            </AnchorPane>
+         </content>
+      </ScrollPane>
+      <Text fill="#0092ff" layoutX="117.0" layoutY="142.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Resultado de la consulta">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Text>
+   </children>
+</AnchorPane>
