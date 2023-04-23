@@ -1,5 +1,6 @@
 package com.example.usearch.Controladores;
 
+import com.example.usearch.Logica.CargadorEscenas;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -30,12 +31,14 @@ public class RegistrarCuentaController implements ControladorGeneral {
 
     @FXML
     void AccionRegistrarCuenta(ActionEvent event) {
-
+        CargadorEscenas cargadorEscenas = new CargadorEscenas(stage);
+        cargadorEscenas.CambiarEscenas("InterfazUsuario.fxml", "Menu usuario");
     }
 
     @FXML
     void AccionRegresar(MouseEvent event) {
-
+        CargadorEscenas cargadorEscenas = new CargadorEscenas(stage);
+        cargadorEscenas.CambiarEscenas("InicioSesion.fxml", "Bienvenido");
     }
 
 }

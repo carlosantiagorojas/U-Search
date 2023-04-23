@@ -16,7 +16,7 @@ public class CargadorEscenas {
         this.stage = stage;
     }
 
-    public void changeScene(String fxml, String title) {
+    public void CambiarEscenas(String fxml, String title) {
 
         ControladorGeneral ControladorGeneral;
 

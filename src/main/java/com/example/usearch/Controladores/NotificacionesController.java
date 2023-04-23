@@ -1,5 +1,6 @@
 package com.example.usearch.Controladores;
 
+import com.example.usearch.Logica.CargadorEscenas;
 import javafx.fxml.FXML;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
@@ -18,7 +19,8 @@ public class NotificacionesController implements ControladorGeneral{
 
     @FXML
     void AccionRegresar(MouseEvent event) {
-
+        CargadorEscenas cargadorEscenas = new CargadorEscenas(stage);
+        cargadorEscenas.CambiarEscenas("InterfazUsuario.fxml", "Menu usuario");
     }
 
 }

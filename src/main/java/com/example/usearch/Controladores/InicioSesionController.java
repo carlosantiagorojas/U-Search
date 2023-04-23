@@ -31,12 +31,18 @@ public class InicioSesionController implements ControladorGeneral{
     @FXML
     void AccionIniciarSesion(ActionEvent event) throws IOException {
         CargadorEscenas cargadorEscenas = new CargadorEscenas(stage);
-        cargadorEscenas.changeScene("InterfazUsuario.fxml", "Menu usuario");
+
+        // Comprobar el tipo de usuario que inicio sesion
+        if(!CampoCorreo.getText().equals("admin"))
+            cargadorEscenas.CambiarEscenas("InterfazUsuario.fxml", "Menu usuario");
+        else
+            cargadorEscenas.CambiarEscenas("InterfazPersonal.fxml", "Menu Personal");
     }
 
     @FXML
     void AccionRegistrar(ActionEvent event) {
-
+        CargadorEscenas cargadorEscenas = new CargadorEscenas(stage);
+        cargadorEscenas.CambiarEscenas("RegistrarCuenta.fxml", "Registro de cuenta");
     }
 
 }

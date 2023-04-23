@@ -1,5 +1,6 @@
 package com.example.usearch.Controladores;
 
+import com.example.usearch.Logica.CargadorEscenas;
 import javafx.fxml.FXML;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
@@ -14,7 +15,8 @@ public class InterfazPersonalController implements ControladorGeneral{
 
     @FXML
     void AccionConsultarObjetos(MouseEvent event) {
-
+        CargadorEscenas cargadorEscenas = new CargadorEscenas(stage);
+        cargadorEscenas.CambiarEscenas("ConsultarObjetoPersonal.fxml", "Consultar Objetos");
     }
 
     @FXML

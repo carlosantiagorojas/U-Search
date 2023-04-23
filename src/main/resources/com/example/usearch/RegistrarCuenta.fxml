@@ -52,10 +52,6 @@
             <Image url="@Imagenes/Logo.png" />
          </image>
       </ImageView>
-      <Button fx:id="RegistrarCuenta" layoutX="161.0" layoutY="549.0" mnemonicParsing="false" onAction="#AccionRegistrarCuenta" text="Registrar">
-         <cursor>
-            <Cursor fx:constant="HAND" />
-         </cursor>
-      </Button>
+      <Button fx:id="RegistrarCuenta" layoutX="161.0" layoutY="549.0" mnemonicParsing="false" onAction="#AccionRegistrarCuenta" text="Registrar" />
    </children>
 </AnchorPane>

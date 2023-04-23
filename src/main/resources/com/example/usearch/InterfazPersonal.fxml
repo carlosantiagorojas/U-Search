@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.Cursor?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -28,11 +29,17 @@
                <image>
                   <Image url="@Imagenes/consultar.png" />
                </image>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
             </ImageView>
             <ImageView fitHeight="70.0" fitWidth="70.0" layoutX="107.0" layoutY="136.0" onMouseClicked="#AccionHistorialConsultas">
                <image>
                   <Image url="@Imagenes/tiempo.png" />
                </image>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
             </ImageView>
             <Text fill="#0092ff" layoutX="94.0" layoutY="111.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Consultar Objetos" />
             <Text fill="#0092ff" layoutX="85.0" layoutY="227.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Historial de consultas" />

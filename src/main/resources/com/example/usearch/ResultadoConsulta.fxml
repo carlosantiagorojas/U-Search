@@ -35,7 +35,7 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </ImageView>
-      <Button fx:id="ActualizarButton" layoutX="255.0" layoutY="591.0" mnemonicParsing="false" onAction="#AccionActualizar" text="Actualizar objeto" />
+      <Button fx:id="ActualizarButton" layoutX="246.0" layoutY="591.0" mnemonicParsing="false" onAction="#AccionActualizar" text="Actualizar objeto" />
       <ScrollPane layoutX="56.0" layoutY="162.0" prefHeight="360.0" prefWidth="273.0">
          <content>
             <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="367.0" prefWidth="273.0">
@@ -50,5 +50,6 @@
             <Font size="14.0" />
          </font>
       </Text>
+      <Button fx:id="RegresarInicio" layoutX="38.0" layoutY="591.0" mnemonicParsing="false" onAction="#AccionRegresarInicio" text="Volver al menu" />
    </children>
 </AnchorPane>
