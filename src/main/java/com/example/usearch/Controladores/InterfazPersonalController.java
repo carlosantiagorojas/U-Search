@@ -1,11 +1,10 @@
 package com.example.usearch.Controladores;
 
 import javafx.fxml.FXML;
-import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 
-public class UsuarioRegistrarObjetoController implements ControladorGeneral {
+public class InterfazPersonalController implements ControladorGeneral{
 
     private Stage stage;
     @Override
@@ -14,10 +13,12 @@ public class UsuarioRegistrarObjetoController implements ControladorGeneral {
     }
 
     @FXML
-    private ImageView RegresarButton;
+    void AccionConsultarObjetos(MouseEvent event) {
+
+    }
 
     @FXML
-    void AccionRegresar(MouseEvent event) {
+    void AccionHistorialConsultas(MouseEvent event) {
 
     }
 

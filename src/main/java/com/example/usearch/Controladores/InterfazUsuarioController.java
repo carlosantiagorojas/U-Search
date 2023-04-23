@@ -5,10 +5,11 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 
-public class InterfazUsuarioController {
+public class InterfazUsuarioController implements ControladorGeneral{
 
     private Stage stage;
 
+    @Override
     public void setStage(Stage stage) {
         this.stage = stage;
     }
