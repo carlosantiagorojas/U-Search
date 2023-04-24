@@ -23,22 +23,29 @@ public class ConexionBD {
         return conexion;
     }
 
-    public boolean registrarUsuario(String rol, String correo, String contrasena) {
-        boolean registroExitoso = false;
+    public int registrarUsuario(String rol, String correo, String contrasena) {
+        int idUsuario = -1;
         String query = "INSERT INTO usuarios (rol, correo, contrasena) VALUES (?, ?, ?)";
 
-        try (PreparedStatement statement = conexion.prepareStatement(query)) {
+        try (PreparedStatement statement = conexion.prepareStatement(query, Statement.RETURN_GENERATED_KEYS)) {
             statement.setString(1, rol);
             statement.setString(2, correo);
             statement.setString(3, contrasena);
             int filasAfectadas = statement.executeUpdate();
-            registroExitoso = (filasAfectadas > 0);
+            if (filasAfectadas > 0) {
+                try (ResultSet rs = statement.getGeneratedKeys()) {
+                    if (rs.next()) {
+                        idUsuario = rs.getInt(1);
+                    }
+                }
+            }
         } catch (SQLException e) {
             e.printStackTrace();
         }
 
-        return registroExitoso;
+        return idUsuario;
     }
+
 
     public String consultarUsuarioSesion(String correo, String contrasena) {
         String rolUsuario = null;
@@ -58,7 +65,7 @@ public class ConexionBD {
         return rolUsuario;
     }
 
-    public boolean registrarObjeto(Date fechaPerdida, String ubicacion, String tipo, String carateristicas, String estado){
+    public boolean registrarObjeto(Date fechaPerdida, String ubicacion, String tipo, String carateristicas, String estado, int idUsuarios){
         boolean registroObjeto = false;
 
         String query = "INSERT INTO objetosperdidos (fechaPredida, ubicacion, tipo, caractersiticas, estado) VALUES (?, ?, ?, ?, ?)";
@@ -76,5 +83,9 @@ public class ConexionBD {
         }
 
         return registroObjeto;
+    }
+
+    public void cargarObjetosPerdidos(){
+
     }
 }
