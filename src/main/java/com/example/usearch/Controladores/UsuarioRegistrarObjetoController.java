@@ -37,7 +37,7 @@ public class UsuarioRegistrarObjetoController implements ControladorGeneral{
 
     @FXML
     void AccionRegistrarObjeto(ActionEvent event) {
-
+        
     }
 
     @FXML

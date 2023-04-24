@@ -1,6 +1,7 @@
 package com.example.usearch.Persistencia;
 
 import java.sql.*;
+import java.sql.Date;
 
 public class ConexionBD {
     private static Connection conexion;
@@ -55,5 +56,25 @@ public class ConexionBD {
         }
 
         return rolUsuario;
+    }
+
+    public boolean registrarObjeto(Date fechaPerdida, String ubicacion, String tipo, String carateristicas, String estado){
+        boolean registroObjeto = false;
+
+        String query = "INSERT INTO objetosperdidos (fechaPredida, ubicacion, tipo, caractersiticas, estado) VALUES (?, ?, ?, ?, ?)";
+
+        try (PreparedStatement statement = conexion.prepareStatement(query)) {
+            statement.setDate(1, fechaPerdida);
+            statement.setString(2, ubicacion);
+            statement.setString(3, carateristicas);
+            statement.setString(4, estado);
+            statement.setString(5, tipo);
+            int filasAfectadas = statement.executeUpdate();
+            registroObjeto = (filasAfectadas > 0);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return registroObjeto;
     }
 }
