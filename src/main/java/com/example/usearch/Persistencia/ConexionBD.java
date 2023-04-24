@@ -1,7 +1,12 @@
 package com.example.usearch.Persistencia;
 
+import com.example.usearch.Logica.ObjetoPerdido;
+import com.example.usearch.Logica.SesionUsuario;
+import com.example.usearch.Logica.Usuario;
+
 import java.sql.*;
 import java.sql.Date;
+import java.util.ArrayList;
 
 public class ConexionBD {
     private static Connection conexion;
@@ -23,8 +28,8 @@ public class ConexionBD {
         return conexion;
     }
 
-    public int registrarUsuario(String rol, String correo, String contrasena) {
-        int idUsuario = -1;
+    public boolean registrarUsuario(String rol, String correo, String contrasena) {
+        boolean registroExitoso = false;
         String query = "INSERT INTO usuarios (rol, correo, contrasena) VALUES (?, ?, ?)";
 
         try (PreparedStatement statement = conexion.prepareStatement(query, Statement.RETURN_GENERATED_KEYS)) {
@@ -33,49 +38,49 @@ public class ConexionBD {
             statement.setString(3, contrasena);
             int filasAfectadas = statement.executeUpdate();
             if (filasAfectadas > 0) {
-                try (ResultSet rs = statement.getGeneratedKeys()) {
-                    if (rs.next()) {
-                        idUsuario = rs.getInt(1);
-                    }
-                }
+                registroExitoso = true;
             }
         } catch (SQLException e) {
             e.printStackTrace();
         }
 
-        return idUsuario;
+        return registroExitoso;
     }
 
 
-    public String consultarUsuarioSesion(String correo, String contrasena) {
-        String rolUsuario = null;
-        String query = "SELECT rol FROM usuarios WHERE correo = ? AND contrasena = ?";
+    public boolean consultarUsuarioSesion(String correo, String contrasena) {
+        boolean usuarioEncontrado = false;
+        String query = "SELECT * FROM usuarios WHERE correo = ? AND contrasena = ?";
 
         try (PreparedStatement statement = conexion.prepareStatement(query)) {
             statement.setString(1, correo);
             statement.setString(2, contrasena);
             ResultSet resultSet = statement.executeQuery();
+
             if (resultSet.next()) {
-                rolUsuario = resultSet.getString("rol");
+                SesionUsuario.cargarDatosUsuario(resultSet.getInt("idUsuarios"), resultSet.getString("rol"), resultSet.getString("correo"), resultSet.getString("contrasena"));
+                usuarioEncontrado = true;
             }
         } catch (SQLException e) {
             e.printStackTrace();
         }
 
-        return rolUsuario;
+        return usuarioEncontrado;
     }
 
-    public boolean registrarObjeto(Date fechaPerdida, String ubicacion, String tipo, String carateristicas, String estado, int idUsuarios){
+
+    public boolean registrarObjeto(Date fechaPerdida, String ubicacion, String tipo, String caracteristicas, String estado, int usuarios_idUsuarios){
         boolean registroObjeto = false;
 
-        String query = "INSERT INTO objetosperdidos (fechaPredida, ubicacion, tipo, caractersiticas, estado) VALUES (?, ?, ?, ?, ?)";
+        String query = "INSERT INTO objetosperdidos (fechaPerdida, ubicacion, tipo, caracteristicas, estado, usuarios_idUsuarios) VALUES (?, ?, ?, ?, ?, ?)";
 
         try (PreparedStatement statement = conexion.prepareStatement(query)) {
             statement.setDate(1, fechaPerdida);
             statement.setString(2, ubicacion);
-            statement.setString(3, carateristicas);
+            statement.setString(3, caracteristicas);
             statement.setString(4, estado);
             statement.setString(5, tipo);
+            statement.setInt(6, usuarios_idUsuarios);
             int filasAfectadas = statement.executeUpdate();
             registroObjeto = (filasAfectadas > 0);
         } catch (SQLException e) {
@@ -85,7 +90,10 @@ public class ConexionBD {
         return registroObjeto;
     }
 
-    public void cargarObjetosPerdidos(){
+    public ArrayList<ObjetoPerdido> cargarObjetosPerdidos(){
+        ArrayList<ObjetoPerdido> objetosPerdidos = new ArrayList<>();
 
+
+        return objetosPerdidos;
     }
 }

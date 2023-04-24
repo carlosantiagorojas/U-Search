@@ -59,7 +59,7 @@ public class RegistrarCuentaController implements ControladorGeneral {
 
     public String registroCuenta(){
 
-        int registroExitoso;
+        boolean registroExitoso = false;
         String registro = "";
         ConexionBD conexionBD = new ConexionBD();
         String correo = this.correoElectronico.getText();
@@ -70,14 +70,14 @@ public class RegistrarCuentaController implements ControladorGeneral {
             if (esAdministrador()) {
                 System.out.println("entre aqui");
                 registroExitoso = conexionBD.registrarUsuario("personal", correo, contrasena);
-                if (registroExitoso != -1)
+                if (registroExitoso)
                     registro = "personal";
                 else
                     registro = "fallido";
             }
             else {
                 registroExitoso = conexionBD.registrarUsuario("usuario", correo, contrasena);
-                if (registroExitoso != -1)
+                if (registroExitoso)
                     registro = "usuario";
                 else
                     registro = "fallido";
@@ -109,10 +109,5 @@ public class RegistrarCuentaController implements ControladorGeneral {
             return true;
         else
             return false;
-    }
-
-    public static void guardarUsuario()
-    {
-
     }
 }

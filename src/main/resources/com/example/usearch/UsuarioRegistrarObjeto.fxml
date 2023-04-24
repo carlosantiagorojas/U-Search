@@ -49,7 +49,7 @@
             <Text layoutX="14.0" layoutY="87.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Ubicación de perdida" />
             <Text layoutX="14.0" layoutY="143.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Tipo de objeto" />
             <Text layoutX="15.0" layoutY="215.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Especifique las características físicas" />
-            <TextField fx:id="FechaPerdida" layoutX="14.0" layoutY="37.0" promptText="dd/mm/yy" />
+            <TextField fx:id="FechaPerdida" layoutX="14.0" layoutY="37.0" promptText="aaaa-mm-dd" />
             <TextField fx:id="UbicacionPerdida" layoutX="14.0" layoutY="97.0" prefHeight="25.0" prefWidth="320.0" />
             <TextArea fx:id="CareteristicasFisicas" layoutX="15.0" layoutY="228.0" prefHeight="200.0" prefWidth="320.0" />
             <TextField fx:id="TipoObjeto" layoutX="14.0" layoutY="164.0" prefHeight="25.0" prefWidth="320.0" />

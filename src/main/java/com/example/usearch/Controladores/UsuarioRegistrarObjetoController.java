@@ -1,6 +1,8 @@
 package com.example.usearch.Controladores;
 
 import com.example.usearch.Logica.CargadorEscenas;
+import com.example.usearch.Logica.SesionUsuario;
+import com.example.usearch.Logica.Usuario;
 import com.example.usearch.Persistencia.ConexionBD;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -12,6 +14,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 
 import java.sql.Date;
+import java.sql.SQLOutput;
 
 public class UsuarioRegistrarObjetoController implements ControladorGeneral{
     private Stage stage;
@@ -45,7 +48,8 @@ public class UsuarioRegistrarObjetoController implements ControladorGeneral{
         String fecha = FechaPerdida.getText();
         Date fechaConvertida = Date.valueOf(fecha);
 
-        resultadoRegistro = conexion.registrarObjeto(fechaConvertida, UbicacionPerdida.getText(), TipoObjeto.getText(), CareteristicasFisicas.getText(), "perdido", 1-);
+        SesionUsuario.mostrarDatosUsuario();
+        resultadoRegistro = conexion.registrarObjeto(fechaConvertida, UbicacionPerdida.getText(), TipoObjeto.getText(), CareteristicasFisicas.getText(), "perdido", SesionUsuario.getId());
 
         if(resultadoRegistro)
             System.out.println("Objeto registrado");

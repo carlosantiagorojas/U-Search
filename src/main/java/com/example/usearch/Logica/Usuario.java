@@ -14,6 +14,8 @@ public class Usuario {
 
     private ArrayList<ObjetoPerdido> objetosPerdidos;
 
+    public Usuario() {
+    }
     public Usuario(int id, String correoElectronico, String contrasena, ArrayList<ObjetoPerdido> objetosPerdidos, String rol) {
         this.id = id;
         this.correoElectronico = correoElectronico;
