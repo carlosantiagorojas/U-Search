@@ -39,7 +39,7 @@ public class InicioSesionController implements ControladorGeneral{
 
         // Comprobar el tipo de usuario que inicio sesion
         if(!usuarioEncontrado)
-            System.out.println("No se pudo iniciar sesion");
+            Alertas.mostrarError("Usuario no encontrado");
         else if(SesionUsuario.getRol().equals("usuario"))
             cargadorEscenas.CambiarEscenas("InterfazUsuario.fxml", "Menu usuario");
         else if (SesionUsuario.getRol().equals("personal")) {
