@@ -12,16 +12,19 @@ public class ObjetoPerdido {
 
     private String tipo;
 
-    private String carateristicas;
+    private String caracteristicas;
 
     private String estado;
 
-    public ObjetoPerdido(int id, Date fechaPerdida, String ubicacion, String tipo, String carateristicas, String estado) {
+    public ObjetoPerdido() {
+    }
+
+    public ObjetoPerdido(int id, Date fechaPerdida, String ubicacion, String tipo, String caracteristicas, String estado) {
         this.id = id;
         this.fechaPerdida = fechaPerdida;
         this.ubicacion = ubicacion;
         this.tipo = tipo;
-        this.carateristicas = carateristicas;
+        this.caracteristicas = caracteristicas;
         this.estado = estado;
     }
 
@@ -57,12 +60,12 @@ public class ObjetoPerdido {
         this.tipo = tipo;
     }
 
-    public String getCarateristicas() {
-        return carateristicas;
+    public String getCaracteristicas() {
+        return caracteristicas;
     }
 
-    public void setCarateristicas(String carateristicas) {
-        this.carateristicas = carateristicas;
+    public void setCaracteristicas(String carateristicas) {
+        this.caracteristicas = carateristicas;
     }
 
     public String getEstado() {

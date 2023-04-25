@@ -56,10 +56,4 @@ public class InicioSesionController implements ControladorGeneral{
         cargadorEscenas.CambiarEscenas("RegistrarCuenta.fxml", "Registro de cuenta");
     }
 
-    public boolean validarSesion(){
-        ConexionBD conexionBD = new ConexionBD();
-        Connection connection = conexionBD.getConnection();
-
-        return true;
-    }
 }

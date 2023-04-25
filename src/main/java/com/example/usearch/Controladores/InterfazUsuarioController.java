@@ -1,14 +1,25 @@
 package com.example.usearch.Controladores;
 
 import com.example.usearch.Logica.CargadorEscenas;
+import com.example.usearch.Logica.ObjetoPerdido;
+import com.example.usearch.Logica.SesionUsuario;
+import com.example.usearch.Persistencia.ConexionBD;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.ImageView;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 
-public class InterfazUsuarioController implements ControladorGeneral{
+import java.sql.Date;
 
+public class InterfazUsuarioController implements ControladorGeneral{
     private Stage stage;
+
+    ObservableList<ObjetoPerdido> listaObjetos;
 
     @Override
     public void setStage(Stage stage) {
@@ -22,6 +33,24 @@ public class InterfazUsuarioController implements ControladorGeneral{
     private ImageView RegistrarObjetoButton;
 
     @FXML
+    private TableColumn <ObjetoPerdido, String> caracteristicas;
+
+    @FXML
+    private TableColumn <ObjetoPerdido, String> estado;
+
+    @FXML
+    private TableColumn <ObjetoPerdido, Date> fecha;
+
+    @FXML
+    private TableColumn <ObjetoPerdido, String> ubicacion;
+
+    @FXML
+    private TableView <ObjetoPerdido> tablaObjetos;
+
+    @FXML
+    private TableColumn <ObjetoPerdido, String>tipo;
+
+    @FXML
     void AccionNotificaciones(MouseEvent event) {
         CargadorEscenas cargadorEscenas = new CargadorEscenas(stage);
         cargadorEscenas.CambiarEscenas("Notificaciones.fxml", "Notificaciones");
@@ -31,6 +60,23 @@ public class InterfazUsuarioController implements ControladorGeneral{
     void AccionRegistrarObjeto(MouseEvent event) {
         CargadorEscenas cargadorEscenas = new CargadorEscenas(stage);
         cargadorEscenas.CambiarEscenas("UsuarioRegistrarObjeto.fxml", "Registrar Objeto");
+    }
+
+    public void mostrarObjetosPerdidos(){
+        ConexionBD conexion = new ConexionBD();
+        SesionUsuario.setObjetosPerdidos(conexion.cargarObjetosPerdidos(SesionUsuario.getId()));
+
+        //SesionUsuario.mostrarDatosUsuario();
+        //SesionUsuario.mostrarObjetos();
+
+        this.listaObjetos = FXCollections.observableArrayList(SesionUsuario.getObjetosPerdidos());
+
+        tablaObjetos.setItems(listaObjetos);
+        this.fecha.setCellValueFactory(new PropertyValueFactory<ObjetoPerdido, Date>("fechaPerdida"));
+        this.ubicacion.setCellValueFactory(new PropertyValueFactory<ObjetoPerdido, String>("ubicacion"));
+        this.tipo.setCellValueFactory(new PropertyValueFactory<ObjetoPerdido, String>("tipo"));
+        this.caracteristicas.setCellValueFactory(new PropertyValueFactory<ObjetoPerdido, String>("caracteristicas"));
+        this.estado.setCellValueFactory(new PropertyValueFactory<ObjetoPerdido, String>("estado"));
     }
 
 }

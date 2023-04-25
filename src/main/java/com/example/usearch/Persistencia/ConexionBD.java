@@ -2,7 +2,6 @@ package com.example.usearch.Persistencia;
 
 import com.example.usearch.Logica.ObjetoPerdido;
 import com.example.usearch.Logica.SesionUsuario;
-import com.example.usearch.Logica.Usuario;
 
 import java.sql.*;
 import java.sql.Date;
@@ -12,19 +11,12 @@ public class ConexionBD {
     private static Connection conexion;
     private static ConexionBD instance;
 
-    public static synchronized ConexionBD getInstance()  {
-        if (instance == null) {
-            instance = new ConexionBD();
-            try {
-                conexion = DriverManager.getConnection("jdbc:mysql://localhost:3306/u-search", "root", "1234");
-            } catch (SQLException e) {
-                throw new RuntimeException(e);
-            }
+    public static Connection conectar()  {
+        try {
+            conexion = DriverManager.getConnection("jdbc:mysql://localhost:3306/u-search", "root", "1234");
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
         }
-        return instance;
-    }
-
-    public Connection getConnection() {
         return conexion;
     }
 
@@ -39,6 +31,10 @@ public class ConexionBD {
             int filasAfectadas = statement.executeUpdate();
             if (filasAfectadas > 0) {
                 registroExitoso = true;
+                ResultSet resultSet = statement.getGeneratedKeys();
+                if (resultSet.next()) {
+                    SesionUsuario.cargarDatosUsuario(resultSet.getInt(1), rol, correo, contrasena);
+                }
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -77,9 +73,9 @@ public class ConexionBD {
         try (PreparedStatement statement = conexion.prepareStatement(query)) {
             statement.setDate(1, fechaPerdida);
             statement.setString(2, ubicacion);
-            statement.setString(3, caracteristicas);
-            statement.setString(4, estado);
-            statement.setString(5, tipo);
+            statement.setString(3, tipo);
+            statement.setString(4, caracteristicas);
+            statement.setString(5, estado);
             statement.setInt(6, usuarios_idUsuarios);
             int filasAfectadas = statement.executeUpdate();
             registroObjeto = (filasAfectadas > 0);
@@ -90,10 +86,32 @@ public class ConexionBD {
         return registroObjeto;
     }
 
-    public ArrayList<ObjetoPerdido> cargarObjetosPerdidos(){
-        ArrayList<ObjetoPerdido> objetosPerdidos = new ArrayList<>();
+    public ArrayList<ObjetoPerdido> cargarObjetosPerdidos(int usuarios_idUsuarios){
 
+        ArrayList<ObjetoPerdido> objetosPerdidosAr = new ArrayList<>();
+        String query = "SELECT * FROM objetosperdidos WHERE usuarios_idUsuarios = ?";
 
-        return objetosPerdidos;
+        try (PreparedStatement statement = conexion.prepareStatement(query);){
+            statement.setInt(1, usuarios_idUsuarios);
+            ResultSet rs = statement.executeQuery();
+
+            while (rs.next()) {
+                ObjetoPerdido objeto = new ObjetoPerdido();
+                objeto.setId(rs.getInt("idObjetosPerdidos"));
+                objeto.setFechaPerdida(rs.getDate("fechaPerdida"));
+                objeto.setUbicacion(rs.getString("ubicacion"));
+                objeto.setTipo(rs.getString("tipo"));
+                objeto.setCaracteristicas(rs.getString("caracteristicas"));
+                objeto.setEstado(rs.getString("estado"));
+
+                objetosPerdidosAr.add(objeto);
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return objetosPerdidosAr;
     }
+
 }

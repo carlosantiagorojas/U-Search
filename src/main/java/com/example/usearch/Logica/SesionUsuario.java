@@ -69,9 +69,23 @@ public class SesionUsuario {
     }
 
     public static void mostrarDatosUsuario(){
+        System.out.println();
         System.out.println("ID: " + SesionUsuario.id);
         System.out.println("Rol: " + SesionUsuario.rol);
         System.out.println("Correo: " + SesionUsuario.correoElectronico);
         System.out.println("Contraseña: " + SesionUsuario.contrasena);
+        System.out.println();
+    }
+
+    public static void mostrarObjetos(){
+        for(ObjetoPerdido ob: SesionUsuario.objetosPerdidos){
+            System.out.println("ID: " + ob.getId());
+            System.out.println("Fecha: " + ob.getFechaPerdida());
+            System.out.println("Ubicacion: " + ob.getUbicacion());
+            System.out.println("Tipo: " + ob.getTipo());
+            System.out.println("Caracteristicas: " + ob.getCaracteristicas());
+            System.out.println("Estado: " + ob.getEstado());
+            System.out.println();
+        }
     }
 }

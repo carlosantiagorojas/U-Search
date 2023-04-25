@@ -1,26 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.Cursor?>
-<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.Pane?>
-<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="660.0" prefWidth="385.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.usearch.Controladores.InterfazUsuarioController">
    <children>
-      <ScrollPane layoutX="62.0" layoutY="130.0" prefHeight="360.0" prefWidth="273.0">
-        <content>
-          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="367.0" prefWidth="273.0">
-               <children>
-                  <VBox prefHeight="351.0" prefWidth="258.0" />
-               </children>
-            </AnchorPane>
-        </content>
-      </ScrollPane>
       <Pane prefHeight="85.0" prefWidth="385.0" style="-fx-background-color: lightblue;">
          <children>
             <ImageView fitHeight="77.0" fitWidth="75.0" layoutX="297.0">
@@ -53,10 +44,19 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </ImageView>
-      <Text fill="#0092ff" layoutX="134.0" layoutY="117.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Tus objetos perdidos">
+      <Text fill="#0092ff" layoutX="128.0" layoutY="110.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Tus objetos perdidos">
          <font>
             <Font size="14.0" />
          </font>
       </Text>
+      <TableView fx:id="tablaObjetos" layoutX="14.0" layoutY="121.0" prefHeight="398.0" prefWidth="357.0">
+        <columns>
+            <TableColumn fx:id="estado" prefWidth="60.0" text="Estado" />
+          <TableColumn fx:id="fecha" text="Fecha" />
+            <TableColumn fx:id="ubicacion" prefWidth="150.0" text="Ubicacion" />
+            <TableColumn fx:id="tipo" prefWidth="90.0" text="Tipo" />
+            <TableColumn fx:id="caracteristicas" minWidth="0.0" prefWidth="300.0" text="Caracteristicas" />
+        </columns>
+      </TableView>
    </children>
 </AnchorPane>
