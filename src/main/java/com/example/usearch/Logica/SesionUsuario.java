@@ -1,7 +1,5 @@
 package com.example.usearch.Logica;
 
-import com.example.usearch.Persistencia.ConexionBD;
-
 import java.util.ArrayList;
 
 public class SesionUsuario {

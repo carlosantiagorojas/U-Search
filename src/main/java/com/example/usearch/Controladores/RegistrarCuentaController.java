@@ -10,8 +10,6 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 
-import java.sql.Connection;
-
 public class RegistrarCuentaController implements ControladorGeneral {
 
     private Stage stage;

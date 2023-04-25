@@ -9,7 +9,6 @@ import java.util.ArrayList;
 
 public class ConexionBD {
     private static Connection conexion;
-    private static ConexionBD instance;
 
     public static Connection conectar()  {
         try {

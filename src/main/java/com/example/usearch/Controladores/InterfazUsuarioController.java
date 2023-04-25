@@ -13,7 +13,6 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
-
 import java.sql.Date;
 
 public class InterfazUsuarioController implements ControladorGeneral{
@@ -72,11 +71,11 @@ public class InterfazUsuarioController implements ControladorGeneral{
         this.listaObjetos = FXCollections.observableArrayList(SesionUsuario.getObjetosPerdidos());
 
         tablaObjetos.setItems(listaObjetos);
-        this.fecha.setCellValueFactory(new PropertyValueFactory<ObjetoPerdido, Date>("fechaPerdida"));
-        this.ubicacion.setCellValueFactory(new PropertyValueFactory<ObjetoPerdido, String>("ubicacion"));
-        this.tipo.setCellValueFactory(new PropertyValueFactory<ObjetoPerdido, String>("tipo"));
-        this.caracteristicas.setCellValueFactory(new PropertyValueFactory<ObjetoPerdido, String>("caracteristicas"));
-        this.estado.setCellValueFactory(new PropertyValueFactory<ObjetoPerdido, String>("estado"));
+        this.fecha.setCellValueFactory(new PropertyValueFactory<>("fechaPerdida"));
+        this.ubicacion.setCellValueFactory(new PropertyValueFactory<>("ubicacion"));
+        this.tipo.setCellValueFactory(new PropertyValueFactory<>("tipo"));
+        this.caracteristicas.setCellValueFactory(new PropertyValueFactory<>("caracteristicas"));
+        this.estado.setCellValueFactory(new PropertyValueFactory<>("estado"));
     }
 
 }
