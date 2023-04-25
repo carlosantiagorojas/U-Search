@@ -1,6 +1,8 @@
 package com.example.usearch.Controladores;
 
 import com.example.usearch.Logica.CargadorEscenas;
+import com.example.usearch.Logica.SesionUsuario;
+import com.example.usearch.Logica.Usuario;
 import com.example.usearch.Persistencia.ConexionBD;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -34,17 +36,18 @@ public class InicioSesionController implements ControladorGeneral{
     void AccionIniciarSesion(ActionEvent event) throws IOException {
         CargadorEscenas cargadorEscenas = new CargadorEscenas(stage);
 
-        String rolUsuarioEncontrado = "";
+        boolean usuarioEncontrado = false;
         ConexionBD conexion = new ConexionBD();
-        rolUsuarioEncontrado = conexion.consultarUsuarioSesion(CampoCorreo.getText(), CampoContrasena.getText());
+        usuarioEncontrado = conexion.consultarUsuarioSesion(CampoCorreo.getText(), CampoContrasena.getText());
 
         // Comprobar el tipo de usuario que inicio sesion
-        if(rolUsuarioEncontrado == null)
+        if(!usuarioEncontrado)
             System.out.println("No se pudo iniciar sesion");
-        else if(rolUsuarioEncontrado.equals("usuario"))
+        else if(SesionUsuario.getRol().equals("usuario"))
             cargadorEscenas.CambiarEscenas("InterfazUsuario.fxml", "Menu usuario");
-        else if (rolUsuarioEncontrado.equals("personal"))
+        else if (SesionUsuario.getRol().equals("personal")) {
             cargadorEscenas.CambiarEscenas("InterfazPersonal.fxml", "Menu Personal");
+        }
     }
 
     @FXML
@@ -53,10 +56,4 @@ public class InicioSesionController implements ControladorGeneral{
         cargadorEscenas.CambiarEscenas("RegistrarCuenta.fxml", "Registro de cuenta");
     }
 
-    public boolean validarSesion(){
-        ConexionBD conexionBD = new ConexionBD();
-        Connection connection = conexionBD.getConnection();
-
-        return true;
-    }
 }

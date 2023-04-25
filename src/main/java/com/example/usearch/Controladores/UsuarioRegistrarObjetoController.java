@@ -1,6 +1,8 @@
 package com.example.usearch.Controladores;
 
 import com.example.usearch.Logica.CargadorEscenas;
+import com.example.usearch.Logica.SesionUsuario;
+import com.example.usearch.Persistencia.ConexionBD;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -9,6 +11,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
+import java.sql.Date;
 
 public class UsuarioRegistrarObjetoController implements ControladorGeneral{
     private Stage stage;
@@ -37,7 +40,18 @@ public class UsuarioRegistrarObjetoController implements ControladorGeneral{
 
     @FXML
     void AccionRegistrarObjeto(ActionEvent event) {
+        boolean resultadoRegistro = false;
+        ConexionBD conexion = new ConexionBD();
+        String fecha = FechaPerdida.getText();
+        Date fechaConvertida = Date.valueOf(fecha);
 
+        //SesionUsuario.mostrarDatosUsuario();
+        resultadoRegistro = conexion.registrarObjeto(fechaConvertida, UbicacionPerdida.getText(), TipoObjeto.getText(), CareteristicasFisicas.getText(), "perdido", SesionUsuario.getId());
+
+        if(resultadoRegistro)
+            System.out.println("Objeto registrado");
+        else
+            System.out.println("No se pudo registrar el objeto");
     }
 
     @FXML
