@@ -2,7 +2,6 @@ package com.example.usearch.Controladores;
 
 import com.example.usearch.Logica.CargadorEscenas;
 import com.example.usearch.Logica.ObjetoPerdido;
-import com.example.usearch.Logica.SesionUsuario;
 import com.example.usearch.Persistencia.ConexionBD;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -82,4 +81,8 @@ public class ResultadoConsultaController implements ControladorGeneral {
         cargadorEscenas.CambiarEscenas("InterfazPersonal.fxml", "Menu Personal");
     }
 
+    @FXML
+    void AccionActualizar(ActionEvent event) {
+
+    }
 }

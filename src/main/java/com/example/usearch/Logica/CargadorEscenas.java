@@ -19,8 +19,6 @@ public class CargadorEscenas {
 
     public void CambiarEscenas(String fxml, String title) {
 
-
-
         try {
             FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource(fxml));
             Scene scene = new Scene(fxmlLoader.load(), 385, 660);
