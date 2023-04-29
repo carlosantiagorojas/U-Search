@@ -113,5 +113,33 @@ public class ConexionBD {
 
         return objetosPerdidosAr;
     }
+    public ArrayList<ObjetoPerdido> cargarObjetosPerdidosPer(String tipo, String ubicacion, String fecha){
+
+        ArrayList<ObjetoPerdido> objetosPerdidosAr = new ArrayList<>();
+        String query = "SELECT * FROM objetosperdidos WHERE tipo = ? AND ubicacion = ? AND fechaPerdida=?";
+
+        try (PreparedStatement statement = conexion.prepareStatement(query);){
+            statement.setString(1, tipo);
+            statement.setString(2, ubicacion);
+            statement.setString(3, fecha);
+            ResultSet rs = statement.executeQuery();
+
+            while (rs.next()) {
+                ObjetoPerdido objeto = new ObjetoPerdido();
+                objeto.setId(rs.getInt("idObjetosPerdidos"));
+                objeto.setFechaPerdida(rs.getDate("fechaPerdida"));
+                objeto.setUbicacion(rs.getString("ubicacion"));
+                objeto.setTipo(rs.getString("tipo"));
+                objeto.setCaracteristicas(rs.getString("caracteristicas"));
+                objeto.setEstado(rs.getString("estado"));
+
+                objetosPerdidosAr.add(objeto);
+            }
+
+        } catch (SQLException e) {
+        }
+
+        return objetosPerdidosAr;
+    }
 
 }
