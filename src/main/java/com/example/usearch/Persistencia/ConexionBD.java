@@ -113,14 +113,15 @@ public class ConexionBD {
 
         return objetosPerdidosAr;
     }
-    public ArrayList<ObjetoPerdido> cargarObjetosPerdidosPer(String tipo, String ubicacion){
+    public ArrayList<ObjetoPerdido> cargarObjetosPerdidosPer(String tipo, String ubicacion, String fecha){
 
         ArrayList<ObjetoPerdido> objetosPerdidosAr = new ArrayList<>();
-        String query = "SELECT * FROM objetosperdidos WHERE tipo = ? AND ubicacion = ?";
+        String query = "SELECT * FROM objetosperdidos WHERE tipo = ? AND ubicacion = ? AND fechaPerdida=?";
 
         try (PreparedStatement statement = conexion.prepareStatement(query);){
             statement.setString(1, tipo);
             statement.setString(2, ubicacion);
+            statement.setString(3, fecha);
             ResultSet rs = statement.executeQuery();
 
             while (rs.next()) {
@@ -136,7 +137,6 @@ public class ConexionBD {
             }
 
         } catch (SQLException e) {
-            e.printStackTrace();
         }
 
         return objetosPerdidosAr;
