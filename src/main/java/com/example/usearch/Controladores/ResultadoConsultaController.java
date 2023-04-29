@@ -26,7 +26,6 @@ public class ResultadoConsultaController implements ControladorGeneral {
     @Override
     public void setStage(Stage stage) {
         this.stage = stage;
-        Actualizar();
     }
     @FXML
     private Button ActualizarButton;
@@ -58,9 +57,9 @@ public class ResultadoConsultaController implements ControladorGeneral {
     private TableColumn<ObjetoPerdido, String> tipo;
 
     @FXML
-    void Actualizar() {
+    public void Actualizar(String tipo, String ubicacion, String fecha) {
         ConexionBD conexion = new ConexionBD();
-        ArrayList<ObjetoPerdido> objetosPerdidos=conexion.cargarObjetosPerdidosPer("carro", "b");
+        ArrayList<ObjetoPerdido> objetosPerdidos=conexion.cargarObjetosPerdidosPer(tipo, ubicacion, fecha);
         this.listaObjetos = FXCollections.observableArrayList(objetosPerdidos);
         tablaObjetos.setItems(listaObjetos);
         this.fecha.setCellValueFactory(new PropertyValueFactory<ObjetoPerdido, Date>("fechaPerdida"));
