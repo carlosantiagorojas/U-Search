@@ -2,16 +2,14 @@ package com.example.usearch.Controladores;
 
 import com.example.usearch.Logica.CargadorEscenas;
 import com.example.usearch.Logica.SesionUsuario;
-import com.example.usearch.Logica.Usuario;
 import com.example.usearch.Persistencia.ConexionBD;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
-
 import java.io.IOException;
-import java.sql.Connection;
+
 
 public class InicioSesionController implements ControladorGeneral{
     private Stage stage;
@@ -42,7 +40,7 @@ public class InicioSesionController implements ControladorGeneral{
 
         // Comprobar el tipo de usuario que inicio sesion
         if(!usuarioEncontrado)
-            System.out.println("No se pudo iniciar sesion");
+            Alertas.mostrarError("Usuario no encontrado");
         else if(SesionUsuario.getRol().equals("usuario"))
             cargadorEscenas.CambiarEscenas("InterfazUsuario.fxml", "Menu usuario");
         else if (SesionUsuario.getRol().equals("personal")) {

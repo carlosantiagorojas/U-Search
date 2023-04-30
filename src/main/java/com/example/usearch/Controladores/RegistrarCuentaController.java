@@ -5,12 +5,11 @@ import com.example.usearch.Persistencia.ConexionBD;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
-
-import java.sql.Connection;
 
 public class RegistrarCuentaController implements ControladorGeneral {
 
@@ -27,7 +26,7 @@ public class RegistrarCuentaController implements ControladorGeneral {
     private ImageView RegresarButton;
 
     @FXML
-    private TextField contrasena;
+    private PasswordField contrasena;
 
     @FXML
     private TextField correoElectronico;
@@ -44,10 +43,6 @@ public class RegistrarCuentaController implements ControladorGeneral {
         else if (resultadoRegistro.equals("personal")){
             CargadorEscenas cargadorEscenas = new CargadorEscenas(stage);
             cargadorEscenas.CambiarEscenas("InterfazPersonal.fxml", "Menu personal");
-        }
-        else
-        {
-            System.out.println("no se pudo registrar");
         }
     }
 
@@ -84,7 +79,7 @@ public class RegistrarCuentaController implements ControladorGeneral {
             }
         }
         else {
-            registro = "fallido";
+            Alertas.mostrarError("El correo ingresado no es valido, por favor ingrese un correo con el siguiente formato: ejemplo@javeriana.edu.co");
         }
         return registro;
     }

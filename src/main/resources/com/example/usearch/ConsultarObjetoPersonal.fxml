@@ -26,7 +26,7 @@
             </ImageView>
          </children>
       </Pane>
-      <Text fill="#0092ff" layoutX="75.0" layoutY="222.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Llene la información dependiendo del nivel de profundidad de su consulta" textAlignment="CENTER" wrappingWidth="235.8759765625">
+      <Text fill="#0092ff" layoutX="75.0" layoutY="237.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Llene un campo o todos los campos" textAlignment="CENTER" wrappingWidth="235.8759765625">
          <font>
             <Font size="14.0" />
          </font></Text>
@@ -38,16 +38,14 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </ImageView>
-      <Pane layoutX="19.0" layoutY="269.0" prefHeight="254.0" prefWidth="347.0" style="-fx-background-color: lightgrey;">
+      <Pane layoutX="19.0" layoutY="272.0" prefHeight="212.0" prefWidth="347.0" style="-fx-background-color: lightgrey;">
          <children>
-            <Text layoutX="14.0" layoutY="84.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Fecha de perdida" />
-            <Text layoutX="14.0" layoutY="140.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Ubicación de perdida" />
-            <Text layoutX="12.0" layoutY="202.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Tipo de objeto" />
-            <TextField fx:id="FechaPerdida" layoutX="13.0" layoutY="88.0" prefHeight="25.0" prefWidth="320.0" promptText="dd/mm/yy" />
-            <TextField fx:id="UbicacionPerdida" layoutX="13.0" layoutY="148.0" prefHeight="25.0" prefWidth="320.0" />
-            <Text layoutX="17.0" layoutY="35.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Id del objeto" />
-            <TextField fx:id="IdObjeto" layoutX="13.0" layoutY="39.0" prefHeight="25.0" prefWidth="320.0" />
-            <TextField fx:id="TipoObjeto" layoutX="13.0" layoutY="215.0" prefHeight="25.0" prefWidth="320.0" />
+            <Text layoutX="15.0" layoutY="35.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Fecha de perdida" />
+            <Text layoutX="15.0" layoutY="91.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Ubicación de perdida" />
+            <Text layoutX="13.0" layoutY="153.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Tipo de objeto" />
+            <TextField fx:id="FechaPerdida" layoutX="14.0" layoutY="39.0" prefHeight="25.0" prefWidth="320.0" promptText="aaaa-mm-dd" />
+            <TextField fx:id="UbicacionPerdida" layoutX="14.0" layoutY="99.0" prefHeight="25.0" prefWidth="320.0" />
+            <TextField fx:id="TipoObjeto" layoutX="14.0" layoutY="166.0" prefHeight="25.0" prefWidth="320.0" />
          </children>
       </Pane>
       <Button fx:id="ConsultarButton" layoutX="274.0" layoutY="600.0" mnemonicParsing="false" onAction="#AccionConsultar" text="Consultar" />

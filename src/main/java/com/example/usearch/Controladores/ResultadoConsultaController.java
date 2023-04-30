@@ -26,6 +26,7 @@ public class ResultadoConsultaController implements ControladorGeneral {
     public void setStage(Stage stage) {
         this.stage = stage;
     }
+
     @FXML
     private Button ActualizarButton;
 
@@ -43,11 +44,9 @@ public class ResultadoConsultaController implements ControladorGeneral {
 
     @FXML
     private TableColumn<ObjetoPerdido, String> ubicacion;
-    @FXML
-    private TableColumn<ObjetoPerdido, Date> fecha;
 
     @FXML
-    private TableColumn<ObjetoPerdido, String> id;
+    private TableColumn<ObjetoPerdido, Date> fecha;
 
     @FXML
     private TableView<ObjetoPerdido> tablaObjetos;
@@ -55,19 +54,13 @@ public class ResultadoConsultaController implements ControladorGeneral {
     @FXML
     private TableColumn<ObjetoPerdido, String> tipo;
 
-    @FXML
-    public void Actualizar(String tipo, String ubicacion, String fecha) {
-        ConexionBD conexion = new ConexionBD();
-        ArrayList<ObjetoPerdido> objetosPerdidos=conexion.cargarObjetosPerdidosPer(tipo, ubicacion, fecha);
-        this.listaObjetos = FXCollections.observableArrayList(objetosPerdidos);
-        tablaObjetos.setItems(listaObjetos);
-        this.fecha.setCellValueFactory(new PropertyValueFactory<ObjetoPerdido, Date>("fechaPerdida"));
-        this.ubicacion.setCellValueFactory(new PropertyValueFactory<ObjetoPerdido, String>("ubicacion"));
-        this.tipo.setCellValueFactory(new PropertyValueFactory<ObjetoPerdido, String>("tipo"));
-        this.caracteristicas.setCellValueFactory(new PropertyValueFactory<ObjetoPerdido, String>("caracteristicas"));
-        this.estado.setCellValueFactory(new PropertyValueFactory<ObjetoPerdido, String>("estado"));
+    public boolean ActualizarTodosLLenos(String tipo, String ubicacion, Date fecha) {
 
+        ConexionBD conexion = new ConexionBD();
+        ArrayList<ObjetoPerdido> objetosPerdidos = conexion.cargarObjetosPerdidosPer(tipo, ubicacion, fecha);
+        return actualizarTabla(objetosPerdidos);
     }
+
 
     @FXML
     void AccionRegresar(MouseEvent event) {
@@ -84,5 +77,25 @@ public class ResultadoConsultaController implements ControladorGeneral {
     @FXML
     void AccionActualizar(ActionEvent event) {
 
+    }
+
+    public boolean actualizarTabla(ArrayList<ObjetoPerdido> objetosPerdidos)
+    {
+        boolean actualizacion = false;
+        try {
+            this.listaObjetos = FXCollections.observableArrayList(objetosPerdidos);
+            tablaObjetos.setItems(listaObjetos);
+            this.fecha.setCellValueFactory(new PropertyValueFactory<ObjetoPerdido, Date>("fechaPerdida"));
+            this.ubicacion.setCellValueFactory(new PropertyValueFactory<ObjetoPerdido, String>("ubicacion"));
+            this.tipo.setCellValueFactory(new PropertyValueFactory<ObjetoPerdido, String>("tipo"));
+            this.caracteristicas.setCellValueFactory(new PropertyValueFactory<ObjetoPerdido, String>("caracteristicas"));
+            this.estado.setCellValueFactory(new PropertyValueFactory<ObjetoPerdido, String>("estado"));
+            actualizacion = true;
+
+        } catch (Exception e) {
+            Alertas.mostrarError("Error al cargar los resultados de la consulta");
+        }
+
+        return actualizacion;
     }
 }
