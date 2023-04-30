@@ -14,7 +14,6 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.stage.Stage;
-
 import java.sql.Date;
 import java.util.ArrayList;
 
@@ -54,13 +53,6 @@ public class ResultadoConsultaController implements ControladorGeneral {
     @FXML
     private TableColumn<ObjetoPerdido, String> tipo;
 
-    public boolean ActualizarTodosLLenos(String tipo, String ubicacion, Date fecha) {
-
-        ConexionBD conexion = new ConexionBD();
-        ArrayList<ObjetoPerdido> objetosPerdidos = conexion.cargarObjetosPerdidosPer(tipo, ubicacion, fecha);
-        return actualizarTabla(objetosPerdidos);
-    }
-
 
     @FXML
     void AccionRegresar(MouseEvent event) {
@@ -79,9 +71,8 @@ public class ResultadoConsultaController implements ControladorGeneral {
 
     }
 
-    public boolean actualizarTabla(ArrayList<ObjetoPerdido> objetosPerdidos)
+    public void actualizarTabla(ArrayList<ObjetoPerdido> objetosPerdidos)
     {
-        boolean actualizacion = false;
         try {
             this.listaObjetos = FXCollections.observableArrayList(objetosPerdidos);
             tablaObjetos.setItems(listaObjetos);
@@ -90,12 +81,10 @@ public class ResultadoConsultaController implements ControladorGeneral {
             this.tipo.setCellValueFactory(new PropertyValueFactory<ObjetoPerdido, String>("tipo"));
             this.caracteristicas.setCellValueFactory(new PropertyValueFactory<ObjetoPerdido, String>("caracteristicas"));
             this.estado.setCellValueFactory(new PropertyValueFactory<ObjetoPerdido, String>("estado"));
-            actualizacion = true;
 
         } catch (Exception e) {
-            Alertas.mostrarError("Error al cargar los resultados de la consulta");
+            Alertas.mostrarError("Error al actualizar la tabla");
         }
-
-        return actualizacion;
     }
+
 }

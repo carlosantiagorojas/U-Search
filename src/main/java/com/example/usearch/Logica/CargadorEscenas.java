@@ -2,11 +2,11 @@ package com.example.usearch.Logica;
 
 import com.example.usearch.Controladores.ControladorGeneral;
 import com.example.usearch.Controladores.InterfazUsuarioController;
+import com.example.usearch.Controladores.ResultadoConsultaController;
 import com.example.usearch.Main;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-
 import java.io.IOException;
 
 public class CargadorEscenas {

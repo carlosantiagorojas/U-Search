@@ -1,6 +1,8 @@
 package com.example.usearch.Controladores;
 
 import com.example.usearch.Logica.CargadorEscenas;
+import com.example.usearch.Logica.ObjetoPerdido;
+import com.example.usearch.Persistencia.ConexionBD;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -9,6 +11,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import java.sql.Date;
+import java.util.ArrayList;
 
 public class ConsultarObjetoPersonalController implements ControladorGeneral{
     private Stage stage;
@@ -35,19 +38,41 @@ public class ConsultarObjetoPersonalController implements ControladorGeneral{
     @FXML
     void AccionConsultar(ActionEvent event) {
 
+        ArrayList<ObjetoPerdido> resultadoConsulta;
         boolean camposVacios = camposVacios();
 
         if(!camposVacios){
-            if(cantidadCamposLLenos() !=1) {
-                tipoConsulta();
-            }else {
+            if(cantidadCamposLLenos() == 1) {
+                if(!FechaPerdida.getText().isEmpty() && !fechaValida())
+                {
+                    Alertas.mostrarError("Fecha no valida, digite la fecha en formato aaaa-mm-dd");
+                }
+                else
+                {
+                    resultadoConsulta = tipoConsulta();
+                    cambiarTabla(resultadoConsulta);
+                }
+            }
+            else if(camposLlenos() && fechaValida())
+            {
+                if(!FechaPerdida.getText().isEmpty() && !fechaValida())
+                {
+                    Alertas.mostrarError("Fecha no valida, digite la fecha en formato aaaa-mm-dd");
+                }
+                else
+                {
+                    Date fecha = Date.valueOf(FechaPerdida.getText());
+                    resultadoConsulta = ActualizarTodosLLenos(TipoObjeto.getText(), UbicacionPerdida.getText(), fecha);
+                    cambiarTabla(resultadoConsulta);
+                }
+            }
+            else {
                 Alertas.mostrarError("Por favor llenar un solo campo");
             }
         }
         else {
             Alertas.mostrarError("Campos vacios, por favor llenar uno o todos los campos");
         }
-
     }
 
     @FXML
@@ -57,14 +82,19 @@ public class ConsultarObjetoPersonalController implements ControladorGeneral{
     }
 
     public boolean camposVacios(){
-        return TipoObjeto.getText().isEmpty() || UbicacionPerdida.getText().isEmpty() || FechaPerdida.getText().isEmpty();
+        return TipoObjeto.getText().isEmpty() && UbicacionPerdida.getText().isEmpty() && FechaPerdida.getText().isEmpty();
     }
 
     public int cantidadCamposLLenos(){
         int camposLlenos = 0;
-        if(!TipoObjeto.getText().isEmpty() || !UbicacionPerdida.getText().isEmpty() || !FechaPerdida.getText().isEmpty()){
+
+        if(!TipoObjeto.getText().isEmpty())
             camposLlenos += 1;
-        }
+        if(!UbicacionPerdida.getText().isEmpty())
+            camposLlenos += 1;
+        if(!FechaPerdida.getText().isEmpty())
+            camposLlenos += 1;
+
         return camposLlenos;
     }
 
@@ -72,62 +102,82 @@ public class ConsultarObjetoPersonalController implements ControladorGeneral{
         return !TipoObjeto.getText().isEmpty() && !UbicacionPerdida.getText().isEmpty() && !FechaPerdida.getText().isEmpty();
     }
 
-    public void tipoConsulta()
+    public ArrayList<ObjetoPerdido> tipoConsulta()
     {
-        Date fecha = fechaValida();
+        ArrayList<ObjetoPerdido> objetosEncontrados = new ArrayList<>();
 
-
-        if(camposLlenos())
+        if(!TipoObjeto.getText().isEmpty())
         {
-            boolean consultaExitosa = false;
-            CargadorEscenas cargadorEscenas = new CargadorEscenas(stage);
-            ResultadoConsultaController controllerlocal = (ResultadoConsultaController) cargadorEscenas.controladorGeneral;
-            consultaExitosa = controllerlocal.ActualizarTodosLLenos(TipoObjeto.getText(), UbicacionPerdida.getText(), fecha);
-            resultadoConsulta(consultaExitosa, cargadorEscenas);
-        }
-        else if(!TipoObjeto.getText().isEmpty())
-        {
-            boolean consultaExitosa = false;
-            CargadorEscenas cargadorEscenas = new CargadorEscenas(stage);
-            ResultadoConsultaController controllerlocal = (ResultadoConsultaController) cargadorEscenas.controladorGeneral;
-            resultadoConsulta(consultaExitosa, cargadorEscenas);
+            objetosEncontrados = ActualizarTipo(TipoObjeto.getText());
         }
         else if(!UbicacionPerdida.getText().isEmpty())
         {
-            boolean consultaExitosa = false;
-            CargadorEscenas cargadorEscenas = new CargadorEscenas(stage);
-            ResultadoConsultaController controllerlocal = (ResultadoConsultaController) cargadorEscenas.controladorGeneral;
-            resultadoConsulta(consultaExitosa, cargadorEscenas);
+            objetosEncontrados = ActualizarUbicacion(UbicacionPerdida.getText());
         }
-        else if(!FechaPerdida.getText().isEmpty())
+        else if(!FechaPerdida.getText().isEmpty() && fechaValida())
         {
-            boolean consultaExitosa = false;
+            Date fecha = Date.valueOf(FechaPerdida.getText());
+            objetosEncontrados = ActualizarFecha(fecha);
+        }
+
+        return objetosEncontrados;
+    }
+
+    public void cambiarTabla(ArrayList<ObjetoPerdido> objetosPerdidos)
+    {
+        if(validarConsulta(objetosPerdidos))
+        {
             CargadorEscenas cargadorEscenas = new CargadorEscenas(stage);
-            ResultadoConsultaController controllerlocal = (ResultadoConsultaController) cargadorEscenas.controladorGeneral;
-            resultadoConsulta(consultaExitosa, cargadorEscenas);
-        }
-        else
-            Alertas.mostrarError("Error al consultar objeto");
-    }
-
-    public Date fechaValida()
-    {
-        Date fecha = null;
-
-        try {
-            fecha = Date.valueOf(FechaPerdida.getText());
-        } catch (Exception e) {
-            Alertas.mostrarError("Fecha no valida, digite la fecha en formato aaaa-mm-dd");
-        }
-
-        return fecha;
-    }
-
-    public void resultadoConsulta(boolean consultaExitosa, CargadorEscenas cargadorEscenas)
-    {
-        if (consultaExitosa)
             cargadorEscenas.CambiarEscenas("ResultadoConsulta.fxml", "Resultado de su Consulta");
+            ResultadoConsultaController controllerlocal = (ResultadoConsultaController) cargadorEscenas.controladorGeneral;
+            controllerlocal.actualizarTabla(objetosPerdidos);
+        }
         else
-            Alertas.mostrarError("Error al consultar objeto");
+            Alertas.mostrarError("No se encontraron objetos con los parametros ingresados");
     }
+
+    public boolean fechaValida()
+    {
+        try {
+            Date fecha = Date.valueOf(FechaPerdida.getText());
+            return true;
+        } catch (Exception e) {
+            return false;
+        }
+    }
+
+    public ArrayList<ObjetoPerdido> ActualizarTodosLLenos(String tipo, String ubicacion, Date fecha) {
+
+        ConexionBD conexion = new ConexionBD();
+        if(fechaValida())
+            return conexion.cargarObjetosPerdidosPer(tipo, ubicacion, fecha);
+        else
+            return null;
+    }
+
+    public ArrayList<ObjetoPerdido> ActualizarTipo(String tipo) {
+
+        ConexionBD conexion = new ConexionBD();
+
+        return conexion.cargarObjetosPerdidosTipo(tipo);
+    }
+
+    public ArrayList<ObjetoPerdido> ActualizarUbicacion(String ubicacion) {
+
+        ConexionBD conexion = new ConexionBD();
+
+        return conexion.cargarObjetosPerdidosUbicacion(ubicacion);
+    }
+    public ArrayList<ObjetoPerdido> ActualizarFecha(Date fecha) {
+
+        ConexionBD conexion = new ConexionBD();
+
+        return conexion.cargarObjetosPerdidosFecha(fecha);
+    }
+
+    public boolean validarConsulta(ArrayList<ObjetoPerdido> objetosPerdidos)
+    {
+        return objetosPerdidos.size() >= 1;
+    }
+
 }
