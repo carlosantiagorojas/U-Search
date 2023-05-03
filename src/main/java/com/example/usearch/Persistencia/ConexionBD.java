@@ -2,7 +2,6 @@ package com.example.usearch.Persistencia;
 
 import com.example.usearch.Logica.ObjetoPerdido;
 import com.example.usearch.Logica.SesionUsuario;
-
 import java.sql.*;
 import java.sql.Date;
 import java.util.ArrayList;

@@ -10,7 +10,6 @@ import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import java.io.IOException;
 
-
 public class InicioSesionController implements ControladorGeneral{
     private Stage stage;
     @Override
@@ -40,7 +39,7 @@ public class InicioSesionController implements ControladorGeneral{
 
         // Comprobar el tipo de usuario que inicio sesion
         if(!usuarioEncontrado)
-            Alertas.mostrarError("Usuario no encontrado");
+            Alertas.mostrarError("Correo y/o contraseña incorrectos");
         else if(SesionUsuario.getRol().equals("usuario"))
             cargadorEscenas.CambiarEscenas("InterfazUsuario.fxml", "Menu usuario");
         else if (SesionUsuario.getRol().equals("personal")) {
