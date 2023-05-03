@@ -39,8 +39,8 @@
          <children>
             <Text layoutX="15.0" layoutY="27.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Correo electronico" />
             <Text layoutX="14.0" layoutY="87.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Contraseña" />
-            <TextField fx:id="correoElectronico" layoutX="14.0" layoutY="37.0" prefHeight="25.0" prefWidth="320.0" promptText="ejemplo@javeriana.edu.co" />
-            <PasswordField fx:id="contrasena" layoutX="15.0" layoutY="97.0" prefHeight="25.0" prefWidth="320.0" />
+            <TextField fx:id="correoElectronico" layoutX="14.0" layoutY="37.0" prefHeight="25.0" prefWidth="320.0" />
+            <PasswordField fx:id="contrasena" layoutX="16.0" layoutY="97.0" prefHeight="25.0" prefWidth="320.0" />
          </children>
       </Pane>
       <Text fill="#0092ff" layoutX="114.0" layoutY="369.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Llene los siguientes datos">

@@ -111,5 +111,117 @@ public class ConexionBD {
 
         return objetosPerdidosAr;
     }
+    public ArrayList<ObjetoPerdido> cargarObjetosPerdidosPer(String tipo, String ubicacion, Date fechaPerdida){
+
+        ArrayList<ObjetoPerdido> objetosPerdidosAr = new ArrayList<>();
+        String query = "SELECT * FROM objetosperdidos WHERE tipo = ? AND ubicacion = ? AND fechaPerdida=?";
+
+        try (PreparedStatement statement = conexion.prepareStatement(query);){
+            statement.setString(1, tipo);
+            statement.setString(2, ubicacion);
+            statement.setDate(3, fechaPerdida);
+            ResultSet rs = statement.executeQuery();
+
+            while (rs.next()) {
+                ObjetoPerdido objeto = new ObjetoPerdido();
+                objeto.setId(rs.getInt("idObjetosPerdidos"));
+                objeto.setFechaPerdida(rs.getDate("fechaPerdida"));
+                objeto.setUbicacion(rs.getString("ubicacion"));
+                objeto.setTipo(rs.getString("tipo"));
+                objeto.setCaracteristicas(rs.getString("caracteristicas"));
+                objeto.setEstado(rs.getString("estado"));
+
+                objetosPerdidosAr.add(objeto);
+            }
+
+        } catch (SQLException e) {
+        }
+
+        return objetosPerdidosAr;
+    }
+
+    public ArrayList<ObjetoPerdido> cargarObjetosPerdidosTipo(String Tipo){
+
+        ArrayList<ObjetoPerdido> objetosPerdidosAr = new ArrayList<>();
+        String query = "SELECT * FROM objetosperdidos WHERE tipo = ?";
+
+        try (PreparedStatement statement = conexion.prepareStatement(query);){
+            statement.setString(1, Tipo);
+            ResultSet rs = statement.executeQuery();
+
+            while (rs.next()) {
+                ObjetoPerdido objeto = new ObjetoPerdido();
+                objeto.setId(rs.getInt("idObjetosPerdidos"));
+                objeto.setFechaPerdida(rs.getDate("fechaPerdida"));
+                objeto.setUbicacion(rs.getString("ubicacion"));
+                objeto.setTipo(rs.getString("tipo"));
+                objeto.setCaracteristicas(rs.getString("caracteristicas"));
+                objeto.setEstado(rs.getString("estado"));
+
+                objetosPerdidosAr.add(objeto);
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return objetosPerdidosAr;
+    }
+
+    public ArrayList<ObjetoPerdido> cargarObjetosPerdidosUbicacion(String ubicacion){
+
+        ArrayList<ObjetoPerdido> objetosPerdidosAr = new ArrayList<>();
+        String query = "SELECT * FROM objetosperdidos WHERE ubicacion = ?";
+
+        try (PreparedStatement statement = conexion.prepareStatement(query);){
+            statement.setString(1, ubicacion);
+            ResultSet rs = statement.executeQuery();
+
+            while (rs.next()) {
+                ObjetoPerdido objeto = new ObjetoPerdido();
+                objeto.setId(rs.getInt("idObjetosPerdidos"));
+                objeto.setFechaPerdida(rs.getDate("fechaPerdida"));
+                objeto.setUbicacion(rs.getString("ubicacion"));
+                objeto.setTipo(rs.getString("tipo"));
+                objeto.setCaracteristicas(rs.getString("caracteristicas"));
+                objeto.setEstado(rs.getString("estado"));
+
+                objetosPerdidosAr.add(objeto);
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return objetosPerdidosAr;
+    }
+
+    public ArrayList<ObjetoPerdido> cargarObjetosPerdidosFecha(Date fechaPerdida){
+
+        ArrayList<ObjetoPerdido> objetosPerdidosAr = new ArrayList<>();
+        String query = "SELECT * FROM objetosperdidos WHERE fechaPerdida = ?";
+
+        try (PreparedStatement statement = conexion.prepareStatement(query);){
+            statement.setDate(1, fechaPerdida);
+            ResultSet rs = statement.executeQuery();
+
+            while (rs.next()) {
+                ObjetoPerdido objeto = new ObjetoPerdido();
+                objeto.setId(rs.getInt("idObjetosPerdidos"));
+                objeto.setFechaPerdida(rs.getDate("fechaPerdida"));
+                objeto.setUbicacion(rs.getString("ubicacion"));
+                objeto.setTipo(rs.getString("tipo"));
+                objeto.setCaracteristicas(rs.getString("caracteristicas"));
+                objeto.setEstado(rs.getString("estado"));
+
+                objetosPerdidosAr.add(objeto);
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return objetosPerdidosAr;
+    }
 
 }

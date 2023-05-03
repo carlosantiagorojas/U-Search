@@ -79,7 +79,7 @@ public class RegistrarCuentaController implements ControladorGeneral {
             }
         }
         else {
-            Alertas.mostrarError( "El correo ingresado no es valido, por favor ingrese un correo con el siguiente formato: ejemplo@javeriana.edu.co");
+            Alertas.mostrarError("El correo ingresado no es valido, por favor ingrese un correo con el siguiente formato: ejemplo@javeriana.edu.co");
         }
         return registro;
     }

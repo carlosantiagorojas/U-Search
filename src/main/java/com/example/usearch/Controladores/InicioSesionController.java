@@ -10,6 +10,7 @@ import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import java.io.IOException;
 
+
 public class InicioSesionController implements ControladorGeneral{
     private Stage stage;
     @Override
