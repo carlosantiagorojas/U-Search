@@ -7,6 +7,8 @@ import com.example.usearch.Main;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
+
 import java.io.IOException;
 
 public class CargadorEscenas {
@@ -23,12 +25,12 @@ public class CargadorEscenas {
             FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource(fxml));
             Scene scene = new Scene(fxmlLoader.load(), 385, 660);
             stage.setScene(scene);
-            stage.setTitle(title);
             this.controladorGeneral = fxmlLoader.getController();
             this.controladorGeneral.setStage(stage);
             if(controladorGeneral instanceof InterfazUsuarioController){
                 ((InterfazUsuarioController) controladorGeneral).mostrarObjetosPerdidos();
             }
+
             stage.show();
 
         } catch (IOException e) {
