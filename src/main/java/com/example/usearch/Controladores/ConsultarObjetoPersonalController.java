@@ -35,6 +35,7 @@ public class ConsultarObjetoPersonalController implements ControladorGeneral{
     @FXML
     private TextField UbicacionPerdida;
 
+
     @FXML
     void AccionConsultar(ActionEvent event) {
 
@@ -74,6 +75,7 @@ public class ConsultarObjetoPersonalController implements ControladorGeneral{
             Alertas.mostrarError("Campos vacios, por favor llenar uno o todos los campos");
         }
     }
+
 
     @FXML
     void AccionRegresar(MouseEvent event) {
@@ -136,6 +138,7 @@ public class ConsultarObjetoPersonalController implements ControladorGeneral{
             Alertas.mostrarError("No se encontraron objetos con los parametros ingresados");
     }
 
+
     public boolean fechaValida()
     {
         try {
@@ -146,13 +149,11 @@ public class ConsultarObjetoPersonalController implements ControladorGeneral{
         }
     }
 
+
     public ArrayList<ObjetoPerdido> ActualizarTodosLLenos(String tipo, String ubicacion, Date fecha) {
 
         ConexionBD conexion = new ConexionBD();
-        if(fechaValida())
-            return conexion.cargarObjetosPerdidosPer(tipo, ubicacion, fecha);
-        else
-            return null;
+        return conexion.cargarObjetosPerdidosPer(tipo, ubicacion, fecha);
     }
 
     public ArrayList<ObjetoPerdido> ActualizarTipo(String tipo) {
@@ -168,6 +169,12 @@ public class ConsultarObjetoPersonalController implements ControladorGeneral{
 
         return conexion.cargarObjetosPerdidosUbicacion(ubicacion);
     }
+
+    /**
+     * Metodos que se encargan de actualizar los objetos perdidos
+     * @param fecha
+     * @return
+     */
     public ArrayList<ObjetoPerdido> ActualizarFecha(Date fecha) {
 
         ConexionBD conexion = new ConexionBD();
@@ -175,6 +182,11 @@ public class ConsultarObjetoPersonalController implements ControladorGeneral{
         return conexion.cargarObjetosPerdidosFecha(fecha);
     }
 
+    /**
+     * Metodo que se encarga de validar la consulta
+     * @param objetosPerdidos
+     * @return
+     */
     public boolean validarConsulta(ArrayList<ObjetoPerdido> objetosPerdidos)
     {
         return objetosPerdidos.size() >= 1;
