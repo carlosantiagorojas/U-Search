@@ -75,4 +75,15 @@ public class ObjetoPerdido {
     public void setEstado(String estado) {
         this.estado = estado;
     }
+
+    public void verInformacion()
+    {
+        System.out.println("ID: " + this.getId());
+        System.out.println("Estado: " + this.getEstado());
+        System.out.println("Fecha: " + this.getFechaPerdida());
+        System.out.println("Ubicacion: " + this.getUbicacion());
+        System.out.println("Tipo: " + this.getTipo());
+        System.out.println("Caracteristicas: " + this.getCaracteristicas());
+        System.out.println("--------------------------------------------------");
+    }
 }

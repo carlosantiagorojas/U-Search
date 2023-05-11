@@ -224,4 +224,19 @@ public class ConexionBD {
         return objetosPerdidosAr;
     }
 
+    public boolean actualizarEncontrado(int idObjeto){
+        boolean actualizar = false;
+        String query = "UPDATE objetosperdidos SET estado = 'encontrado' WHERE idObjetosPerdidos = ?";
+
+        try (PreparedStatement statement = conexion.prepareStatement(query);){
+            statement.setInt(1, idObjeto);
+            int filasAfectadas = statement.executeUpdate();
+            actualizar = (filasAfectadas > 0);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return actualizar;
+    }
+
 }

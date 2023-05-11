@@ -2,11 +2,13 @@ package com.example.usearch.Controladores;
 
 import com.example.usearch.Logica.CargadorEscenas;
 import com.example.usearch.Logica.ObjetoPerdido;
+import com.example.usearch.Persistencia.ConexionBD;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.control.TableCell;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
@@ -68,6 +70,50 @@ public class ResultadoConsultaController implements ControladorGeneral {
     @FXML
     void AccionActualizar(ActionEvent event) {
 
+        ObjetoPerdido objetoperdido = null;
+        boolean seleccionado = false;
+
+        try
+        {
+            objetoperdido = tablaObjetos.getSelectionModel().getSelectedItem();
+            objetoperdido.verInformacion();
+        }catch (Exception e) {
+            Alertas.mostrarError("No se ha seleccionado ningun objeto");
+        }
+
+        boolean resultadoActualizacion = false;
+
+        if (objetoperdido != null) {
+            if (objetoperdido.getEstado().equals("perdido")) {
+                ConexionBD conexion = new ConexionBD();
+                resultadoActualizacion = conexion.actualizarEncontrado(objetoperdido.getId());
+
+                if (resultadoActualizacion) {
+                    ObjetoPerdido objetoActualizado = null;
+                    ObservableList<ObjetoPerdido> objetosTabla = FXCollections.observableArrayList();
+                    objetosTabla = tablaObjetos.getItems();
+
+                    for (ObjetoPerdido obj : objetosTabla) {
+                        if (obj.getId() == objetoperdido.getId()) {
+                            obj.setEstado("encontrado");
+                            objetoActualizado = obj;
+                            break;
+                        }
+                    }
+
+                    if (objetoActualizado != null) {
+                        int index = tablaObjetos.getItems().indexOf(objetoActualizado);
+                        tablaObjetos.getItems().set(index, objetoActualizado);
+
+                        Alertas.informar("Actualizacion exitosa");
+                    } else
+                        Alertas.informar("No se pudo actualizar la tabla");
+
+                } else
+                    Alertas.mostrarError("Error en la actualización de la base de datos");
+            } else
+                Alertas.mostrarError("El objeto ya fue encontrado, no se puede actualizar");
+        }
     }
 
     public void actualizarTabla(ArrayList<ObjetoPerdido> objetosPerdidos)

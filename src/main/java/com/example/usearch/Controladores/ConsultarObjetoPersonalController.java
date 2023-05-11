@@ -138,7 +138,6 @@ public class ConsultarObjetoPersonalController implements ControladorGeneral{
             Alertas.mostrarError("No se encontraron objetos con los parametros ingresados");
     }
 
-
     public boolean fechaValida()
     {
         try {
@@ -148,7 +147,6 @@ public class ConsultarObjetoPersonalController implements ControladorGeneral{
             return false;
         }
     }
-
 
     public ArrayList<ObjetoPerdido> ActualizarTodosLLenos(String tipo, String ubicacion, Date fecha) {
 
@@ -170,11 +168,6 @@ public class ConsultarObjetoPersonalController implements ControladorGeneral{
         return conexion.cargarObjetosPerdidosUbicacion(ubicacion);
     }
 
-    /**
-     * Metodos que se encargan de actualizar los objetos perdidos
-     * @param fecha
-     * @return
-     */
     public ArrayList<ObjetoPerdido> ActualizarFecha(Date fecha) {
 
         ConexionBD conexion = new ConexionBD();
@@ -182,11 +175,6 @@ public class ConsultarObjetoPersonalController implements ControladorGeneral{
         return conexion.cargarObjetosPerdidosFecha(fecha);
     }
 
-    /**
-     * Metodo que se encarga de validar la consulta
-     * @param objetosPerdidos
-     * @return
-     */
     public boolean validarConsulta(ArrayList<ObjetoPerdido> objetosPerdidos)
     {
         return objetosPerdidos.size() >= 1;

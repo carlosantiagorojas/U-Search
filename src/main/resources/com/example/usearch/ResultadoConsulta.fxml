@@ -35,7 +35,7 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </ImageView>
-      <Button fx:id="ActualizarButton" layoutX="238.0" layoutY="604.0" mnemonicParsing="false" onAction="#AccionActualizar" text="Actualizar objeto" />
+      <Button fx:id="ActualizarButton" layoutX="238.0" layoutY="604.0" mnemonicParsing="false" onAction="#AccionActualizar" text="Objeto encontrado" />
       <Text fill="#0092ff" layoutX="117.0" layoutY="142.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Resultado de la consulta">
          <font>
             <Font size="14.0" />

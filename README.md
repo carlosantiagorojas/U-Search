@@ -1,5 +1,11 @@
 # U-Search
-Este es un proyecto creado para la asignatura de Fundamentos de Ingeniería de Software. El objetivo del proyecto es desarrollar una aplicación web para ayudar a las personas a encontrar objetos perdidos y notificar a sus propietarios.
+Este es un proyecto creado para la asignatura de Fundamentos de Ingeniería de Software. El objetivo del proyecto es desarrollar una aplicación movil para ayudar a las personas a encontrar objetos perdidos.
+
+Intregrantes:
+
+- Santiago Molina Aranza
+- Javier Felipe Santana Díaz
+- Carlos Santiago Rojas Calderón
 
 ## Conexión a la base de datos MySQL
 Para conectarse a la base de datos MySQL, siga los siguientes pasos:
