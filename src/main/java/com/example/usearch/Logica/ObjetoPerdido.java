@@ -16,16 +16,19 @@ public class ObjetoPerdido {
 
     private String estado;
 
+    private int idUsuario;
+
     public ObjetoPerdido() {
     }
 
-    public ObjetoPerdido(int id, Date fechaPerdida, String ubicacion, String tipo, String caracteristicas, String estado) {
+    public ObjetoPerdido(int id, Date fechaPerdida, String ubicacion, String tipo, String caracteristicas, String estado, int idusuario) {
         this.id = id;
         this.fechaPerdida = fechaPerdida;
         this.ubicacion = ubicacion;
         this.tipo = tipo;
         this.caracteristicas = caracteristicas;
         this.estado = estado;
+        this.idUsuario = idusuario;
     }
 
     public int getId() {
@@ -76,6 +79,14 @@ public class ObjetoPerdido {
         this.estado = estado;
     }
 
+    public int getIdUsuario() {
+        return idUsuario;
+    }
+
+    public void setIdUsuario(int idUsuario) {
+        this.idUsuario = idUsuario;
+    }
+
     public void verInformacion()
     {
         System.out.println("ID: " + this.getId());
@@ -84,6 +95,7 @@ public class ObjetoPerdido {
         System.out.println("Ubicacion: " + this.getUbicacion());
         System.out.println("Tipo: " + this.getTipo());
         System.out.println("Caracteristicas: " + this.getCaracteristicas());
+        System.out.println("ID Usuario: " + this.getIdUsuario());
         System.out.println("--------------------------------------------------");
     }
 }

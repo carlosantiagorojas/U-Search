@@ -101,6 +101,7 @@ public class ConexionBD {
                 objeto.setTipo(rs.getString("tipo"));
                 objeto.setCaracteristicas(rs.getString("caracteristicas"));
                 objeto.setEstado(rs.getString("estado"));
+                objeto.setIdUsuario(rs.getInt("usuarios_idUsuarios"));
 
                 objetosPerdidosAr.add(objeto);
             }
@@ -111,6 +112,7 @@ public class ConexionBD {
 
         return objetosPerdidosAr;
     }
+
     public ArrayList<ObjetoPerdido> cargarObjetosPerdidosPer(String tipo, String ubicacion, Date fechaPerdida){
 
         ArrayList<ObjetoPerdido> objetosPerdidosAr = new ArrayList<>();
@@ -225,6 +227,7 @@ public class ConexionBD {
     }
 
     public boolean actualizarEncontrado(int idObjeto){
+
         boolean actualizar = false;
         String query = "UPDATE objetosperdidos SET estado = 'encontrado' WHERE idObjetosPerdidos = ?";
 
@@ -237,6 +240,24 @@ public class ConexionBD {
         }
 
         return actualizar;
+    }
+
+    public boolean enviarNotificacion(int usuarios_idUsuarios, String mensaje)
+    {
+        boolean insertado = false;
+
+        String query = "INSERT INTO notificaciones (usuarios_idUsuarios, mensaje) VALUES (?, ?)";
+
+        try (PreparedStatement statement = conexion.prepareStatement(query);){
+            statement.setInt(1, usuarios_idUsuarios);
+            statement.setString(2, mensaje);
+            int filasAfectadas = statement.executeUpdate();
+            insertado = (filasAfectadas > 0);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return insertado;
     }
 
 }

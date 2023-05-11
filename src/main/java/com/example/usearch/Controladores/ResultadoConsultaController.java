@@ -8,7 +8,6 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
-import javafx.scene.control.TableCell;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
@@ -71,7 +70,6 @@ public class ResultadoConsultaController implements ControladorGeneral {
     void AccionActualizar(ActionEvent event) {
 
         ObjetoPerdido objetoperdido = null;
-        boolean seleccionado = false;
 
         try
         {
@@ -89,8 +87,9 @@ public class ResultadoConsultaController implements ControladorGeneral {
                 resultadoActualizacion = conexion.actualizarEncontrado(objetoperdido.getId());
 
                 if (resultadoActualizacion) {
+
                     ObjetoPerdido objetoActualizado = null;
-                    ObservableList<ObjetoPerdido> objetosTabla = FXCollections.observableArrayList();
+                    ObservableList<ObjetoPerdido> objetosTabla;
                     objetosTabla = tablaObjetos.getItems();
 
                     for (ObjetoPerdido obj : objetosTabla) {
@@ -108,6 +107,9 @@ public class ResultadoConsultaController implements ControladorGeneral {
                         Alertas.informar("Actualizacion exitosa");
                     } else
                         Alertas.informar("No se pudo actualizar la tabla");
+
+                    // Enviar la notificacion al usuario
+
 
                 } else
                     Alertas.mostrarError("Error en la actualización de la base de datos");
