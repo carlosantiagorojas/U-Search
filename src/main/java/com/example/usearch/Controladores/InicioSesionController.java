@@ -6,6 +6,7 @@ import com.example.usearch.Persistencia.ConexionBD;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import java.io.IOException;
@@ -18,7 +19,7 @@ public class InicioSesionController implements ControladorGeneral{
     }
 
     @FXML
-    private TextField CampoContrasena;
+    private PasswordField CampoContrasena;
 
     @FXML
     private TextField CampoCorreo;

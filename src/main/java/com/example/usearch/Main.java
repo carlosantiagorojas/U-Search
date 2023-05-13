@@ -11,6 +11,7 @@ public class Main extends Application {
     public void start(Stage stage) {
         CargadorEscenas cargadorEscenas = new CargadorEscenas(stage);
         cargadorEscenas.CambiarEscenas("InicioSesion.fxml", "Bienvenido");
+        // Conectar con la base de datos
         Connection conexion = ConexionBD.conectar();
     }
 

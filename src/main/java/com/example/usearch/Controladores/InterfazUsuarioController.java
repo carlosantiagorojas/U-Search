@@ -80,7 +80,5 @@ public class InterfazUsuarioController implements ControladorGeneral{
             this.caracteristicas.setCellValueFactory(new PropertyValueFactory<>("caracteristicas"));
             this.estado.setCellValueFactory(new PropertyValueFactory<>("estado"));
         }
-
     }
-
 }
