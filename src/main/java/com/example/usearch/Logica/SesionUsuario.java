@@ -14,6 +14,8 @@ public class SesionUsuario {
 
     private static ArrayList<ObjetoPerdido> objetosPerdidos;
 
+    private static ArrayList<Notificacion> notificaciones;
+
 
     public static void cargarDatosUsuario(int id, String rol, String correoElectronico, String contrasena) {
         SesionUsuario.id = id;
@@ -66,6 +68,24 @@ public class SesionUsuario {
         SesionUsuario.objetosPerdidos = objetosPerdidos;
     }
 
+    public static ArrayList<Notificacion> getNotificaciones() {
+        return notificaciones;
+    }
+
+    public static void setNotificaciones(ArrayList<Notificacion> notificaciones) {
+        SesionUsuario.notificaciones = notificaciones;
+    }
+
+    public static ArrayList<String> obtenerMensajes() {
+
+        ArrayList<String> mensajes = new ArrayList<String>();
+        for(Notificacion not: SesionUsuario.notificaciones){
+            mensajes.add(not.getMensaje());
+        }
+
+        return mensajes;
+    }
+
     public static void mostrarDatosUsuario(){
         System.out.println();
         System.out.println("ID: " + SesionUsuario.id);
@@ -77,12 +97,22 @@ public class SesionUsuario {
 
     public static void mostrarObjetos(){
         for(ObjetoPerdido ob: SesionUsuario.objetosPerdidos){
-            System.out.println("ID: " + ob.getId());
+            System.out.println("ID objeto: " + ob.getId());
             System.out.println("Fecha: " + ob.getFechaPerdida());
             System.out.println("Ubicacion: " + ob.getUbicacion());
             System.out.println("Tipo: " + ob.getTipo());
             System.out.println("Caracteristicas: " + ob.getCaracteristicas());
             System.out.println("Estado: " + ob.getEstado());
+            System.out.println("ID usuario: " + ob.getIdUsuario());
+            System.out.println();
+        }
+    }
+
+    public static void mostrarNotificaciones(){
+        for(Notificacion not: SesionUsuario.notificaciones){
+            System.out.println("ID notificacion: " + not.getId());
+            System.out.println("Mensaje: " + not.getMensaje());
+            System.out.println("ID usuario: " + not.getIdUsuario());
             System.out.println();
         }
     }

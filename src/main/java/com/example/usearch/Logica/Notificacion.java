@@ -8,6 +8,9 @@ public class Notificacion {
 
     private int IdUsuario;
 
+    public Notificacion() {
+    }
+
     public Notificacion(int idusuario, String mensaje) {
         this.IdUsuario = idusuario;
         this.mensaje = mensaje;

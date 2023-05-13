@@ -1,5 +1,6 @@
 package com.example.usearch.Persistencia;
 
+import com.example.usearch.Logica.Notificacion;
 import com.example.usearch.Logica.ObjetoPerdido;
 import com.example.usearch.Logica.SesionUsuario;
 import java.sql.*;
@@ -51,6 +52,7 @@ public class ConexionBD {
             statement.setString(2, contrasena);
             ResultSet resultSet = statement.executeQuery();
 
+            // Se cargan los datos del usuario si se encuentra en la base de datos
             if (resultSet.next()) {
                 SesionUsuario.cargarDatosUsuario(resultSet.getInt("idUsuarios"), resultSet.getString("rol"), resultSet.getString("correo"), resultSet.getString("contrasena"));
                 usuarioEncontrado = true;
@@ -262,6 +264,31 @@ public class ConexionBD {
         }
 
         return insertado;
+    }
+
+    public ArrayList<Notificacion> cargarNotificaciones(int usuarios_idUsuarios){
+
+        ArrayList<Notificacion> notifaciones = new ArrayList<>();
+        String query = "SELECT * FROM notificaciones WHERE usuarios_idUsuarios = ?";
+
+        try (PreparedStatement statement = conexion.prepareStatement(query);){
+            statement.setInt(1, usuarios_idUsuarios);
+            ResultSet rs = statement.executeQuery();
+
+            while (rs.next()) {
+                Notificacion notificacion = new Notificacion();
+                notificacion.setId(rs.getInt("idNotificaciones"));
+                notificacion.setMensaje(rs.getString("Mensaje"));
+                notificacion.setIdUsuario(rs.getInt("Usuarios_idUsuarios"));
+
+                notifaciones.add(notificacion);
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return notifaciones;
     }
 
 }

@@ -63,7 +63,6 @@ public class InterfazUsuarioController implements ControladorGeneral{
 
     public void mostrarObjetosPerdidos(){
         ConexionBD conexion = new ConexionBD();
-        SesionUsuario.setObjetosPerdidos(conexion.cargarObjetosPerdidos(SesionUsuario.getId()));
 
         //SesionUsuario.mostrarDatosUsuario();
         //SesionUsuario.mostrarObjetos();

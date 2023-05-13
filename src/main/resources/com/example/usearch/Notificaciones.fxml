@@ -33,6 +33,6 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </ImageView>
-      <ListView layoutX="38.0" layoutY="161.0" prefHeight="413.0" prefWidth="314.0" />
+      <ListView fx:id="ListaNotificaciones" layoutX="38.0" layoutY="161.0" prefHeight="413.0" prefWidth="314.0" />
    </children>
 </AnchorPane>
