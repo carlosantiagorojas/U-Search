@@ -44,7 +44,7 @@
       <Button fx:id="RegresarInicio" layoutX="44.0" layoutY="604.0" mnemonicParsing="false" onAction="#AccionRegresarInicio" text="Volver al menu" />
       <TableView fx:id="tablaObjetos" layoutX="14.0" layoutY="159.0" prefHeight="422.0" prefWidth="357.0">
          <columns>
-            <TableColumn fx:id="estado" prefWidth="60.0" text="Estado" />
+            <TableColumn fx:id="estado" prefWidth="75.0" text="Estado" />
             <TableColumn fx:id="fecha" text="Fecha" />
             <TableColumn fx:id="ubicacion" prefWidth="150.0" text="Ubicacion" />
             <TableColumn fx:id="tipo" prefWidth="90.0" text="Tipo" />

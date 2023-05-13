@@ -1,6 +1,7 @@
 package com.example.usearch.Controladores;
 
 import com.example.usearch.Logica.CargadorEscenas;
+import com.example.usearch.Logica.Notificacion;
 import com.example.usearch.Logica.ObjetoPerdido;
 import com.example.usearch.Persistencia.ConexionBD;
 import javafx.collections.FXCollections;
@@ -89,8 +90,7 @@ public class ResultadoConsultaController implements ControladorGeneral {
                 if (resultadoActualizacion) {
 
                     ObjetoPerdido objetoActualizado = null;
-                    ObservableList<ObjetoPerdido> objetosTabla;
-                    objetosTabla = tablaObjetos.getItems();
+                    ObservableList<ObjetoPerdido> objetosTabla = tablaObjetos.getItems();
 
                     for (ObjetoPerdido obj : objetosTabla) {
                         if (obj.getId() == objetoperdido.getId()) {
@@ -100,6 +100,7 @@ public class ResultadoConsultaController implements ControladorGeneral {
                         }
                     }
 
+                    // Actualizar la tabla si se encontro un objeto
                     if (objetoActualizado != null) {
                         int index = tablaObjetos.getItems().indexOf(objetoActualizado);
                         tablaObjetos.getItems().set(index, objetoActualizado);
@@ -109,7 +110,19 @@ public class ResultadoConsultaController implements ControladorGeneral {
                         Alertas.informar("No se pudo actualizar la tabla");
 
                     // Enviar la notificacion al usuario
+                    boolean resultadoNotificacion = false;
+                    String mensaje;
+                    mensaje = "Su objeto " + objetoperdido.getTipo() + " con la siguiente informacion: \n" +
+                            "Fecha: " + objetoperdido.getFechaPerdida() + "\n" +
+                            "Ubicacion: " + objetoperdido.getUbicacion() + "\n" +
+                            "ha sido ENCONTRADO";
+                    Notificacion notificacion = new Notificacion(objetoperdido.getIdUsuario(), mensaje);
+                    resultadoNotificacion = conexion.enviarNotificacion(notificacion.getIdUsuario(), notificacion.getMensaje());
 
+                    if(resultadoNotificacion)
+                        System.out.println("Se ha enviado una notificacion al usuario");
+                    else
+                        System.out.println("No se pudo enviar la notificacion al usuario");
 
                 } else
                     Alertas.mostrarError("Error en la actualización de la base de datos");

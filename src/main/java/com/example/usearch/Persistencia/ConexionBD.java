@@ -132,6 +132,7 @@ public class ConexionBD {
                 objeto.setTipo(rs.getString("tipo"));
                 objeto.setCaracteristicas(rs.getString("caracteristicas"));
                 objeto.setEstado(rs.getString("estado"));
+                objeto.setIdUsuario(rs.getInt("usuarios_idUsuarios"));
 
                 objetosPerdidosAr.add(objeto);
             }
@@ -159,6 +160,7 @@ public class ConexionBD {
                 objeto.setTipo(rs.getString("tipo"));
                 objeto.setCaracteristicas(rs.getString("caracteristicas"));
                 objeto.setEstado(rs.getString("estado"));
+                objeto.setIdUsuario(rs.getInt("usuarios_idUsuarios"));
 
                 objetosPerdidosAr.add(objeto);
             }
@@ -187,6 +189,7 @@ public class ConexionBD {
                 objeto.setTipo(rs.getString("tipo"));
                 objeto.setCaracteristicas(rs.getString("caracteristicas"));
                 objeto.setEstado(rs.getString("estado"));
+                objeto.setIdUsuario(rs.getInt("usuarios_idUsuarios"));
 
                 objetosPerdidosAr.add(objeto);
             }
@@ -215,6 +218,7 @@ public class ConexionBD {
                 objeto.setTipo(rs.getString("tipo"));
                 objeto.setCaracteristicas(rs.getString("caracteristicas"));
                 objeto.setEstado(rs.getString("estado"));
+                objeto.setIdUsuario(rs.getInt("usuarios_idUsuarios"));
 
                 objetosPerdidosAr.add(objeto);
             }
