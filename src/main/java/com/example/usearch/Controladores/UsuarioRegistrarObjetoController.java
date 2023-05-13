@@ -42,20 +42,27 @@ public class UsuarioRegistrarObjetoController implements ControladorGeneral{
     void AccionRegistrarObjeto(ActionEvent event) {
 
         if(comprobarCampos()) {
-            CargadorEscenas cargadorEscenas = new CargadorEscenas(stage);
-            boolean resultadoRegistro = false;
-            ConexionBD conexion = new ConexionBD();
-            String fecha = FechaPerdida.getText();
-            Date fechaConvertida = Date.valueOf(fecha);
+            if(comprobarFecha())
+            {
+                CargadorEscenas cargadorEscenas = new CargadorEscenas(stage);
+                boolean resultadoRegistro = false;
+                ConexionBD conexion = new ConexionBD();
+                String fecha = FechaPerdida.getText();
+                Date fechaConvertida = Date.valueOf(fecha);
 
-            resultadoRegistro = conexion.registrarObjeto(fechaConvertida, UbicacionPerdida.getText(), TipoObjeto.getText(), CareteristicasFisicas.getText(), "perdido", SesionUsuario.getId());
+                resultadoRegistro = conexion.registrarObjeto(fechaConvertida, UbicacionPerdida.getText(), TipoObjeto.getText(), CareteristicasFisicas.getText(), "perdido", SesionUsuario.getId());
 
-            if (resultadoRegistro) {
-                Alertas.informar("Registro exitoso");
-                cargadorEscenas.CambiarEscenas("InterfazUsuario.fxml", "Menu usuario");
-            } else
-                Alertas.mostrarError("Error al registrar objeto");
+                if (resultadoRegistro) {
+                    Alertas.informar("Registro exitoso");
+                    cargadorEscenas.CambiarEscenas("InterfazUsuario.fxml", "Menu usuario");
+                } else
+                    Alertas.mostrarError("Error al registrar objeto");
+            }
+            else
+                Alertas.mostrarError("Fecha no valida, digite la fecha en formato aaaa-mm-dd");
         }
+        else
+            Alertas.mostrarError("Por favor llene todos los campos");
     }
 
     @FXML
@@ -65,11 +72,16 @@ public class UsuarioRegistrarObjetoController implements ControladorGeneral{
     }
 
     public boolean comprobarCampos(){
-        boolean camposLlenos = true;
-        if(FechaPerdida.getText().isEmpty() || UbicacionPerdida.getText().isEmpty() || TipoObjeto.getText().isEmpty() || CareteristicasFisicas.getText().isEmpty()){
-            Alertas.mostrarError("Por favor llene todos los campos");
-            camposLlenos = false;
+        return !FechaPerdida.getText().isEmpty() && !UbicacionPerdida.getText().isEmpty() && !TipoObjeto.getText().isEmpty() && !CareteristicasFisicas.getText().isEmpty();
+    }
+
+    public boolean comprobarFecha()
+    {
+        try {
+            Date fecha = Date.valueOf(FechaPerdida.getText());
+            return true;
+        } catch (Exception e) {
+            return false;
         }
-        return camposLlenos;
     }
 }

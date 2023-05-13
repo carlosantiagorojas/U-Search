@@ -41,8 +41,8 @@
       <Pane layoutX="19.0" layoutY="272.0" prefHeight="212.0" prefWidth="347.0" style="-fx-background-color: lightgrey;">
          <children>
             <Text layoutX="15.0" layoutY="35.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Fecha de perdida" />
-            <Text layoutX="15.0" layoutY="91.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Ubicación de perdida" />
-            <Text layoutX="13.0" layoutY="153.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Tipo de objeto" />
+            <Text layoutX="14.0" layoutY="95.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Ubicación de perdida" />
+            <Text layoutX="14.0" layoutY="162.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Tipo de objeto" />
             <TextField fx:id="FechaPerdida" layoutX="14.0" layoutY="39.0" prefHeight="25.0" prefWidth="320.0" promptText="aaaa-mm-dd" />
             <TextField fx:id="UbicacionPerdida" layoutX="14.0" layoutY="99.0" prefHeight="25.0" prefWidth="320.0" />
             <TextField fx:id="TipoObjeto" layoutX="14.0" layoutY="166.0" prefHeight="25.0" prefWidth="320.0" />

@@ -41,9 +41,8 @@ public class InicioSesionController implements ControladorGeneral{
         if(!usuarioEncontrado)
             Alertas.mostrarError("Correo y/o contraseña incorrectos");
         else if(SesionUsuario.getRol().equals("usuario")) {
-            // cargar las notificaciones y objetos perdidos del usuario
+            // cargar las notificaciones del usuario
             SesionUsuario.setNotificaciones(conexion.cargarNotificaciones(SesionUsuario.getId()));
-            SesionUsuario.setObjetosPerdidos(conexion.cargarObjetosPerdidos(SesionUsuario.getId()));
             cargadorEscenas.CambiarEscenas("InterfazUsuario.fxml", "Menu usuario");
         }
         else if (SesionUsuario.getRol().equals("personal")) {

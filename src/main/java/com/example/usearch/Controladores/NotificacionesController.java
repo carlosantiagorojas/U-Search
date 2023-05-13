@@ -1,7 +1,6 @@
 package com.example.usearch.Controladores;
 
 import com.example.usearch.Logica.CargadorEscenas;
-import com.example.usearch.Logica.Notificacion;
 import com.example.usearch.Logica.SesionUsuario;
 import com.example.usearch.Persistencia.ConexionBD;
 import javafx.fxml.FXML;
@@ -36,7 +35,8 @@ public class NotificacionesController implements ControladorGeneral {
 
         //SesionUsuario.mostrarDatosUsuario();
         //SesionUsuario.mostrarObjetos();
-        SesionUsuario.mostrarNotificaciones();
+        //SesionUsuario.mostrarNotificaciones();
+
         ListaNotificaciones.getItems().addAll(SesionUsuario.obtenerMensajes());
     }
 }

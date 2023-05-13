@@ -63,18 +63,24 @@ public class InterfazUsuarioController implements ControladorGeneral{
 
     public void mostrarObjetosPerdidos(){
         ConexionBD conexion = new ConexionBD();
-
+        SesionUsuario.setObjetosPerdidos(conexion.cargarObjetosPerdidos(SesionUsuario.getId()));
         //SesionUsuario.mostrarDatosUsuario();
         //SesionUsuario.mostrarObjetos();
 
-        this.listaObjetos = FXCollections.observableArrayList(SesionUsuario.getObjetosPerdidos());
+        if(SesionUsuario.getObjetosPerdidos().isEmpty()){
+            tablaObjetos.setPlaceholder(new javafx.scene.control.Label("No hay objetos registrados"));
+        }
+        else{
+            this.listaObjetos = FXCollections.observableArrayList(SesionUsuario.getObjetosPerdidos());
 
-        tablaObjetos.setItems(listaObjetos);
-        this.fecha.setCellValueFactory(new PropertyValueFactory<>("fechaPerdida"));
-        this.ubicacion.setCellValueFactory(new PropertyValueFactory<>("ubicacion"));
-        this.tipo.setCellValueFactory(new PropertyValueFactory<>("tipo"));
-        this.caracteristicas.setCellValueFactory(new PropertyValueFactory<>("caracteristicas"));
-        this.estado.setCellValueFactory(new PropertyValueFactory<>("estado"));
+            tablaObjetos.setItems(listaObjetos);
+            this.fecha.setCellValueFactory(new PropertyValueFactory<>("fechaPerdida"));
+            this.ubicacion.setCellValueFactory(new PropertyValueFactory<>("ubicacion"));
+            this.tipo.setCellValueFactory(new PropertyValueFactory<>("tipo"));
+            this.caracteristicas.setCellValueFactory(new PropertyValueFactory<>("caracteristicas"));
+            this.estado.setCellValueFactory(new PropertyValueFactory<>("estado"));
+        }
+
     }
 
 }
