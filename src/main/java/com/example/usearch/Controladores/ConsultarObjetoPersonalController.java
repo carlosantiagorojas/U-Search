@@ -35,7 +35,6 @@ public class ConsultarObjetoPersonalController implements ControladorGeneral{
     @FXML
     private TextField UbicacionPerdida;
 
-
     @FXML
     void AccionConsultar(ActionEvent event) {
 
@@ -131,6 +130,7 @@ public class ConsultarObjetoPersonalController implements ControladorGeneral{
         {
             CargadorEscenas cargadorEscenas = new CargadorEscenas(stage);
             cargadorEscenas.CambiarEscenas("ResultadoConsulta.fxml", "Resultado de su Consulta");
+
             ResultadoConsultaController controllerlocal = (ResultadoConsultaController) cargadorEscenas.controladorGeneral;
             controllerlocal.actualizarTabla(objetosPerdidos);
         }

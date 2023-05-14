@@ -142,6 +142,8 @@ public class ResultadoConsultaController implements ControladorGeneral {
             this.caracteristicas.setCellValueFactory(new PropertyValueFactory<ObjetoPerdido, String>("caracteristicas"));
             this.estado.setCellValueFactory(new PropertyValueFactory<ObjetoPerdido, String>("estado"));
 
+            // Añadir la lista de objetos al memento
+
         } catch (Exception e) {
             Alertas.mostrarError("Error al actualizar la tabla");
         }

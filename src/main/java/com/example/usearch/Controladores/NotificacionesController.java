@@ -31,7 +31,6 @@ public class NotificacionesController implements ControladorGeneral {
     }
 
     public void mostrarNotificaciones(){
-        ConexionBD conexion = new ConexionBD();
 
         //SesionUsuario.mostrarDatosUsuario();
         //SesionUsuario.mostrarObjetos();
