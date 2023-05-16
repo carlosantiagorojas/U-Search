@@ -147,6 +147,8 @@ public class ConsultarObjetoPersonalController implements ControladorGeneral{
 
             ResultadoConsultaController controllerlocal = (ResultadoConsultaController) cargadorEscenas.controladorGeneral;
             cargarDatosConsulta();
+            controllerlocal.setEscenaAnterior("ConsultarObjetoPersonal.fxml");
+            controllerlocal.setTituloEscenaAnterior("Consultar Objetos");
             controllerlocal.actualizarTabla(objetosPerdidos);
         }
         else

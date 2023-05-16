@@ -10,7 +10,7 @@ public class Consulta {
 
    private String ubicacion;
 
-   public Consulta(){};
+   public Consulta(){}
 
     public Consulta(Date fecha, String tipo, String ubicacion) {
         this.fecha = fecha;

@@ -3,8 +3,6 @@ package com.example.usearch.Controladores;
 import com.example.usearch.Logica.CargadorEscenas;
 import com.example.usearch.Logica.Notificacion;
 import com.example.usearch.Logica.ObjetoPerdido;
-import com.example.usearch.Memento.Caretaker;
-import com.example.usearch.Memento.Originator;
 import com.example.usearch.Persistencia.ConexionBD;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -23,10 +21,28 @@ import java.util.ArrayList;
 public class ResultadoConsultaController implements ControladorGeneral {
 
     private Stage stage;
-    ObservableList<ObjetoPerdido> listaObjetos;
-    Originator originator = new Originator();
 
-    Caretaker caretaker = new Caretaker();
+    ObservableList<ObjetoPerdido> listaObjetos;
+
+    private String escenaAnterior;
+
+    private String tituloEscenaAnterior;
+
+    public String getEscenaAnterior() {
+        return escenaAnterior;
+    }
+
+    public void setEscenaAnterior(String escenaAnterior) {
+        this.escenaAnterior = escenaAnterior;
+    }
+
+    public String getTituloEscenaAnterior() {
+        return tituloEscenaAnterior;
+    }
+
+    public void setTituloEscenaAnterior(String tituloEscenaAnterior) {
+        this.tituloEscenaAnterior = tituloEscenaAnterior;
+    }
 
     @Override
     public void setStage(Stage stage) {
@@ -63,7 +79,7 @@ public class ResultadoConsultaController implements ControladorGeneral {
     @FXML
     void AccionRegresar(MouseEvent event) {
         CargadorEscenas cargadorEscenas = new CargadorEscenas(stage);
-        cargadorEscenas.CambiarEscenas("ConsultarObjetoPersonal.fxml", "Consultar Objetos");
+        cargadorEscenas.CambiarEscenas(getEscenaAnterior(), getTituloEscenaAnterior());
     }
 
     @FXML

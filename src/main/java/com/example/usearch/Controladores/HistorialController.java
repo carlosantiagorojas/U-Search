@@ -133,6 +133,8 @@ public class HistorialController implements ControladorGeneral {
         CargadorEscenas cargadorEscenas = new CargadorEscenas(stage);
         cargadorEscenas.CambiarEscenas("ResultadoConsulta.fxml", "Resultado de su Consulta");
         ResultadoConsultaController controllerlocal = (ResultadoConsultaController) cargadorEscenas.controladorGeneral;
+        controllerlocal.setEscenaAnterior("HistorialConsultas.fxml");
+        controllerlocal.setTituloEscenaAnterior("Historial consulta");
         controllerlocal.actualizarTabla(objetosPerdidos);
     }
 

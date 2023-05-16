@@ -22,7 +22,7 @@ public class InterfazPersonalController implements ControladorGeneral{
     @FXML
     void AccionHistorialConsultas(MouseEvent event) {
         CargadorEscenas cargadorEscenas = new CargadorEscenas(stage);
-        cargadorEscenas.CambiarEscenas("HistorialConsultas.fxml", "Historial consul");
+        cargadorEscenas.CambiarEscenas("HistorialConsultas.fxml", "Historial consulta");
     }
 
 }
