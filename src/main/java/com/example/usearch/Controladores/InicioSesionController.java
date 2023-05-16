@@ -41,6 +41,7 @@ public class InicioSesionController implements ControladorGeneral{
         // Comprobar el tipo de usuario que inicio sesion
         if(!usuarioEncontrado)
             Alertas.mostrarError("Correo y/o contraseña incorrectos");
+        //si se encuentra el usuario se cargan los datos
         else if(SesionUsuario.getRol().equals("usuario")) {
             // cargar las notificaciones del usuario
             SesionUsuario.setNotificaciones(conexion.cargarNotificaciones(SesionUsuario.getId()));

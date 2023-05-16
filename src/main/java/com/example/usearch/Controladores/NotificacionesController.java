@@ -2,6 +2,8 @@ package com.example.usearch.Controladores;
 
 import com.example.usearch.Logica.CargadorEscenas;
 import com.example.usearch.Logica.SesionUsuario;
+import com.example.usearch.Persistencia.ConexionBD;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.ListView;
 import javafx.scene.image.ImageView;
@@ -27,6 +29,24 @@ public class NotificacionesController implements ControladorGeneral {
     void AccionRegresar(MouseEvent event) {
         CargadorEscenas cargadorEscenas = new CargadorEscenas(stage);
         cargadorEscenas.CambiarEscenas("InterfazUsuario.fxml", "Menu usuario");
+    }
+
+    @FXML
+    void AcccionEliminar(ActionEvent event) {
+
+        if(!this.ListaNotificaciones.getItems().isEmpty())
+        {
+            ConexionBD conexionBD = new ConexionBD();
+            if(conexionBD.eliminarNotificaciones(SesionUsuario.getId())) {
+                // Elimimar las notificaciones de la lista
+                ListaNotificaciones.getItems().clear();
+                Alertas.informar("Notificaciones eliminadas");
+            }
+            else
+                Alertas.mostrarError("No se pudieron eliminar las notificaciones");
+        }
+        else
+            Alertas.mostrarError("No hay notificaciones para eliminar");
     }
 
     public void mostrarNotificaciones(){

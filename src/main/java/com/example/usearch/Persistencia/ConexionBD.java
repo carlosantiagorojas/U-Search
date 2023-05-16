@@ -1,5 +1,6 @@
 package com.example.usearch.Persistencia;
 
+import com.example.usearch.Controladores.Alertas;
 import com.example.usearch.Logica.Notificacion;
 import com.example.usearch.Logica.ObjetoPerdido;
 import com.example.usearch.Logica.SesionUsuario;
@@ -286,9 +287,26 @@ public class ConexionBD {
 
         } catch (SQLException e) {
             e.printStackTrace();
+            Alertas.mostrarError("Error al cargar notificaciones");
         }
 
         return notifaciones;
     }
 
+    public boolean eliminarNotificaciones(int usuarios_idUsuarios){
+
+        boolean eliminar = false;
+
+        String query = "DELETE FROM notificaciones WHERE usuarios_idUsuarios = ?";
+
+        try (PreparedStatement statement = conexion.prepareStatement(query);){
+            statement.setInt(1, usuarios_idUsuarios);
+            int filasAfectadas = statement.executeUpdate();
+            eliminar = (filasAfectadas > 0);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return eliminar;
+    }
 }
