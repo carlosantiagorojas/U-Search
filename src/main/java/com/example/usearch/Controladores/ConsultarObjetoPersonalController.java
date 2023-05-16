@@ -1,6 +1,7 @@
 package com.example.usearch.Controladores;
 
 import com.example.usearch.Logica.CargadorEscenas;
+import com.example.usearch.Logica.Consulta;
 import com.example.usearch.Logica.ObjetoPerdido;
 import com.example.usearch.Persistencia.ConexionBD;
 import javafx.event.ActionEvent;
@@ -14,6 +15,7 @@ import java.sql.Date;
 import java.util.ArrayList;
 
 public class ConsultarObjetoPersonalController implements ControladorGeneral{
+
     private Stage stage;
     @Override
     public void setStage(Stage stage) {
@@ -27,13 +29,25 @@ public class ConsultarObjetoPersonalController implements ControladorGeneral{
     private TextField FechaPerdida;
 
     @FXML
-    private ImageView RegresarButton;
-
-    @FXML
     private TextField TipoObjeto;
 
     @FXML
     private TextField UbicacionPerdida;
+
+    public Date getFechaPerdida() {
+        return Date.valueOf(FechaPerdida.getText());
+    }
+
+    public String getTipoObjeto() {
+        return TipoObjeto.getText();
+    }
+
+    public String getUbicacionPerdida() {
+        return UbicacionPerdida.getText();
+    }
+
+    @FXML
+    private ImageView RegresarButton;
 
     @FXML
     void AccionConsultar(ActionEvent event) {
@@ -132,6 +146,7 @@ public class ConsultarObjetoPersonalController implements ControladorGeneral{
             cargadorEscenas.CambiarEscenas("ResultadoConsulta.fxml", "Resultado de su Consulta");
 
             ResultadoConsultaController controllerlocal = (ResultadoConsultaController) cargadorEscenas.controladorGeneral;
+            cargarDatosConsulta();
             controllerlocal.actualizarTabla(objetosPerdidos);
         }
         else
@@ -178,6 +193,38 @@ public class ConsultarObjetoPersonalController implements ControladorGeneral{
     public boolean validarConsulta(ArrayList<ObjetoPerdido> objetosPerdidos)
     {
         return objetosPerdidos.size() >= 1;
+    }
+
+    public Consulta crearConsulta()
+    {
+        Consulta consulta = new Consulta();
+
+        if(camposLlenos())
+        {
+            consulta.setFecha(getFechaPerdida());
+            consulta.setUbicacion(getUbicacionPerdida());
+            consulta.setTipo(getTipoObjeto());
+        }
+        else if(!TipoObjeto.getText().isEmpty())
+        {
+            consulta.setTipo(getTipoObjeto());
+        }
+        else if(!UbicacionPerdida.getText().isEmpty())
+        {
+            consulta.setUbicacion(getUbicacionPerdida());
+        }
+        else if(!FechaPerdida.getText().isEmpty())
+        {
+            consulta.setFecha(getFechaPerdida());
+        }
+
+        return consulta;
+    }
+
+    public void cargarDatosConsulta()
+    {
+        HistorialController.getOriginator().setConsulta(crearConsulta());
+        HistorialController.getCaretaker().addMemento(HistorialController.getOriginator().createMemento());
     }
 
 }

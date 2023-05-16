@@ -3,6 +3,7 @@ package com.example.usearch.Controladores;
 import com.example.usearch.Logica.CargadorEscenas;
 import com.example.usearch.Memento.Caretaker;
 import com.example.usearch.Memento.Originator;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
@@ -40,7 +41,7 @@ public class HistorialController implements ControladorGeneral {
     }
 
     @FXML
-    private ListView<?> ListaConsultas;
+    private ListView<String> ListaConsultas;
 
     @FXML
     private ImageView RegresarButton;
@@ -54,8 +55,17 @@ public class HistorialController implements ControladorGeneral {
         cargadorEscenas.CambiarEscenas("InterfazPersonal.fxml", "Menu Personal");
     }
 
+    @FXML
+    void AccionRestaurar(ActionEvent event) {
+        int selectedIndex = ListaConsultas.getSelectionModel().getSelectedIndex();
+        System.out.println("Índice seleccionado: " + selectedIndex);
+        originator.restoreFromMemento(caretaker.getMementoIndice(selectedIndex));
+
+    }
+
     public void mostrarHistorial()
     {
-        ListaConsultas.getItems().addAll();
+        ListaConsultas.getItems().addAll(getCaretaker().getMementosString());
     }
+
 }

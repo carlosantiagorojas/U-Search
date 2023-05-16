@@ -3,6 +3,8 @@ package com.example.usearch.Controladores;
 import com.example.usearch.Logica.CargadorEscenas;
 import com.example.usearch.Logica.Notificacion;
 import com.example.usearch.Logica.ObjetoPerdido;
+import com.example.usearch.Memento.Caretaker;
+import com.example.usearch.Memento.Originator;
 import com.example.usearch.Persistencia.ConexionBD;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -22,6 +24,10 @@ public class ResultadoConsultaController implements ControladorGeneral {
 
     private Stage stage;
     ObservableList<ObjetoPerdido> listaObjetos;
+    Originator originator = new Originator();
+
+    Caretaker caretaker = new Caretaker();
+
     @Override
     public void setStage(Stage stage) {
         this.stage = stage;
@@ -49,11 +55,10 @@ public class ResultadoConsultaController implements ControladorGeneral {
     private TableColumn<ObjetoPerdido, Date> fecha;
 
     @FXML
-    private TableView<ObjetoPerdido> tablaObjetos;
-
-    @FXML
     private TableColumn<ObjetoPerdido, String> tipo;
 
+    @FXML
+    private TableView<ObjetoPerdido> tablaObjetos;
 
     @FXML
     void AccionRegresar(MouseEvent event) {
@@ -141,8 +146,6 @@ public class ResultadoConsultaController implements ControladorGeneral {
             this.tipo.setCellValueFactory(new PropertyValueFactory<ObjetoPerdido, String>("tipo"));
             this.caracteristicas.setCellValueFactory(new PropertyValueFactory<ObjetoPerdido, String>("caracteristicas"));
             this.estado.setCellValueFactory(new PropertyValueFactory<ObjetoPerdido, String>("estado"));
-
-            // Añadir la lista de objetos al memento
 
         } catch (Exception e) {
             Alertas.mostrarError("Error al actualizar la tabla");

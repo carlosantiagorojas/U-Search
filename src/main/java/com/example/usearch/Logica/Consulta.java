@@ -10,7 +10,10 @@ public class Consulta {
 
    private String ubicacion;
 
-    public Consulta(String tipo, String ubicacion) {
+   public Consulta(){};
+
+    public Consulta(Date fecha, String tipo, String ubicacion) {
+        this.fecha = fecha;
         this.tipo = tipo;
         this.ubicacion = ubicacion;
     }
@@ -38,4 +41,28 @@ public class Consulta {
     public void setUbicacion(String ubicacion) {
         this.ubicacion = ubicacion;
     }
+
+    public String obtenerConsulta()
+    {
+        String consulta = "";
+        if(getFecha() != null && getTipo() != null && getUbicacion() != null)
+        {
+            consulta = "Fecha: " + getFecha() + "\n Tipo: " + getTipo() + "\n Ubicacion: " + getUbicacion();
+        }
+        else if(getFecha() != null)
+        {
+            consulta = "Fecha: " + getFecha();
+        }
+        else if(getTipo() != null)
+        {
+            consulta = "Tipo: " + getTipo();
+        }
+        else if(getUbicacion() != null)
+        {
+            consulta = "Ubicacion: " + getUbicacion();
+        }
+
+        return consulta;
+    }
+
 }

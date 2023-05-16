@@ -1,6 +1,7 @@
 package com.example.usearch.Logica;
 
 import com.example.usearch.Controladores.ControladorGeneral;
+import com.example.usearch.Controladores.HistorialController;
 import com.example.usearch.Controladores.InterfazUsuarioController;
 import com.example.usearch.Controladores.NotificacionesController;
 import com.example.usearch.Main;
@@ -33,6 +34,8 @@ public class CargadorEscenas {
                 ((InterfazUsuarioController) controladorGeneral).mostrarObjetosPerdidos();
             else if(controladorGeneral instanceof NotificacionesController)
                 ((NotificacionesController) controladorGeneral).mostrarNotificaciones();
+            else if(controladorGeneral instanceof HistorialController)
+                ((HistorialController) controladorGeneral).mostrarHistorial();
 
             stage.show();
 

@@ -1,21 +1,16 @@
 package com.example.usearch.Memento;
 
 import com.example.usearch.Logica.Consulta;
-import com.example.usearch.Logica.ObjetoPerdido;
-import javafx.scene.control.TableView;
 
 public class Originator {
 
-    private TableView<ObjetoPerdido> tablaObjetosPerdidos;
-
     private Consulta consulta;
 
-    public TableView<ObjetoPerdido> getTablaObjetosPerdidos() {
-        return tablaObjetosPerdidos;
+    public Originator() {
     }
 
-    public void setTablaObjetosPerdidos(TableView<ObjetoPerdido> tablaObjetosPerdidos) {
-        this.tablaObjetosPerdidos = tablaObjetosPerdidos;
+    public Originator(Consulta consulta) {
+        this.consulta = consulta;
     }
 
     public Consulta getConsulta() {
@@ -26,11 +21,12 @@ public class Originator {
         this.consulta = consulta;
     }
 
-    public Memento guardar() {
-        return new Memento(tablaObjetosPerdidos, consulta);
+    public Memento createMemento(){
+        return new Memento(consulta);
     }
 
-    public void restaurar(Memento memento) {
-        tablaObjetosPerdidos = memento.getTablaObjetosPerdidos();
+    public Originator restoreFromMemento(Memento memento){
+        consulta = memento.getConsulta();
+        return this;
     }
 }
