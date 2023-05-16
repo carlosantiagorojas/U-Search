@@ -133,7 +133,7 @@ public class ResultadoConsultaController implements ControladorGeneral {
                     // Enviar la notificacion al usuario
                     boolean resultadoNotificacion = false;
                     String mensaje;
-                    mensaje = "Su objeto " + objetoperdido.getTipo() + " con la siguiente informacion: \n" +
+                    mensaje = "Su objeto: " + objetoperdido.getTipo() + " con la siguiente informacion: \n" +
                             "Fecha: " + objetoperdido.getFechaPerdida() + "\n" +
                             "Ubicacion: " + objetoperdido.getUbicacion() + "\n" +
                             "ha sido ENCONTRADO";
