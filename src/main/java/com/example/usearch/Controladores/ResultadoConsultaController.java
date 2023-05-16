@@ -80,7 +80,7 @@ public class ResultadoConsultaController implements ControladorGeneral {
         try
         {
             objetoperdido = tablaObjetos.getSelectionModel().getSelectedItem();
-            objetoperdido.verInformacion();
+            //objetoperdido.verInformacion();
         }catch (Exception e) {
             Alertas.mostrarError("No se ha seleccionado ningun objeto");
         }

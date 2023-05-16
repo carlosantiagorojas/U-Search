@@ -25,4 +25,12 @@ public class Alertas {
         alert.setContentText(mensaje);
         alert.show();
     }
+
+    /*
+    public static void Confirmacion() {
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setHeaderText("CONFIRMACION");
+        alert.setContentText("¿Esta seguro de realizar esta accion?");
+        alert.show();
+    }*/
 }

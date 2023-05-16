@@ -65,4 +65,11 @@ public class Consulta {
         return consulta;
     }
 
+    public void MostrarConsulta()
+    {
+        System.out.println("Fecha: " + getFecha());
+        System.out.println("Tipo: " + getTipo());
+        System.out.println("Ubicacion: " + getUbicacion());
+    }
+
 }
