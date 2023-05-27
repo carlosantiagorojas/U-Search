@@ -1,8 +1,9 @@
 package com.example.usearch.Controladores;
 
-import com.example.usearch.Logica.CargadorEscenas;
-import com.example.usearch.Logica.Usuario;
-import com.example.usearch.Persistencia.RepositoryUsuario;
+import com.example.usearch.AbstractFactory.ControladorGeneral;
+import com.example.usearch.AbstractFactory.CargadorEscenas;
+import com.example.usearch.Entidades.Usuario;
+import com.example.usearch.Persistencia.Repository.RepositoryUsuario;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;

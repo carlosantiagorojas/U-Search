@@ -1,4 +1,4 @@
-package com.example.usearch.Logica;
+package com.example.usearch.Entidades;
 
 import java.sql.Date;
 
@@ -47,7 +47,7 @@ public class Consulta {
         String consulta = "";
         if(getFecha() != null && getTipo() != null && getUbicacion() != null)
         {
-            consulta = "Fecha: " + getFecha() + "\n Tipo: " + getTipo() + "\n Ubicacion: " + getUbicacion();
+            consulta = "Fecha: " + getFecha() + "\nTipo: " + getTipo() + "\nUbicacion: " + getUbicacion();
         }
         else if(getFecha() != null)
         {

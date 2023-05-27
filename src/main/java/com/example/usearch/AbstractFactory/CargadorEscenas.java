@@ -1,6 +1,5 @@
-package com.example.usearch.Logica;
+package com.example.usearch.AbstractFactory;
 
-import com.example.usearch.Controladores.ControladorGeneral;
 import com.example.usearch.Controladores.HistorialController;
 import com.example.usearch.Controladores.InterfazUsuarioController;
 import com.example.usearch.Controladores.NotificacionesController;
@@ -8,7 +7,6 @@ import com.example.usearch.Main;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-
 
 import java.io.IOException;
 

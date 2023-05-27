@@ -1,4 +1,4 @@
-package com.example.usearch.Logica;
+package com.example.usearch.Entidades;
 
 import java.util.ArrayList;
 

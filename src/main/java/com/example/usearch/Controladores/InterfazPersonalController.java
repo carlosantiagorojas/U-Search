@@ -1,11 +1,12 @@
 package com.example.usearch.Controladores;
 
-import com.example.usearch.Logica.CargadorEscenas;
+import com.example.usearch.AbstractFactory.ControladorGeneral;
+import com.example.usearch.AbstractFactory.CargadorEscenas;
 import javafx.fxml.FXML;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 
-public class InterfazPersonalController implements ControladorGeneral{
+public class InterfazPersonalController implements ControladorGeneral {
 
     private Stage stage;
     @Override

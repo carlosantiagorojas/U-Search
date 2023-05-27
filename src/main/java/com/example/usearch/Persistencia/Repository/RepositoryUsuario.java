@@ -1,8 +1,9 @@
-package com.example.usearch.Persistencia;
+package com.example.usearch.Persistencia.Repository;
 
+import com.example.usearch.Entidades.SesionUsuario;
+import com.example.usearch.Entidades.Usuario;
+import com.example.usearch.Persistencia.Utilidades.ConexionBD;
 
-import com.example.usearch.Logica.SesionUsuario;
-import com.example.usearch.Logica.Usuario;
 import java.sql.*;
 import java.util.ArrayList;
 

@@ -1,7 +1,7 @@
 package com.example.usearch;
 
-import com.example.usearch.Logica.CargadorEscenas;
-import com.example.usearch.Persistencia.ConexionBD;
+import com.example.usearch.AbstractFactory.CargadorEscenas;
+import com.example.usearch.Persistencia.Utilidades.ConexionBD;
 import javafx.application.Application;
 import javafx.stage.Stage;
 

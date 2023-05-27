@@ -1,13 +1,15 @@
-package com.example.usearch.Persistencia;
+package com.example.usearch.Persistencia.Repository;
 
-import com.example.usearch.Logica.ObjetoPerdido;
+import com.example.usearch.Entidades.ObjetoPerdido;
+import com.example.usearch.Persistencia.Utilidades.ConexionBD;
+
 import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-public class RepositoryObjetoPerdido implements IRepository<ObjetoPerdido>{
+public class RepositoryObjetoPerdido implements IRepository<ObjetoPerdido> {
 
     private static RepositoryObjetoPerdido instance;
 

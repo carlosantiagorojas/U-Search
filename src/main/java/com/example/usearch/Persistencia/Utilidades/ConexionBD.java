@@ -1,4 +1,4 @@
-package com.example.usearch.Persistencia;
+package com.example.usearch.Persistencia.Utilidades;
 
 import java.sql.*;
 
@@ -6,9 +6,7 @@ public class ConexionBD {
 
     public static Connection conexion;
 
-    private ConexionBD() {
-
-    }
+    private ConexionBD() {}
 
     public ConexionBD(Connection conexion) {
         ConexionBD.conexion = conexion;

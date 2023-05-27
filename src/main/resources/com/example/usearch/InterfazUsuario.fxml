@@ -54,7 +54,7 @@
             <TableColumn fx:id="estado" prefWidth="75.0" text="Estado" />
           <TableColumn fx:id="fecha" text="Fecha" />
             <TableColumn fx:id="ubicacion" prefWidth="150.0" text="Ubicacion" />
-            <TableColumn fx:id="tipo" prefWidth="90.0" text="Tipo" />
+            <TableColumn fx:id="tipo" prefWidth="110.0" text="Tipo" />
             <TableColumn fx:id="caracteristicas" minWidth="0.0" prefWidth="300.0" text="Caracteristicas" />
         </columns>
       </TableView>

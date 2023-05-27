@@ -1,4 +1,4 @@
-package com.example.usearch.Persistencia;
+package com.example.usearch.Persistencia.Repository;
 
 import java.sql.Date;
 import java.util.ArrayList;

@@ -1,6 +1,6 @@
 package com.example.usearch.Memento;
 
-import com.example.usearch.Logica.Consulta;
+import com.example.usearch.Entidades.Consulta;
 
 public class Memento {
 

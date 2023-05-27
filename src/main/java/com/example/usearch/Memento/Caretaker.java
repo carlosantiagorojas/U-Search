@@ -17,6 +17,7 @@ public class Caretaker {
     public ArrayList<String> getMementosString() {
         ArrayList<String> mementosString = new ArrayList<>();
         for (Memento memento : this.mementos) {
+            // Añadir la informacion de la consulta en formato string
             mementosString.add(memento.getConsulta().obtenerConsulta());
         }
         return mementosString;

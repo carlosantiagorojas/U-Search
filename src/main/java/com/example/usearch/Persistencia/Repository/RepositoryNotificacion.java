@@ -1,7 +1,9 @@
-package com.example.usearch.Persistencia;
+package com.example.usearch.Persistencia.Repository;
 
 import com.example.usearch.Controladores.Alertas;
-import com.example.usearch.Logica.Notificacion;
+import com.example.usearch.Entidades.Notificacion;
+import com.example.usearch.Persistencia.Utilidades.ConexionBD;
+
 import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;

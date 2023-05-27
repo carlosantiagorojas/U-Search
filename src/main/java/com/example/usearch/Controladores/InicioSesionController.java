@@ -1,10 +1,11 @@
 package com.example.usearch.Controladores;
 
-import com.example.usearch.Logica.CargadorEscenas;
-import com.example.usearch.Logica.SesionUsuario;
-import com.example.usearch.Logica.Usuario;
-import com.example.usearch.Persistencia.RepositoryNotificacion;
-import com.example.usearch.Persistencia.RepositoryUsuario;
+import com.example.usearch.AbstractFactory.ControladorGeneral;
+import com.example.usearch.AbstractFactory.CargadorEscenas;
+import com.example.usearch.Entidades.SesionUsuario;
+import com.example.usearch.Entidades.Usuario;
+import com.example.usearch.Persistencia.Repository.RepositoryNotificacion;
+import com.example.usearch.Persistencia.Repository.RepositoryUsuario;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -13,7 +14,7 @@ import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import java.io.IOException;
 
-public class InicioSesionController implements ControladorGeneral{
+public class InicioSesionController implements ControladorGeneral {
 
     RepositoryUsuario repositoryUsuario = RepositoryUsuario.getInstance();
     RepositoryNotificacion repositoryNotificacion = RepositoryNotificacion.getInstance();

@@ -1,10 +1,11 @@
 package com.example.usearch.Controladores;
 
-import com.example.usearch.Logica.CargadorEscenas;
-import com.example.usearch.Logica.Notificacion;
-import com.example.usearch.Logica.ObjetoPerdido;
-import com.example.usearch.Persistencia.RepositoryNotificacion;
-import com.example.usearch.Persistencia.RepositoryObjetoPerdido;
+import com.example.usearch.AbstractFactory.ControladorGeneral;
+import com.example.usearch.AbstractFactory.CargadorEscenas;
+import com.example.usearch.Entidades.Notificacion;
+import com.example.usearch.Entidades.ObjetoPerdido;
+import com.example.usearch.Persistencia.Repository.RepositoryNotificacion;
+import com.example.usearch.Persistencia.Repository.RepositoryObjetoPerdido;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -137,7 +138,7 @@ public class ResultadoConsultaController implements ControladorGeneral {
                     // Enviar la notificacion al usuario
                     boolean resultadoNotificacion = false;
                     String mensaje;
-                    mensaje = "Su objeto: " + objetoperdido.getTipo() + " con la siguiente informacion: \n" +
+                    mensaje = "Su objeto [" + objetoperdido.getTipo() + "] con la siguiente informacion: \n" +
                             "Fecha: " + objetoperdido.getFechaPerdida() + "\n" +
                             "Ubicacion: " + objetoperdido.getUbicacion() + "\n" +
                             "ha sido ENCONTRADO";

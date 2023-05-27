@@ -1,9 +1,10 @@
 package com.example.usearch.Controladores;
 
-import com.example.usearch.Logica.CargadorEscenas;
-import com.example.usearch.Logica.Consulta;
-import com.example.usearch.Logica.ObjetoPerdido;
-import com.example.usearch.Persistencia.RepositoryObjetoPerdido;
+import com.example.usearch.AbstractFactory.ControladorGeneral;
+import com.example.usearch.AbstractFactory.CargadorEscenas;
+import com.example.usearch.Entidades.Consulta;
+import com.example.usearch.Entidades.ObjetoPerdido;
+import com.example.usearch.Persistencia.Repository.RepositoryObjetoPerdido;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -14,7 +15,7 @@ import javafx.stage.Stage;
 import java.sql.Date;
 import java.util.ArrayList;
 
-public class ConsultarObjetoPersonalController implements ControladorGeneral{
+public class ConsultarObjetoPersonalController implements ControladorGeneral {
 
     RepositoryObjetoPerdido repositoryObjetoPerdido = RepositoryObjetoPerdido.getInstance();
 
@@ -148,6 +149,7 @@ public class ConsultarObjetoPersonalController implements ControladorGeneral{
             cargadorEscenas.CambiarEscenas("ResultadoConsulta.fxml", "Resultado de su Consulta");
 
             ResultadoConsultaController controllerlocal = (ResultadoConsultaController) cargadorEscenas.controladorGeneral;
+            // Cargar datos de la consulta con el memento
             cargarDatosConsulta();
             controllerlocal.setEscenaAnterior("ConsultarObjetoPersonal.fxml");
             controllerlocal.setTituloEscenaAnterior("Consultar Objetos");

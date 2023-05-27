@@ -1,11 +1,12 @@
 package com.example.usearch.Controladores;
 
-import com.example.usearch.Logica.CargadorEscenas;
-import com.example.usearch.Logica.Consulta;
-import com.example.usearch.Logica.ObjetoPerdido;
+import com.example.usearch.AbstractFactory.ControladorGeneral;
+import com.example.usearch.AbstractFactory.CargadorEscenas;
+import com.example.usearch.Entidades.Consulta;
+import com.example.usearch.Entidades.ObjetoPerdido;
 import com.example.usearch.Memento.Caretaker;
 import com.example.usearch.Memento.Originator;
-import com.example.usearch.Persistencia.RepositoryObjetoPerdido;
+import com.example.usearch.Persistencia.Repository.RepositoryObjetoPerdido;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -64,7 +65,6 @@ public class HistorialController implements ControladorGeneral {
 
     @FXML
     void AccionRestaurar(ActionEvent event) {
-
 
         int indiceSeleccionado = ListaConsultas.getSelectionModel().getSelectedIndex();
         System.out.println(indiceSeleccionado);

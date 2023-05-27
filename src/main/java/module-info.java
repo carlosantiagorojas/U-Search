@@ -10,7 +10,9 @@ module com.example.usearch {
     exports com.example.usearch;
     exports com.example.usearch.Controladores;
     opens com.example.usearch.Controladores to javafx.fxml;
-    exports com.example.usearch.Logica;
-    opens com.example.usearch.Logica to javafx.base;
+    exports com.example.usearch.Entidades;
+    opens com.example.usearch.Entidades to javafx.base;
+    exports com.example.usearch.AbstractFactory;
+    opens com.example.usearch.AbstractFactory to javafx.base, javafx.fxml;
 
 }
