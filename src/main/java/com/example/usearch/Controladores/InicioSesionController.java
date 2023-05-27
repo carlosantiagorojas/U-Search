@@ -2,7 +2,10 @@ package com.example.usearch.Controladores;
 
 import com.example.usearch.Logica.CargadorEscenas;
 import com.example.usearch.Logica.SesionUsuario;
+import com.example.usearch.Logica.Usuario;
 import com.example.usearch.Persistencia.ConexionBD;
+import com.example.usearch.Persistencia.RepositoryNotificacion;
+import com.example.usearch.Persistencia.RepositoryUsuario;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -12,6 +15,10 @@ import javafx.stage.Stage;
 import java.io.IOException;
 
 public class InicioSesionController implements ControladorGeneral{
+
+    RepositoryUsuario repositoryUsuario;
+    RepositoryNotificacion repositoryNotificacion;
+
     private Stage stage;
     @Override
     public void setStage(Stage stage) {
@@ -35,8 +42,8 @@ public class InicioSesionController implements ControladorGeneral{
         CargadorEscenas cargadorEscenas = new CargadorEscenas(stage);
 
         boolean usuarioEncontrado = false;
-        ConexionBD conexion = new ConexionBD();
-        usuarioEncontrado = conexion.consultarUsuarioSesion(CampoCorreo.getText(), CampoContrasena.getText());
+        Usuario usuario = new Usuario(CampoCorreo.getText(), CampoContrasena.getText());
+        usuarioEncontrado = repositoryUsuario.consultarPorCredenciales(usuario);
 
         // Comprobar el tipo de usuario que inicio sesion
         if(!usuarioEncontrado)
@@ -44,7 +51,7 @@ public class InicioSesionController implements ControladorGeneral{
         //si se encuentra el usuario se cargan los datos
         else if(SesionUsuario.getRol().equals("usuario")) {
             // cargar las notificaciones del usuario
-            SesionUsuario.setNotificaciones(conexion.cargarNotificaciones(SesionUsuario.getId()));
+            SesionUsuario.setNotificaciones(repositoryNotificacion.consultarListaPorId(SesionUsuario.getId()));
             cargadorEscenas.CambiarEscenas("InterfazUsuario.fxml", "Menu usuario");
         }
         else if (SesionUsuario.getRol().equals("personal")) {

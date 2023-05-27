@@ -6,6 +6,7 @@ import com.example.usearch.Logica.ObjetoPerdido;
 import com.example.usearch.Memento.Caretaker;
 import com.example.usearch.Memento.Originator;
 import com.example.usearch.Persistencia.ConexionBD;
+import com.example.usearch.Persistencia.RepositoryObjetoPerdido;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -17,6 +18,8 @@ import java.sql.Date;
 import java.util.ArrayList;
 
 public class HistorialController implements ControladorGeneral {
+
+    RepositoryObjetoPerdido repositoryObjetoPerdido;
 
     private Stage stage;
 
@@ -103,8 +106,8 @@ public class HistorialController implements ControladorGeneral {
 
     public ArrayList<ObjetoPerdido> ActualizarTodosLLenos(String tipo, String ubicacion, Date fecha) {
 
-        ConexionBD conexion = new ConexionBD();
-        return conexion.cargarObjetosPerdidosPer(tipo, ubicacion, fecha);
+        ObjetoPerdido objetoPerdido = new ObjetoPerdido(tipo, ubicacion, fecha);
+        return repositoryObjetoPerdido.consultarListaPorEntidad(objetoPerdido);
     }
 
     public ArrayList<ObjetoPerdido> ActualizarTipo(String tipo) {

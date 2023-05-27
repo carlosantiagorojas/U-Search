@@ -4,6 +4,7 @@ import com.example.usearch.Logica.CargadorEscenas;
 import com.example.usearch.Logica.ObjetoPerdido;
 import com.example.usearch.Logica.SesionUsuario;
 import com.example.usearch.Persistencia.ConexionBD;
+import com.example.usearch.Persistencia.RepositoryObjetoPerdido;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -16,6 +17,9 @@ import javafx.stage.Stage;
 import java.sql.Date;
 
 public class InterfazUsuarioController implements ControladorGeneral{
+
+    RepositoryObjetoPerdido repositoryObjetoPerdido;
+
     private Stage stage;
 
     ObservableList<ObjetoPerdido> listaObjetos;
@@ -62,8 +66,8 @@ public class InterfazUsuarioController implements ControladorGeneral{
     }
 
     public void mostrarObjetosPerdidos(){
-        ConexionBD conexion = new ConexionBD();
-        SesionUsuario.setObjetosPerdidos(conexion.cargarObjetosPerdidos(SesionUsuario.getId()));
+
+        SesionUsuario.setObjetosPerdidos(repositoryObjetoPerdido.consultarListaPorId(SesionUsuario.getId()));
         //SesionUsuario.mostrarDatosUsuario();
         //SesionUsuario.mostrarObjetos();
 

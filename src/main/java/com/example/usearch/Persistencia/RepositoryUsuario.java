@@ -1,5 +1,7 @@
 package com.example.usearch.Persistencia;
 
+import com.example.usearch.Controladores.Alertas;
+import com.example.usearch.Logica.Notificacion;
 import com.example.usearch.Logica.SesionUsuario;
 import com.example.usearch.Logica.Usuario;
 
@@ -50,22 +52,39 @@ public class RepositoryUsuario implements IRepository<Usuario> {
     }
 
     @Override
-    public void eliminarPorId(int id) {
-
+    public boolean eliminarPorId(int id) {
+        return false;
     }
 
     @Override
-    public Usuario consultarPorCredenciales(String correo, String contrasena) {
+    public boolean consultarPorCredenciales(Usuario entity) {
+        boolean usuarioEncontrado = false;
+        String query = "SELECT * FROM usuarios WHERE correo = ? AND contrasena = ?";
+
+        try (PreparedStatement statement = ConexionBD.conexion.prepareStatement(query)) {
+            statement.setString(1, entity.getCorreoElectronico());
+            statement.setString(2, entity.getContrasena());
+            ResultSet resultSet = statement.executeQuery();
+
+            // Se cargan los datos del usuario si se encuentra en la base de datos
+            if (resultSet.next()) {
+                SesionUsuario.cargarDatosUsuario(resultSet.getInt("idUsuarios"), resultSet.getString("rol"), resultSet.getString("correo"), resultSet.getString("contrasena"));
+                usuarioEncontrado = true;
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return usuarioEncontrado;
+    }
+
+    @Override
+    public ArrayList<Usuario> consultarListaPorEntidad(Usuario entity) {
         return null;
     }
 
     @Override
-    public ArrayList<Usuario> consultarTodos() {
-        return null;
-    }
-
-    @Override
-    public ArrayList<Usuario> consultarListaPorParametro(Usuario parametro) {
+    public ArrayList<Usuario> consultarListaPorId(int id) {
         return null;
     }
 }

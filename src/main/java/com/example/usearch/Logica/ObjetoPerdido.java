@@ -31,6 +31,21 @@ public class ObjetoPerdido {
         this.idUsuario = idusuario;
     }
 
+    public ObjetoPerdido(Date fechaPerdida, String ubicacion, String tipo, String caracteristicas, String estado, int idUsuario) {
+        this.fechaPerdida = fechaPerdida;
+        this.ubicacion = ubicacion;
+        this.tipo = tipo;
+        this.caracteristicas = caracteristicas;
+        this.estado = estado;
+        this.idUsuario = idUsuario;
+    }
+
+    public ObjetoPerdido(String tipo, String ubicacion,Date fechaPerdida) {
+        this.fechaPerdida = fechaPerdida;
+        this.ubicacion = ubicacion;
+        this.tipo = tipo;
+    }
+
     public int getId() {
         return id;
     }

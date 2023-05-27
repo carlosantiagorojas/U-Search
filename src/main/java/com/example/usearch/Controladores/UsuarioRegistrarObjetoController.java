@@ -1,8 +1,10 @@
 package com.example.usearch.Controladores;
 
 import com.example.usearch.Logica.CargadorEscenas;
+import com.example.usearch.Logica.ObjetoPerdido;
 import com.example.usearch.Logica.SesionUsuario;
 import com.example.usearch.Persistencia.ConexionBD;
+import com.example.usearch.Persistencia.RepositoryObjetoPerdido;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -14,6 +16,8 @@ import javafx.stage.Stage;
 import java.sql.Date;
 
 public class UsuarioRegistrarObjetoController implements ControladorGeneral{
+
+    RepositoryObjetoPerdido repositoryObjetoPerdido;
     private Stage stage;
     @Override
     public void setStage(Stage stage) {
@@ -46,11 +50,11 @@ public class UsuarioRegistrarObjetoController implements ControladorGeneral{
             {
                 CargadorEscenas cargadorEscenas = new CargadorEscenas(stage);
                 boolean resultadoRegistro = false;
-                ConexionBD conexion = new ConexionBD();
                 String fecha = FechaPerdida.getText();
                 Date fechaConvertida = Date.valueOf(fecha);
 
-                resultadoRegistro = conexion.registrarObjeto(fechaConvertida, UbicacionPerdida.getText(), TipoObjeto.getText(), CareteristicasFisicas.getText(), "perdido", SesionUsuario.getId());
+                ObjetoPerdido objetoPerdido = new ObjetoPerdido(fechaConvertida, UbicacionPerdida.getText(), TipoObjeto.getText(), CareteristicasFisicas.getText(), "perdido", SesionUsuario.getId());
+                resultadoRegistro = repositoryObjetoPerdido.crear(objetoPerdido);
 
                 if (resultadoRegistro) {
                     Alertas.informar("Registro exitoso");

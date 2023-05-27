@@ -3,6 +3,7 @@ package com.example.usearch.Controladores;
 import com.example.usearch.Logica.CargadorEscenas;
 import com.example.usearch.Logica.SesionUsuario;
 import com.example.usearch.Persistencia.ConexionBD;
+import com.example.usearch.Persistencia.RepositoryNotificacion;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.ListView;
@@ -11,6 +12,8 @@ import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 
 public class NotificacionesController implements ControladorGeneral {
+
+    RepositoryNotificacion repositoryNotificacion;
 
     private Stage stage;
 
@@ -36,8 +39,7 @@ public class NotificacionesController implements ControladorGeneral {
 
         if(!this.ListaNotificaciones.getItems().isEmpty())
         {
-            ConexionBD conexionBD = new ConexionBD();
-            if(conexionBD.eliminarNotificaciones(SesionUsuario.getId())) {
+            if(repositoryNotificacion.eliminarPorId(SesionUsuario.getId())) {
                 // Elimimar las notificaciones de la lista
                 ListaNotificaciones.getItems().clear();
                 Alertas.informar("Notificaciones eliminadas");

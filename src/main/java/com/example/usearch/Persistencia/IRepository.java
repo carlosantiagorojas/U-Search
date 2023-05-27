@@ -12,11 +12,11 @@ public interface IRepository <T>{
 
     void eliminar(T entity);
 
-    void eliminarPorId(int id);
+    boolean eliminarPorId(int id);
 
-    T consultarPorCredenciales(String correo, String contrasena);
+    boolean consultarPorCredenciales(T entity);
 
-    ArrayList<T> consultarTodos();
+    ArrayList<T> consultarListaPorEntidad(T entity);
 
-    ArrayList<T> consultarListaPorParametro(T parametro);
+    ArrayList<T> consultarListaPorId(int id);
 }

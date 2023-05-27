@@ -22,6 +22,11 @@ public class Usuario {
         this.contrasena = contrasena;
     }
 
+    public Usuario(String correoElectronico, String contrasena) {
+        this.correoElectronico = correoElectronico;
+        this.contrasena = contrasena;
+    }
+
     public int getId() {
         return id;
     }
