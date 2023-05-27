@@ -1,17 +1,22 @@
 package com.example.usearch.Persistencia;
 
-import com.example.usearch.Controladores.Alertas;
-import com.example.usearch.Logica.Notificacion;
+
 import com.example.usearch.Logica.SesionUsuario;
 import com.example.usearch.Logica.Usuario;
-
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
 import java.util.ArrayList;
 
 public class RepositoryUsuario implements IRepository<Usuario> {
+
+    private static RepositoryUsuario instance;
+
+    public static RepositoryUsuario getInstance() {
+        if (instance == null) {
+            instance = new RepositoryUsuario();
+        }
+        return instance;
+    }
+
     @Override
     public boolean crear(Usuario entity) {
         boolean registroExitoso = false;
@@ -42,8 +47,8 @@ public class RepositoryUsuario implements IRepository<Usuario> {
     }
 
     @Override
-    public void actualizarPorId(int id) {
-
+    public boolean actualizarPorId(int id) {
+        return false;
     }
 
     @Override
@@ -76,6 +81,21 @@ public class RepositoryUsuario implements IRepository<Usuario> {
         }
 
         return usuarioEncontrado;
+    }
+
+    @Override
+    public ArrayList<Usuario> consultarListaFecha(Date fechaPerdida) {
+        return null;
+    }
+
+    @Override
+    public ArrayList<Usuario> consultarListaPorUbicacion(String ubicacion) {
+        return null;
+    }
+
+    @Override
+    public ArrayList<Usuario> consultarListaPorTipo(String tipo) {
+        return null;
     }
 
     @Override

@@ -3,7 +3,6 @@ package com.example.usearch.Controladores;
 import com.example.usearch.Logica.CargadorEscenas;
 import com.example.usearch.Logica.ObjetoPerdido;
 import com.example.usearch.Logica.SesionUsuario;
-import com.example.usearch.Persistencia.ConexionBD;
 import com.example.usearch.Persistencia.RepositoryObjetoPerdido;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -18,7 +17,7 @@ import java.sql.Date;
 
 public class InterfazUsuarioController implements ControladorGeneral{
 
-    RepositoryObjetoPerdido repositoryObjetoPerdido;
+    RepositoryObjetoPerdido repositoryObjetoPerdido = RepositoryObjetoPerdido.getInstance();
 
     private Stage stage;
 

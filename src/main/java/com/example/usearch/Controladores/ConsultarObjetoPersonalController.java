@@ -3,7 +3,6 @@ package com.example.usearch.Controladores;
 import com.example.usearch.Logica.CargadorEscenas;
 import com.example.usearch.Logica.Consulta;
 import com.example.usearch.Logica.ObjetoPerdido;
-import com.example.usearch.Persistencia.ConexionBD;
 import com.example.usearch.Persistencia.RepositoryObjetoPerdido;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -17,7 +16,7 @@ import java.util.ArrayList;
 
 public class ConsultarObjetoPersonalController implements ControladorGeneral{
 
-    RepositoryObjetoPerdido repositoryObjetoPerdido;
+    RepositoryObjetoPerdido repositoryObjetoPerdido = RepositoryObjetoPerdido.getInstance();
 
     private Stage stage;
     @Override
@@ -176,23 +175,17 @@ public class ConsultarObjetoPersonalController implements ControladorGeneral{
 
     public ArrayList<ObjetoPerdido> ActualizarTipo(String tipo) {
 
-        ConexionBD conexion = new ConexionBD();
-
-        return conexion.cargarObjetosPerdidosTipo(tipo);
+        return repositoryObjetoPerdido.consultarListaPorTipo(tipo);
     }
 
     public ArrayList<ObjetoPerdido> ActualizarUbicacion(String ubicacion) {
 
-        ConexionBD conexion = new ConexionBD();
-
-        return conexion.cargarObjetosPerdidosUbicacion(ubicacion);
+        return repositoryObjetoPerdido.consultarListaPorUbicacion(ubicacion);
     }
 
     public ArrayList<ObjetoPerdido> ActualizarFecha(Date fecha) {
 
-        ConexionBD conexion = new ConexionBD();
-
-        return conexion.cargarObjetosPerdidosFecha(fecha);
+        return repositoryObjetoPerdido.consultarListaFecha(fecha);
     }
 
     public boolean validarConsulta(ArrayList<ObjetoPerdido> objetosPerdidos)

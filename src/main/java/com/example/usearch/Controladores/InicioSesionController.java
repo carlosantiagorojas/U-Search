@@ -3,7 +3,6 @@ package com.example.usearch.Controladores;
 import com.example.usearch.Logica.CargadorEscenas;
 import com.example.usearch.Logica.SesionUsuario;
 import com.example.usearch.Logica.Usuario;
-import com.example.usearch.Persistencia.ConexionBD;
 import com.example.usearch.Persistencia.RepositoryNotificacion;
 import com.example.usearch.Persistencia.RepositoryUsuario;
 import javafx.event.ActionEvent;
@@ -16,8 +15,8 @@ import java.io.IOException;
 
 public class InicioSesionController implements ControladorGeneral{
 
-    RepositoryUsuario repositoryUsuario;
-    RepositoryNotificacion repositoryNotificacion;
+    RepositoryUsuario repositoryUsuario = RepositoryUsuario.getInstance();
+    RepositoryNotificacion repositoryNotificacion = RepositoryNotificacion.getInstance();
 
     private Stage stage;
     @Override

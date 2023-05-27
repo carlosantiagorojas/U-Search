@@ -2,8 +2,7 @@ package com.example.usearch.Persistencia;
 
 import com.example.usearch.Controladores.Alertas;
 import com.example.usearch.Logica.Notificacion;
-import com.example.usearch.Logica.Usuario;
-
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -11,9 +10,31 @@ import java.util.ArrayList;
 
 public class RepositoryNotificacion implements IRepository<Notificacion> {
 
+    private static RepositoryNotificacion instance;
+
+    public static RepositoryNotificacion getInstance() {
+        if (instance == null) {
+            instance = new RepositoryNotificacion();
+        }
+        return instance;
+    }
+
     @Override
     public boolean crear(Notificacion entity) {
-        return false;
+        boolean insertado = false;
+
+        String query = "INSERT INTO notificaciones (usuarios_idUsuarios, mensaje) VALUES (?, ?)";
+
+        try (PreparedStatement statement = ConexionBD.conexion.prepareStatement(query);){
+            statement.setInt(1, entity.getIdUsuario());
+            statement.setString(2, entity.getMensaje());
+            int filasAfectadas = statement.executeUpdate();
+            insertado = (filasAfectadas > 0);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return insertado;
     }
 
     @Override
@@ -22,8 +43,8 @@ public class RepositoryNotificacion implements IRepository<Notificacion> {
     }
 
     @Override
-    public void actualizarPorId(int id) {
-
+    public boolean actualizarPorId(int id) {
+        return false;
     }
 
     @Override
@@ -51,6 +72,21 @@ public class RepositoryNotificacion implements IRepository<Notificacion> {
     @Override
     public boolean consultarPorCredenciales(Notificacion entity) {
         return false;
+    }
+
+    @Override
+    public ArrayList<Notificacion> consultarListaFecha(Date fechaPerdida) {
+        return null;
+    }
+
+    @Override
+    public ArrayList<Notificacion> consultarListaPorUbicacion(String ubicacion) {
+        return null;
+    }
+
+    @Override
+    public ArrayList<Notificacion> consultarListaPorTipo(String tipo) {
+        return null;
     }
 
     @Override

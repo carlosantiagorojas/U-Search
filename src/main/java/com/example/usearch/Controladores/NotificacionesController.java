@@ -2,7 +2,6 @@ package com.example.usearch.Controladores;
 
 import com.example.usearch.Logica.CargadorEscenas;
 import com.example.usearch.Logica.SesionUsuario;
-import com.example.usearch.Persistencia.ConexionBD;
 import com.example.usearch.Persistencia.RepositoryNotificacion;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -13,7 +12,7 @@ import javafx.stage.Stage;
 
 public class NotificacionesController implements ControladorGeneral {
 
-    RepositoryNotificacion repositoryNotificacion;
+    RepositoryNotificacion repositoryNotificacion = RepositoryNotificacion.getInstance();
 
     private Stage stage;
 

@@ -3,7 +3,8 @@ package com.example.usearch.Controladores;
 import com.example.usearch.Logica.CargadorEscenas;
 import com.example.usearch.Logica.Notificacion;
 import com.example.usearch.Logica.ObjetoPerdido;
-import com.example.usearch.Persistencia.ConexionBD;
+import com.example.usearch.Persistencia.RepositoryNotificacion;
+import com.example.usearch.Persistencia.RepositoryObjetoPerdido;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -19,6 +20,10 @@ import java.sql.Date;
 import java.util.ArrayList;
 
 public class ResultadoConsultaController implements ControladorGeneral {
+
+    RepositoryObjetoPerdido repositoryObjetoPerdido = RepositoryObjetoPerdido.getInstance();
+
+    RepositoryNotificacion repositoryNotificacion = RepositoryNotificacion.getInstance();
 
     private Stage stage;
 
@@ -105,8 +110,7 @@ public class ResultadoConsultaController implements ControladorGeneral {
 
         if (objetoperdido != null) {
             if (objetoperdido.getEstado().equals("perdido")) {
-                ConexionBD conexion = new ConexionBD();
-                resultadoActualizacion = conexion.actualizarEncontrado(objetoperdido.getId());
+                resultadoActualizacion = repositoryObjetoPerdido.actualizarPorId(objetoperdido.getId());
 
                 if (resultadoActualizacion) {
 
@@ -138,7 +142,7 @@ public class ResultadoConsultaController implements ControladorGeneral {
                             "Ubicacion: " + objetoperdido.getUbicacion() + "\n" +
                             "ha sido ENCONTRADO";
                     Notificacion notificacion = new Notificacion(objetoperdido.getIdUsuario(), mensaje);
-                    resultadoNotificacion = conexion.enviarNotificacion(notificacion.getIdUsuario(), notificacion.getMensaje());
+                    resultadoNotificacion = repositoryNotificacion.crear(notificacion);
 
                     if(resultadoNotificacion)
                         System.out.println("Se ha enviado una notificacion al usuario");
