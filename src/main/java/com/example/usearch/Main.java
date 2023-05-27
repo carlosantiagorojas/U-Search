@@ -12,7 +12,7 @@ public class Main extends Application {
         CargadorEscenas cargadorEscenas = new CargadorEscenas(stage);
         cargadorEscenas.CambiarEscenas("InicioSesion.fxml", "Bienvenido");
         // Conectar con la base de datos
-        Connection conexion = ConexionBD.conectar();
+        ConexionBD conexionBD = ConexionBD.getInstance();
     }
 
     public static void main(String[] args) {

@@ -9,38 +9,29 @@ import java.sql.Date;
 import java.util.ArrayList;
 
 public class ConexionBD {
-    private static Connection conexion;
 
-    public static Connection conectar()  {
-        try {
-            conexion = DriverManager.getConnection("jdbc:mysql://localhost:3306/u-search", "root", "1234");
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
-        return conexion;
+    private static ConexionBD instance;
+    public static Connection conexion;
+
+    private ConexionBD() {
+
     }
 
-    public boolean registrarUsuario(String rol, String correo, String contrasena) {
-        boolean registroExitoso = false;
-        String query = "INSERT INTO usuarios (rol, correo, contrasena) VALUES (?, ?, ?)";
+    public ConexionBD(Connection conexion) {
+        ConexionBD.conexion = conexion;
+    }
 
-        try (PreparedStatement statement = conexion.prepareStatement(query, Statement.RETURN_GENERATED_KEYS)) {
-            statement.setString(1, rol);
-            statement.setString(2, correo);
-            statement.setString(3, contrasena);
-            int filasAfectadas = statement.executeUpdate();
-            if (filasAfectadas > 0) {
-                registroExitoso = true;
-                ResultSet resultSet = statement.getGeneratedKeys();
-                if (resultSet.next()) {
-                    SesionUsuario.cargarDatosUsuario(resultSet.getInt(1), rol, correo, contrasena);
-                }
+    public static ConexionBD getInstance() {
+        if (instance == null) {
+            try {
+                Connection conexion = DriverManager.getConnection("jdbc:mysql://localhost:3306/u-search", "root", "1234");
+                instance = new ConexionBD(conexion);
+            } catch (SQLException ex) {
+                throw new RuntimeException(ex);
             }
-        } catch (SQLException e) {
-            e.printStackTrace();
         }
 
-        return registroExitoso;
+        return instance;
     }
 
 

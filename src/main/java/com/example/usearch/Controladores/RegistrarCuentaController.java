@@ -1,7 +1,10 @@
 package com.example.usearch.Controladores;
 
 import com.example.usearch.Logica.CargadorEscenas;
+import com.example.usearch.Logica.SesionUsuario;
+import com.example.usearch.Logica.Usuario;
 import com.example.usearch.Persistencia.ConexionBD;
+import com.example.usearch.Persistencia.RepositoryUsuario;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -13,6 +16,7 @@ import javafx.stage.Stage;
 
 public class RegistrarCuentaController implements ControladorGeneral {
 
+    RepositoryUsuario repositoryUsuario;
     private Stage stage;
     @Override
     public void setStage(Stage stage) {
@@ -44,6 +48,9 @@ public class RegistrarCuentaController implements ControladorGeneral {
             CargadorEscenas cargadorEscenas = new CargadorEscenas(stage);
             cargadorEscenas.CambiarEscenas("InterfazPersonal.fxml", "Menu personal");
         }
+        else
+            Alertas.mostrarError("Error, no se pudo registrar el usuario");
+
     }
 
     @FXML
@@ -56,22 +63,25 @@ public class RegistrarCuentaController implements ControladorGeneral {
 
         boolean registroExitoso = false;
         String registro = "";
-        ConexionBD conexionBD = new ConexionBD();
+
         String correo = this.correoElectronico.getText();
         String contrasena = this.contrasena.getText();
 
         if (correoValido())
         {
             if (esAdministrador()) {
-                System.out.println("entre aqui");
-                registroExitoso = conexionBD.registrarUsuario("personal", correo, contrasena);
+
+                Usuario usuario = new Usuario("personal",correo, contrasena);
+                registroExitoso = repositoryUsuario.crear(usuario);
+
                 if (registroExitoso)
                     registro = "personal";
                 else
                     registro = "fallido";
             }
             else {
-                registroExitoso = conexionBD.registrarUsuario("usuario", correo, contrasena);
+                Usuario usuario = new Usuario("usuario",correo, contrasena);
+                registroExitoso = repositoryUsuario.crear(usuario);
                 if (registroExitoso)
                     registro = "usuario";
                 else
