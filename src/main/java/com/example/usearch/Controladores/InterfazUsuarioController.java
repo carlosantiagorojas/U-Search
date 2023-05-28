@@ -16,6 +16,9 @@ import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import java.sql.Date;
 
+/**
+ * Clase controladora de la interfaz de usuario
+ */
 public class InterfazUsuarioController implements ControladorGeneral {
 
     RepositoryObjetoPerdido repositoryObjetoPerdido = RepositoryObjetoPerdido.getInstance();
@@ -65,6 +68,9 @@ public class InterfazUsuarioController implements ControladorGeneral {
         cargadorEscenas.CambiarEscenas("UsuarioRegistrarObjeto.fxml", "Registrar Objeto");
     }
 
+    /**
+     * Metodo para mostrar los objetos perdidos del usuario
+     */
     public void mostrarObjetosPerdidos(){
 
         SesionUsuario.setObjetosPerdidos(repositoryObjetoPerdido.consultarListaPorId(SesionUsuario.getId()));
@@ -75,6 +81,7 @@ public class InterfazUsuarioController implements ControladorGeneral {
             tablaObjetos.setPlaceholder(new javafx.scene.control.Label("No hay objetos registrados"));
         }
         else{
+            //Colocar los objetos en la tabla
             this.listaObjetos = FXCollections.observableArrayList(SesionUsuario.getObjetosPerdidos());
 
             tablaObjetos.setItems(listaObjetos);

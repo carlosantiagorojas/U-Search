@@ -2,6 +2,9 @@ package com.example.usearch.Entidades;
 
 import java.util.ArrayList;
 
+/**
+ * Clase que representa la sesion activa del usuario
+ */
 public class SesionUsuario {
 
     private static int id;
@@ -76,6 +79,10 @@ public class SesionUsuario {
         SesionUsuario.notificaciones = notificaciones;
     }
 
+    /**
+     * Obtener los mensajes de las notificaciones
+     * @return ArrayList<String> con los mensajes de las notificaciones
+     */
     public static ArrayList<String> obtenerMensajes() {
 
         ArrayList<String> mensajes = new ArrayList<String>();
@@ -86,6 +93,7 @@ public class SesionUsuario {
         return mensajes;
     }
 
+    /*
     public static void mostrarDatosUsuario(){
         System.out.println();
         System.out.println("ID: " + SesionUsuario.id);
@@ -93,8 +101,9 @@ public class SesionUsuario {
         System.out.println("Correo: " + SesionUsuario.correoElectronico);
         System.out.println("Contraseña: " + SesionUsuario.contrasena);
         System.out.println();
-    }
+    }*/
 
+    /*
     public static void mostrarObjetos(){
         for(ObjetoPerdido ob: SesionUsuario.objetosPerdidos){
             System.out.println("ID objeto: " + ob.getId());
@@ -106,8 +115,9 @@ public class SesionUsuario {
             System.out.println("ID usuario: " + ob.getIdUsuario());
             System.out.println();
         }
-    }
+    }*/
 
+    /*
     public static void mostrarNotificaciones(){
         for(Notificacion not: SesionUsuario.notificaciones){
             System.out.println("ID notificacion: " + not.getId());
@@ -115,5 +125,5 @@ public class SesionUsuario {
             System.out.println("ID usuario: " + not.getIdUsuario());
             System.out.println();
         }
-    }
+    }*/
 }

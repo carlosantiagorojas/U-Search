@@ -6,6 +6,9 @@ import javafx.fxml.FXML;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 
+/**
+ * Clase controladora de la interfaz de personal
+ */
 public class InterfazPersonalController implements ControladorGeneral {
 
     private Stage stage;

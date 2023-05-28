@@ -2,6 +2,9 @@ package com.example.usearch.Entidades;
 
 import java.util.ArrayList;
 
+/**
+ *
+ */
 public class Usuario {
 
     private int id;

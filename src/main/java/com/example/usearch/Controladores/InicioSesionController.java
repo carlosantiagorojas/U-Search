@@ -6,6 +6,7 @@ import com.example.usearch.Entidades.SesionUsuario;
 import com.example.usearch.Entidades.Usuario;
 import com.example.usearch.Persistencia.Repository.RepositoryNotificacion;
 import com.example.usearch.Persistencia.Repository.RepositoryUsuario;
+import com.example.usearch.Utilidades.Alertas;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -37,6 +38,11 @@ public class InicioSesionController implements ControladorGeneral {
     @FXML
     private Button RegistroCuenta;
 
+    /**
+     * Metodo que se ejecuta al presionar el boton de iniciar sesion
+     * @param event evento de presionar el boton
+     * @throws IOException excepcion de entrada y salida
+     */
     @FXML
     void AccionIniciarSesion(ActionEvent event) throws IOException {
         CargadorEscenas cargadorEscenas = new CargadorEscenas(stage);
@@ -50,7 +56,7 @@ public class InicioSesionController implements ControladorGeneral {
             Alertas.mostrarError("Correo y/o contraseña incorrectos");
         //si se encuentra el usuario se cargan los datos
         else if(SesionUsuario.getRol().equals("usuario")) {
-            // cargar las notificaciones del usuario
+            // cargar las   notificaciones del usuario
             SesionUsuario.setNotificaciones(repositoryNotificacion.consultarListaPorId(SesionUsuario.getId()));
             cargadorEscenas.CambiarEscenas("InterfazUsuario.fxml", "Menu usuario");
         }
@@ -59,6 +65,10 @@ public class InicioSesionController implements ControladorGeneral {
         }
     }
 
+    /**
+     * cambiar de escena para registrar a un usuario
+     * @param event evento de presionar el boton
+     */
     @FXML
     void AccionRegistrar(ActionEvent event) {
         CargadorEscenas cargadorEscenas = new CargadorEscenas(stage);

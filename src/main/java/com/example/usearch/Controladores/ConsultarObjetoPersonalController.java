@@ -5,6 +5,7 @@ import com.example.usearch.AbstractFactory.CargadorEscenas;
 import com.example.usearch.Entidades.Consulta;
 import com.example.usearch.Entidades.ObjetoPerdido;
 import com.example.usearch.Persistencia.Repository.RepositoryObjetoPerdido;
+import com.example.usearch.Utilidades.Alertas;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -15,6 +16,9 @@ import javafx.stage.Stage;
 import java.sql.Date;
 import java.util.ArrayList;
 
+/**
+ * Clase controlador de la interfaz de consultar objetos perdidos
+ */
 public class ConsultarObjetoPersonalController implements ControladorGeneral {
 
     RepositoryObjetoPerdido repositoryObjetoPerdido = RepositoryObjetoPerdido.getInstance();
@@ -52,6 +56,10 @@ public class ConsultarObjetoPersonalController implements ControladorGeneral {
     @FXML
     private ImageView RegresarButton;
 
+    /**
+     * Consultar los objetos perdidos en base a los parametros ingresados
+     * @param event evento de la accion
+     */
     @FXML
     void AccionConsultar(ActionEvent event) {
 
@@ -92,17 +100,24 @@ public class ConsultarObjetoPersonalController implements ControladorGeneral {
         }
     }
 
-
     @FXML
     void AccionRegresar(MouseEvent event) {
         CargadorEscenas cargadorEscenas = new CargadorEscenas(stage);
         cargadorEscenas.CambiarEscenas("InterfazPersonal.fxml", "Menu Personal");
     }
 
+    /**
+     * comprobar si los campos estan vacios
+     * @return true si los campos estan vacios, false si no
+     */
     public boolean camposVacios(){
         return TipoObjeto.getText().isEmpty() && UbicacionPerdida.getText().isEmpty() && FechaPerdida.getText().isEmpty();
     }
 
+    /**
+     * contar la cantidad de campos llenos
+     * @return cantidad de campos
+     */
     public int cantidadCamposLLenos(){
         int camposLlenos = 0;
 
@@ -116,10 +131,18 @@ public class ConsultarObjetoPersonalController implements ControladorGeneral {
         return camposLlenos;
     }
 
+    /**
+     * comprobar si todos los campos estan llenos
+     * @return true estan llenos, false si no
+     */
     public boolean camposLlenos(){
         return !TipoObjeto.getText().isEmpty() && !UbicacionPerdida.getText().isEmpty() && !FechaPerdida.getText().isEmpty();
     }
 
+    /**
+     * actualizar dependiendo de la consulta
+     * @return lista de objetos actualizada
+     */
     public ArrayList<ObjetoPerdido> tipoConsulta()
     {
         ArrayList<ObjetoPerdido> objetosEncontrados = new ArrayList<>();
@@ -141,6 +164,10 @@ public class ConsultarObjetoPersonalController implements ControladorGeneral {
         return objetosEncontrados;
     }
 
+    /**
+     * cambiar de escena y valores de la tabla
+     * @param objetosPerdidos lista de objetos
+     */
     public void cambiarTabla(ArrayList<ObjetoPerdido> objetosPerdidos)
     {
         if(validarConsulta(objetosPerdidos))
@@ -159,6 +186,10 @@ public class ConsultarObjetoPersonalController implements ControladorGeneral {
             Alertas.mostrarError("No se encontraron objetos con los parametros ingresados");
     }
 
+    /**
+     * validar si la fecha es valida
+     * @return true si es valida, false si no
+     */
     public boolean fechaValida()
     {
         try {
@@ -169,32 +200,62 @@ public class ConsultarObjetoPersonalController implements ControladorGeneral {
         }
     }
 
+    /**
+     * Cargar los objetos si todos los campos estan llenos
+     * @param tipo tipo de objeto
+     * @param ubicacion ubicacion del objeto
+     * @param fecha fecha de perdida del objeto
+     * @return lista de objetos
+     */
     public ArrayList<ObjetoPerdido> ActualizarTodosLLenos(String tipo, String ubicacion, Date fecha) {
 
         ObjetoPerdido objetoPerdido = new ObjetoPerdido(tipo, ubicacion, fecha);
         return repositoryObjetoPerdido.consultarListaPorEntidad(objetoPerdido);
     }
 
+    /**
+     * Cargar los objetos si el tipo esta lleno
+     * @param tipo tipo de objeto
+     * @return lista de objetos
+     */
     public ArrayList<ObjetoPerdido> ActualizarTipo(String tipo) {
 
         return repositoryObjetoPerdido.consultarListaPorTipo(tipo);
     }
 
+    /**
+     * Cargar los objetos si la ubicacion esta llena
+     * @param ubicacion ubicacion del objeto
+     * @return lista de objetos
+     */
     public ArrayList<ObjetoPerdido> ActualizarUbicacion(String ubicacion) {
 
         return repositoryObjetoPerdido.consultarListaPorUbicacion(ubicacion);
     }
 
+    /**
+     * Cargar los objetos si la fecha esta llena
+     * @param fecha fecha de perdida del objeto
+     * @return lista de objetos
+     */
     public ArrayList<ObjetoPerdido> ActualizarFecha(Date fecha) {
 
         return repositoryObjetoPerdido.consultarListaFecha(fecha);
     }
 
+    /**
+     * validar si la consulta es valida
+     * @param objetosPerdidos lista de objetos
+     * @return true si es valida, false si no
+     */
     public boolean validarConsulta(ArrayList<ObjetoPerdido> objetosPerdidos)
     {
         return objetosPerdidos.size() >= 1;
     }
 
+    /**
+     * crear consulta
+     */
     public Consulta crearConsulta()
     {
         Consulta consulta = new Consulta();
@@ -221,6 +282,9 @@ public class ConsultarObjetoPersonalController implements ControladorGeneral {
         return consulta;
     }
 
+    /**
+     * cargar datos de la consulta al memento con el originator
+     */
     public void cargarDatosConsulta()
     {
         HistorialController.getOriginator().setConsulta(crearConsulta());

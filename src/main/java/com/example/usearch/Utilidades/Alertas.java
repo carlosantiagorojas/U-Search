@@ -1,7 +1,10 @@
-package com.example.usearch.Controladores;
+package com.example.usearch.Utilidades;
 
 import javafx.scene.control.Alert;
 
+/**
+ * Clase utilitaria para mostrar alertas
+ */
 public class Alertas {
 
     /**

@@ -4,6 +4,7 @@ import com.example.usearch.AbstractFactory.ControladorGeneral;
 import com.example.usearch.AbstractFactory.CargadorEscenas;
 import com.example.usearch.Entidades.SesionUsuario;
 import com.example.usearch.Persistencia.Repository.RepositoryNotificacion;
+import com.example.usearch.Utilidades.Alertas;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.ListView;
@@ -11,6 +12,9 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 
+/**
+ * Controlador de la interfaz de notificaciones
+ */
 public class NotificacionesController implements ControladorGeneral {
 
     RepositoryNotificacion repositoryNotificacion = RepositoryNotificacion.getInstance();
@@ -34,6 +38,10 @@ public class NotificacionesController implements ControladorGeneral {
         cargadorEscenas.CambiarEscenas("InterfazUsuario.fxml", "Menu usuario");
     }
 
+    /**
+     * Elimina las notificaciones del usuario
+     * @param event Evento de acción
+     */
     @FXML
     void AcccionEliminar(ActionEvent event) {
 
@@ -51,6 +59,9 @@ public class NotificacionesController implements ControladorGeneral {
             Alertas.mostrarError("No hay notificaciones para eliminar");
     }
 
+    /**
+     * Muestra las notificaciones de la sesion activa del usuario
+     */
     public void mostrarNotificaciones(){
 
         //SesionUsuario.mostrarDatosUsuario();

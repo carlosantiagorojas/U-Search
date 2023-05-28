@@ -1,5 +1,8 @@
 package com.example.usearch.Entidades;
 
+/**
+ *  Clase que representa una notificacion
+ */
 public class Notificacion {
 
     private int id;

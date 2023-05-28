@@ -6,6 +6,7 @@ import com.example.usearch.Entidades.Notificacion;
 import com.example.usearch.Entidades.ObjetoPerdido;
 import com.example.usearch.Persistencia.Repository.RepositoryNotificacion;
 import com.example.usearch.Persistencia.Repository.RepositoryObjetoPerdido;
+import com.example.usearch.Utilidades.Alertas;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -20,6 +21,9 @@ import javafx.stage.Stage;
 import java.sql.Date;
 import java.util.ArrayList;
 
+/**
+ * Clase controladora del resultado de la consulta
+ */
 public class ResultadoConsultaController implements ControladorGeneral {
 
     RepositoryObjetoPerdido repositoryObjetoPerdido = RepositoryObjetoPerdido.getInstance();
@@ -94,6 +98,10 @@ public class ResultadoConsultaController implements ControladorGeneral {
         cargadorEscenas.CambiarEscenas("InterfazPersonal.fxml", "Menu Personal");
     }
 
+    /**
+     * metodo para actualizar el estado de un objeto perdido
+     * @param event Evento de la accion
+     */
     @FXML
     void AccionActualizar(ActionEvent event) {
 
@@ -157,6 +165,10 @@ public class ResultadoConsultaController implements ControladorGeneral {
         }
     }
 
+    /**
+     * Metodo para actualizar la tabla de objetos perdidos
+     * @param objetosPerdidos Lista de objetos perdidos
+     */
     public void actualizarTabla(ArrayList<ObjetoPerdido> objetosPerdidos)
     {
         try {

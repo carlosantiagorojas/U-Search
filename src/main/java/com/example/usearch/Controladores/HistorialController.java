@@ -7,6 +7,7 @@ import com.example.usearch.Entidades.ObjetoPerdido;
 import com.example.usearch.Memento.Caretaker;
 import com.example.usearch.Memento.Originator;
 import com.example.usearch.Persistencia.Repository.RepositoryObjetoPerdido;
+import com.example.usearch.Utilidades.Alertas;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -17,6 +18,9 @@ import javafx.stage.Stage;
 import java.sql.Date;
 import java.util.ArrayList;
 
+/**
+ * Clase controlador del historial de consultas
+ */
 public class HistorialController implements ControladorGeneral {
 
     RepositoryObjetoPerdido repositoryObjetoPerdido = RepositoryObjetoPerdido.getInstance();
@@ -63,6 +67,10 @@ public class HistorialController implements ControladorGeneral {
         cargadorEscenas.CambiarEscenas("InterfazPersonal.fxml", "Menu Personal");
     }
 
+    /**
+     * Metodo para resturar una consulta
+     * @param event Evento de la accion
+     */
     @FXML
     void AccionRestaurar(ActionEvent event) {
 
@@ -71,7 +79,7 @@ public class HistorialController implements ControladorGeneral {
 
         if(indiceSeleccionado >= 0) {
             originator.restoreFromMemento(caretaker.getMementoIndice(indiceSeleccionado));
-            originator.getConsulta().MostrarConsulta();
+            //originator.getConsulta().MostrarConsulta();
 
             // Se obtiene la consulta del originator y se muestra el resultado en la otra escena
             cambiarTabla(resturarConsulta(originator.getConsulta()));
@@ -80,6 +88,10 @@ public class HistorialController implements ControladorGeneral {
             Alertas.mostrarError("No se ha seleccionado ninguna consulta");
     }
 
+    /**
+     * actualizar dependiendo de la consulta
+     * @return lista de objetos actualizada
+     */
     public ArrayList<ObjetoPerdido> resturarConsulta(Consulta consulta)
     {
         ArrayList<ObjetoPerdido> objetosEncontrados = new ArrayList<>();
@@ -102,28 +114,53 @@ public class HistorialController implements ControladorGeneral {
         return objetosEncontrados;
     }
 
-
+    /**
+     * Cargar los objetos si todos los campos estan llenos
+     * @param tipo tipo de objeto
+     * @param ubicacion ubicacion del objeto
+     * @param fecha fecha de perdida del objeto
+     * @return lista de objetos
+     */
     public ArrayList<ObjetoPerdido> ActualizarTodosLLenos(String tipo, String ubicacion, Date fecha) {
 
         ObjetoPerdido objetoPerdido = new ObjetoPerdido(tipo, ubicacion, fecha);
         return repositoryObjetoPerdido.consultarListaPorEntidad(objetoPerdido);
     }
 
+    /**
+     * Cargar los objetos si el tipo esta lleno
+     * @param tipo tipo de objeto
+     * @return lista de objetos
+     */
     public ArrayList<ObjetoPerdido> ActualizarTipo(String tipo) {
 
         return repositoryObjetoPerdido.consultarListaPorTipo(tipo);
     }
 
+    /**
+     * Cargar los objetos si la ubicacion esta llena
+     * @param ubicacion ubicacion del objeto
+     * @return lista de objetos
+     */
     public ArrayList<ObjetoPerdido> ActualizarUbicacion(String ubicacion) {
 
         return repositoryObjetoPerdido.consultarListaPorUbicacion(ubicacion);
     }
 
+    /**
+     * Cargar los objetos si la fecha esta llena
+     * @param fecha fecha de perdida del objeto
+     * @return lista de objetos
+     */
     public ArrayList<ObjetoPerdido> ActualizarFecha(Date fecha) {
 
         return repositoryObjetoPerdido.consultarListaFecha(fecha);
     }
 
+    /**
+     * cambiar de escena y valores de la tabla
+     * @param objetosPerdidos lista de objetos
+     */
     public void cambiarTabla(ArrayList<ObjetoPerdido> objetosPerdidos)
     {
         CargadorEscenas cargadorEscenas = new CargadorEscenas(stage);
@@ -134,6 +171,9 @@ public class HistorialController implements ControladorGeneral {
         controllerlocal.actualizarTabla(objetosPerdidos);
     }
 
+    /**
+     * Metodo para mostrar el historial de consultas
+     */
     public void mostrarHistorial()
     {
         ListaConsultas.getItems().addAll(getCaretaker().getMementosString());

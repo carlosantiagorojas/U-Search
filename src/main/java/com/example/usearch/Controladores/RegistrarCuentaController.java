@@ -4,6 +4,7 @@ import com.example.usearch.AbstractFactory.ControladorGeneral;
 import com.example.usearch.AbstractFactory.CargadorEscenas;
 import com.example.usearch.Entidades.Usuario;
 import com.example.usearch.Persistencia.Repository.RepositoryUsuario;
+import com.example.usearch.Utilidades.Alertas;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -13,6 +14,9 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 
+/**
+ * Controlador de registrar una cuenta de usuario en la base de datos
+ */
 public class RegistrarCuentaController implements ControladorGeneral {
 
     RepositoryUsuario repositoryUsuario = RepositoryUsuario.getInstance();
@@ -58,6 +62,10 @@ public class RegistrarCuentaController implements ControladorGeneral {
         cargadorEscenas.CambiarEscenas("InicioSesion.fxml", "Bienvenido");
     }
 
+    /**
+     * Registra una cuenta de usuario en la base de datos
+     * @return String con el tipo de usuario que se registro
+     */
     public String registroCuenta(){
 
         boolean registroExitoso = false;
@@ -93,6 +101,10 @@ public class RegistrarCuentaController implements ControladorGeneral {
         return registro;
     }
 
+    /**
+     * Verifica que el correo ingresado sea valido
+     * @return true si el correo es valido, false si no lo es
+     */
     public boolean correoValido(){
 
         String correo = this.correoElectronico.getText();
@@ -107,6 +119,10 @@ public class RegistrarCuentaController implements ControladorGeneral {
             return false;
     }
 
+    /**
+     * Verifica si el correo ingresado es de un administrador
+     * @return true si el correo es de un administrador, false si no lo es
+     */
     public boolean esAdministrador(){
         String correo = this.correoElectronico.getText();
         if (correo.endsWith("@javeriana.edu.co") && correo.startsWith("admin"))

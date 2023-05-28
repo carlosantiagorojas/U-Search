@@ -7,10 +7,17 @@ import com.example.usearch.Persistencia.Utilidades.ConexionBD;
 import java.sql.*;
 import java.util.ArrayList;
 
+/**
+ * Clase que implementa la interfaz del repository para la entidad Usuario
+ */
 public class RepositoryUsuario implements IRepository<Usuario> {
 
     private static RepositoryUsuario instance;
 
+    /**
+     * Constructor privado para implementar el patron singleton
+     * @return instancia de la clase
+     */
     public static RepositoryUsuario getInstance() {
         if (instance == null) {
             instance = new RepositoryUsuario();
@@ -43,18 +50,8 @@ public class RepositoryUsuario implements IRepository<Usuario> {
     }
 
     @Override
-    public void actualizar(Usuario entity) {
-
-    }
-
-    @Override
     public boolean actualizarPorId(int id) {
         return false;
-    }
-
-    @Override
-    public void eliminar(Usuario entity) {
-
     }
 
     @Override

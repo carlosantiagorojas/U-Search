@@ -2,17 +2,23 @@ package com.example.usearch.Persistencia.Repository;
 
 import com.example.usearch.Entidades.ObjetoPerdido;
 import com.example.usearch.Persistencia.Utilidades.ConexionBD;
-
 import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
+/**
+ * Clase que implementa la interfaz del repository para la entidad ObjetoPerdido
+ */
 public class RepositoryObjetoPerdido implements IRepository<ObjetoPerdido> {
 
     private static RepositoryObjetoPerdido instance;
 
+    /**
+     * Constructor privado para implementar el patron singleton
+     * @return instancia de la clase
+     */
     public static RepositoryObjetoPerdido getInstance() {
         if (instance == null) {
             instance = new RepositoryObjetoPerdido();
@@ -43,11 +49,6 @@ public class RepositoryObjetoPerdido implements IRepository<ObjetoPerdido> {
     }
 
     @Override
-    public void actualizar(ObjetoPerdido entity) {
-
-    }
-
-    @Override
     public boolean actualizarPorId(int id) {
         boolean actualizar = false;
         String query = "UPDATE objetosperdidos SET estado = 'encontrado' WHERE idObjetosPerdidos = ?";
@@ -61,11 +62,6 @@ public class RepositoryObjetoPerdido implements IRepository<ObjetoPerdido> {
         }
 
         return actualizar;
-    }
-
-    @Override
-    public void eliminar(ObjetoPerdido entity) {
-
     }
 
     @Override

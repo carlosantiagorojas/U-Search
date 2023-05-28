@@ -14,5 +14,7 @@ module com.example.usearch {
     opens com.example.usearch.Entidades to javafx.base;
     exports com.example.usearch.AbstractFactory;
     opens com.example.usearch.AbstractFactory to javafx.base, javafx.fxml;
+    exports com.example.usearch.Utilidades;
+    opens com.example.usearch.Utilidades to javafx.fxml;
 
 }

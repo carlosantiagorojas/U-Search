@@ -5,6 +5,7 @@ import com.example.usearch.AbstractFactory.CargadorEscenas;
 import com.example.usearch.Entidades.ObjetoPerdido;
 import com.example.usearch.Entidades.SesionUsuario;
 import com.example.usearch.Persistencia.Repository.RepositoryObjetoPerdido;
+import com.example.usearch.Utilidades.Alertas;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -15,6 +16,9 @@ import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import java.sql.Date;
 
+/**
+ * Clase controladora de registrar objeto perdido
+ */
 public class UsuarioRegistrarObjetoController implements ControladorGeneral {
 
     RepositoryObjetoPerdido repositoryObjetoPerdido = RepositoryObjetoPerdido.getInstance();
@@ -42,6 +46,10 @@ public class UsuarioRegistrarObjetoController implements ControladorGeneral {
     @FXML
     private TextField UbicacionPerdida;
 
+    /**
+     * Registrar un objeto perdido
+     * @param event evento de accion
+     */
     @FXML
     void AccionRegistrarObjeto(ActionEvent event) {
 
@@ -75,10 +83,18 @@ public class UsuarioRegistrarObjetoController implements ControladorGeneral {
         cargadorEscenas.CambiarEscenas("InterfazUsuario.fxml", "Menu usuario");
     }
 
+    /**
+     * Comprobar que los campos no esten vacios
+     * @return true si los campos no estan vacios, false si lo estan
+     */
     public boolean comprobarCampos(){
         return !FechaPerdida.getText().isEmpty() && !UbicacionPerdida.getText().isEmpty() && !TipoObjeto.getText().isEmpty() && !CareteristicasFisicas.getText().isEmpty();
     }
 
+    /**
+     * Comprobar que la fecha ingresada sea valida
+     * @return true si la fecha es valida, false si no lo es
+     */
     public boolean comprobarFecha()
     {
         try {

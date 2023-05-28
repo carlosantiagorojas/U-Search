@@ -1,6 +1,6 @@
 package com.example.usearch.Persistencia.Repository;
 
-import com.example.usearch.Controladores.Alertas;
+import com.example.usearch.Utilidades.Alertas;
 import com.example.usearch.Entidades.Notificacion;
 import com.example.usearch.Persistencia.Utilidades.ConexionBD;
 
@@ -10,10 +10,17 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
+/**
+ * Clase que implementa la interfaz del repository para la entidad Notificacion
+ */
 public class RepositoryNotificacion implements IRepository<Notificacion> {
 
     private static RepositoryNotificacion instance;
 
+    /**
+     * Constructor privado para implementar el patron singleton
+     * @return instancia de la clase
+     */
     public static RepositoryNotificacion getInstance() {
         if (instance == null) {
             instance = new RepositoryNotificacion();
@@ -40,18 +47,8 @@ public class RepositoryNotificacion implements IRepository<Notificacion> {
     }
 
     @Override
-    public void actualizar(Notificacion entity) {
-
-    }
-
-    @Override
     public boolean actualizarPorId(int id) {
         return false;
-    }
-
-    @Override
-    public void eliminar(Notificacion entity) {
-
     }
 
     @Override

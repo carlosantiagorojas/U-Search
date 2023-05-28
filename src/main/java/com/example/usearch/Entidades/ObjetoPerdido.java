@@ -2,6 +2,9 @@ package com.example.usearch.Entidades;
 
 import java.sql.Date;
 
+/**
+ * Clase que representa un objeto perdido
+ */
 public class ObjetoPerdido {
 
     private int id;
@@ -102,6 +105,7 @@ public class ObjetoPerdido {
         this.idUsuario = idUsuario;
     }
 
+    /*
     public void verInformacion()
     {
         System.out.println("ID: " + this.getId());
@@ -112,5 +116,5 @@ public class ObjetoPerdido {
         System.out.println("Caracteristicas: " + this.getCaracteristicas());
         System.out.println("ID Usuario: " + this.getIdUsuario());
         System.out.println("--------------------------------------------------");
-    }
+    }*/
 }

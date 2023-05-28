@@ -7,9 +7,11 @@ import com.example.usearch.Main;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-
 import java.io.IOException;
 
+/**
+ * Clase que se encarga de cambiar las escenas
+ */
 public class CargadorEscenas {
     public ControladorGeneral controladorGeneral;
     private Stage stage;
@@ -18,6 +20,11 @@ public class CargadorEscenas {
         this.stage = stage;
     }
 
+    /**
+     * Metodo que cambia las escenas
+     * @param fxml ruta del archivo fxml
+     * @param title titulo de la ventana
+     */
     public void CambiarEscenas(String fxml, String title) {
 
         try {
@@ -25,6 +32,7 @@ public class CargadorEscenas {
             FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource(fxml));
             Scene scene = new Scene(fxmlLoader.load(), 385, 660);
             stage.setScene(scene);
+            stage.setTitle(title);
             this.controladorGeneral = fxmlLoader.getController();
             this.controladorGeneral.setStage(stage);
 

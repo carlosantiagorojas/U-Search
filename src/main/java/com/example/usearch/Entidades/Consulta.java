@@ -42,6 +42,10 @@ public class Consulta {
         this.ubicacion = ubicacion;
     }
 
+    /**
+     * Metodo que obtiene la consulta
+     * @return consulta
+     */
     public String obtenerConsulta()
     {
         String consulta = "";
@@ -65,11 +69,12 @@ public class Consulta {
         return consulta;
     }
 
+    /*
     public void MostrarConsulta()
     {
         System.out.println("Fecha: " + getFecha());
         System.out.println("Tipo: " + getTipo());
         System.out.println("Ubicacion: " + getUbicacion());
-    }
+    }*/
 
 }

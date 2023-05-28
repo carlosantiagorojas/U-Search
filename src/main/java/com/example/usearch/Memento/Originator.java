@@ -2,6 +2,9 @@ package com.example.usearch.Memento;
 
 import com.example.usearch.Entidades.Consulta;
 
+/**
+ * Clase que origina el memento y restaura el memento
+ */
 public class Originator {
 
     private Consulta consulta;
@@ -25,6 +28,11 @@ public class Originator {
         return new Memento(consulta);
     }
 
+    /**
+     * Restaura el memento
+     * @param memento memento a restaurar
+     * @return originator
+     */
     public Originator restoreFromMemento(Memento memento){
         consulta = memento.getConsulta();
         return this;
