@@ -1,4 +1,7 @@
-package com.example.usearch.Entidades;
+package com.example.usearch.Sesion;
+
+import com.example.usearch.Entidades.Notificacion;
+import com.example.usearch.Entidades.ObjetoPerdido;
 
 import java.util.ArrayList;
 

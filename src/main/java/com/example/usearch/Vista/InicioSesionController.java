@@ -1,8 +1,8 @@
-package com.example.usearch.Controladores;
+package com.example.usearch.Vista;
 
 import com.example.usearch.AbstractFactory.ControladorGeneral;
 import com.example.usearch.AbstractFactory.CargadorEscenas;
-import com.example.usearch.Entidades.SesionUsuario;
+import com.example.usearch.Sesion.SesionUsuario;
 import com.example.usearch.Entidades.Usuario;
 import com.example.usearch.Persistencia.Repository.RepositoryNotificacion;
 import com.example.usearch.Persistencia.Repository.RepositoryUsuario;

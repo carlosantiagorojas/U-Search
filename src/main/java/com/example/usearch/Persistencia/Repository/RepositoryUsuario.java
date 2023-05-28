@@ -1,6 +1,6 @@
 package com.example.usearch.Persistencia.Repository;
 
-import com.example.usearch.Entidades.SesionUsuario;
+import com.example.usearch.Sesion.SesionUsuario;
 import com.example.usearch.Entidades.Usuario;
 import com.example.usearch.Persistencia.Utilidades.ConexionBD;
 

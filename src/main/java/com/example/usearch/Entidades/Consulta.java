@@ -43,7 +43,7 @@ public class Consulta {
     }
 
     /**
-     * Metodo que obtiene la consulta
+     * Metodo que obtiene la consulta en formato de string
      * @return consulta
      */
     public String obtenerConsulta()

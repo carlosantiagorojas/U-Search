@@ -1,4 +1,4 @@
-package com.example.usearch.Controladores;
+package com.example.usearch.Vista;
 
 import com.example.usearch.AbstractFactory.ControladorGeneral;
 import com.example.usearch.AbstractFactory.CargadorEscenas;
@@ -10,8 +10,8 @@ import com.example.usearch.Strategy.Context;
 import com.example.usearch.Strategy.ActualizarFecha;
 import com.example.usearch.Strategy.ActualizarTipo;
 import com.example.usearch.Strategy.ActualizarUbicacion;
-import com.example.usearch.Strategy.IStrategy;
 import com.example.usearch.Strategy.ActualizarTodosLlenos;
+import com.example.usearch.Utilidades.Fecha;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -74,7 +74,7 @@ public class ConsultarObjetoPersonalController implements ControladorGeneral {
 
         if(!camposVacios){
             if(cantidadCamposLLenos() == 1) {
-                if(!FechaPerdida.getText().isEmpty() && !fechaValida())
+                if(!FechaPerdida.getText().isEmpty() && !Fecha.fechaValidaCampo(FechaPerdida.getText()))
                 {
                     Alertas.mostrarError("Fecha no valida, digite la fecha en formato aaaa-mm-dd");
                 }
@@ -84,9 +84,9 @@ public class ConsultarObjetoPersonalController implements ControladorGeneral {
                     cambiarTabla(resultadoConsulta);
                 }
             }
-            else if(camposLlenos() && fechaValida())
+            else if(camposLlenos() && Fecha.fechaValidaCampo(FechaPerdida.getText()))
             {
-                if(!FechaPerdida.getText().isEmpty() && !fechaValida())
+                if(!FechaPerdida.getText().isEmpty() && !Fecha.fechaValidaCampo(FechaPerdida.getText()))
                 {
                     Alertas.mostrarError("Fecha no valida, digite la fecha en formato aaaa-mm-dd");
                 }
@@ -175,7 +175,7 @@ public class ConsultarObjetoPersonalController implements ControladorGeneral {
             Context contextUbicacion = new Context(new ActualizarUbicacion());
             objetosEncontrados = contextUbicacion.actualizar(consulta);
         }
-        else if(!FechaPerdida.getText().isEmpty() && fechaValida())
+        else if(!FechaPerdida.getText().isEmpty() && Fecha.fechaValidaCampo(FechaPerdida.getText()))
         {
             Date fecha = Date.valueOf(FechaPerdida.getText());
 
@@ -210,21 +210,6 @@ public class ConsultarObjetoPersonalController implements ControladorGeneral {
         else
             Alertas.mostrarError("No se encontraron objetos con los parametros ingresados");
     }
-
-    /**
-     * validar si la fecha es valida
-     * @return true si es valida, false si no
-     */
-    public boolean fechaValida()
-    {
-        try {
-            Date fecha = Date.valueOf(FechaPerdida.getText());
-            return true;
-        } catch (Exception e) {
-            return false;
-        }
-    }
-
 
     /**
      * validar si la consulta es valida

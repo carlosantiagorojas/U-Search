@@ -1,4 +1,4 @@
-package com.example.usearch.Controladores;
+package com.example.usearch.Vista;
 
 import com.example.usearch.AbstractFactory.ControladorGeneral;
 import com.example.usearch.AbstractFactory.CargadorEscenas;

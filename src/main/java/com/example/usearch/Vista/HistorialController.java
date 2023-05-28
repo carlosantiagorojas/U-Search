@@ -1,4 +1,4 @@
-package com.example.usearch.Controladores;
+package com.example.usearch.Vista;
 
 import com.example.usearch.AbstractFactory.ControladorGeneral;
 import com.example.usearch.AbstractFactory.CargadorEscenas;
@@ -16,7 +16,6 @@ import javafx.scene.control.ListView;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
-import java.sql.Date;
 import java.util.ArrayList;
 
 /**
@@ -97,6 +96,7 @@ public class HistorialController implements ControladorGeneral {
     {
         ArrayList<ObjetoPerdido> objetosEncontrados = new ArrayList<>();
 
+        // Utilizar la estrategia correspondiente de acuerdo a los campos
         if (consulta.getFecha() != null && consulta.getTipo() != null && consulta.getUbicacion() != null) {
             Context contextLlenos = new Context(new ActualizarTodosLlenos());
             objetosEncontrados = contextLlenos.actualizar(consulta);

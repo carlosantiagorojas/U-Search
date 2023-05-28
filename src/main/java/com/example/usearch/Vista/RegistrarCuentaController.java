@@ -1,4 +1,4 @@
-package com.example.usearch.Controladores;
+package com.example.usearch.Vista;
 
 import com.example.usearch.AbstractFactory.ControladorGeneral;
 import com.example.usearch.AbstractFactory.CargadorEscenas;
@@ -20,7 +20,9 @@ import javafx.stage.Stage;
 public class RegistrarCuentaController implements ControladorGeneral {
 
     RepositoryUsuario repositoryUsuario = RepositoryUsuario.getInstance();
+
     private Stage stage;
+
     @Override
     public void setStage(Stage stage) {
         this.stage = stage;

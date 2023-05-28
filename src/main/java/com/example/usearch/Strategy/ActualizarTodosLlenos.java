@@ -5,6 +5,9 @@ import com.example.usearch.Entidades.ObjetoPerdido;
 import com.example.usearch.Persistencia.Repository.RepositoryObjetoPerdido;
 import java.util.ArrayList;
 
+/**
+ * Clase que define la estrategia de actualizar por todos los campos llenos
+ */
 public class ActualizarTodosLlenos implements IStrategy {
 
     public ActualizarTodosLlenos() {
