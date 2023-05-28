@@ -14,7 +14,7 @@ import java.io.IOException;
  */
 public class CargadorEscenas {
     public ControladorGeneral controladorGeneral;
-    private Stage stage;
+    private final Stage stage;
 
     public CargadorEscenas(Stage stage) {
         this.stage = stage;

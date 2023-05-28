@@ -7,6 +7,7 @@ import com.example.usearch.Entidades.ObjetoPerdido;
 import com.example.usearch.Memento.Caretaker;
 import com.example.usearch.Memento.Originator;
 import com.example.usearch.Persistencia.Repository.RepositoryObjetoPerdido;
+import com.example.usearch.Strategy.*;
 import com.example.usearch.Utilidades.Alertas;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -82,7 +83,7 @@ public class HistorialController implements ControladorGeneral {
             //originator.getConsulta().MostrarConsulta();
 
             // Se obtiene la consulta del originator y se muestra el resultado en la otra escena
-            cambiarTabla(resturarConsulta(originator.getConsulta()));
+            cambiarTabla(restaurarConsulta(originator.getConsulta()));
         }
         else
             Alertas.mostrarError("No se ha seleccionado ninguna consulta");
@@ -92,69 +93,32 @@ public class HistorialController implements ControladorGeneral {
      * actualizar dependiendo de la consulta
      * @return lista de objetos actualizada
      */
-    public ArrayList<ObjetoPerdido> resturarConsulta(Consulta consulta)
+    public ArrayList<ObjetoPerdido> restaurarConsulta(Consulta consulta)
     {
         ArrayList<ObjetoPerdido> objetosEncontrados = new ArrayList<>();
 
-        if (consulta.getFecha() != null && consulta.getTipo() != null && consulta.getUbicacion() != null)
-            objetosEncontrados = ActualizarTodosLLenos(consulta.getTipo(), consulta.getUbicacion(), consulta.getFecha());
+        if (consulta.getFecha() != null && consulta.getTipo() != null && consulta.getUbicacion() != null) {
+            Context contextLlenos = new Context(new ActualizarTodosLlenos());
+            objetosEncontrados = contextLlenos.actualizar(consulta);
+        }
         else if(consulta.getTipo() != null)
         {
-            objetosEncontrados = ActualizarTipo(consulta.getTipo());
+
+            Context contextTipo = new Context(new ActualizarTipo());
+            objetosEncontrados = contextTipo.actualizar(consulta);
         }
         else if(consulta.getUbicacion() != null)
         {
-            objetosEncontrados = ActualizarUbicacion(consulta.getUbicacion());
+            Context contextUbicacion = new Context(new ActualizarUbicacion());
+            objetosEncontrados = contextUbicacion.actualizar(consulta);
         }
         else if(consulta.getFecha() != null)
         {
-            objetosEncontrados = ActualizarFecha(consulta.getFecha());
+            Context contextFecha = new Context(new ActualizarFecha());
+            objetosEncontrados = contextFecha.actualizar(consulta);
         }
 
         return objetosEncontrados;
-    }
-
-    /**
-     * Cargar los objetos si todos los campos estan llenos
-     * @param tipo tipo de objeto
-     * @param ubicacion ubicacion del objeto
-     * @param fecha fecha de perdida del objeto
-     * @return lista de objetos
-     */
-    public ArrayList<ObjetoPerdido> ActualizarTodosLLenos(String tipo, String ubicacion, Date fecha) {
-
-        ObjetoPerdido objetoPerdido = new ObjetoPerdido(tipo, ubicacion, fecha);
-        return repositoryObjetoPerdido.consultarListaPorEntidad(objetoPerdido);
-    }
-
-    /**
-     * Cargar los objetos si el tipo esta lleno
-     * @param tipo tipo de objeto
-     * @return lista de objetos
-     */
-    public ArrayList<ObjetoPerdido> ActualizarTipo(String tipo) {
-
-        return repositoryObjetoPerdido.consultarListaPorTipo(tipo);
-    }
-
-    /**
-     * Cargar los objetos si la ubicacion esta llena
-     * @param ubicacion ubicacion del objeto
-     * @return lista de objetos
-     */
-    public ArrayList<ObjetoPerdido> ActualizarUbicacion(String ubicacion) {
-
-        return repositoryObjetoPerdido.consultarListaPorUbicacion(ubicacion);
-    }
-
-    /**
-     * Cargar los objetos si la fecha esta llena
-     * @param fecha fecha de perdida del objeto
-     * @return lista de objetos
-     */
-    public ArrayList<ObjetoPerdido> ActualizarFecha(Date fecha) {
-
-        return repositoryObjetoPerdido.consultarListaFecha(fecha);
     }
 
     /**

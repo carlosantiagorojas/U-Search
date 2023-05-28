@@ -6,6 +6,12 @@ import com.example.usearch.Entidades.Consulta;
 import com.example.usearch.Entidades.ObjetoPerdido;
 import com.example.usearch.Persistencia.Repository.RepositoryObjetoPerdido;
 import com.example.usearch.Utilidades.Alertas;
+import com.example.usearch.Strategy.Context;
+import com.example.usearch.Strategy.ActualizarFecha;
+import com.example.usearch.Strategy.ActualizarTipo;
+import com.example.usearch.Strategy.ActualizarUbicacion;
+import com.example.usearch.Strategy.IStrategy;
+import com.example.usearch.Strategy.ActualizarTodosLlenos;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -87,7 +93,11 @@ public class ConsultarObjetoPersonalController implements ControladorGeneral {
                 else
                 {
                     Date fecha = Date.valueOf(FechaPerdida.getText());
-                    resultadoConsulta = ActualizarTodosLLenos(TipoObjeto.getText(), UbicacionPerdida.getText(), fecha);
+
+                    Consulta consulta = new Consulta(fecha, TipoObjeto.getText(), UbicacionPerdida.getText());
+                    //Utilizar la estrategia de todos los campos llenos
+                    Context contextLlenos = new Context(new ActualizarTodosLlenos());
+                    resultadoConsulta = contextLlenos.actualizar(consulta);
                     cambiarTabla(resultadoConsulta);
                 }
             }
@@ -141,24 +151,39 @@ public class ConsultarObjetoPersonalController implements ControladorGeneral {
 
     /**
      * actualizar dependiendo de la consulta
+     * se declara un contexto y se le pasa la estrategia a utilizar
      * @return lista de objetos actualizada
      */
     public ArrayList<ObjetoPerdido> tipoConsulta()
     {
         ArrayList<ObjetoPerdido> objetosEncontrados = new ArrayList<>();
 
+        // Se implementan las estrategias de acuerdo a cada campo lleno
         if(!TipoObjeto.getText().isEmpty())
         {
-            objetosEncontrados = ActualizarTipo(TipoObjeto.getText());
+            Consulta consulta = new Consulta();
+            consulta.setTipo(TipoObjeto.getText());
+
+            Context contextTipo = new Context(new ActualizarTipo());
+            objetosEncontrados = contextTipo.actualizar(consulta);
         }
         else if(!UbicacionPerdida.getText().isEmpty())
         {
-            objetosEncontrados = ActualizarUbicacion(UbicacionPerdida.getText());
+            Consulta consulta = new Consulta();
+            consulta.setUbicacion(UbicacionPerdida.getText());
+
+            Context contextUbicacion = new Context(new ActualizarUbicacion());
+            objetosEncontrados = contextUbicacion.actualizar(consulta);
         }
         else if(!FechaPerdida.getText().isEmpty() && fechaValida())
         {
             Date fecha = Date.valueOf(FechaPerdida.getText());
-            objetosEncontrados = ActualizarFecha(fecha);
+
+            Consulta consulta = new Consulta();
+            consulta.setFecha(fecha);
+
+            Context contextFecha = new Context(new ActualizarFecha());
+            objetosEncontrados = contextFecha.actualizar(consulta);
         }
 
         return objetosEncontrados;
@@ -176,7 +201,7 @@ public class ConsultarObjetoPersonalController implements ControladorGeneral {
             cargadorEscenas.CambiarEscenas("ResultadoConsulta.fxml", "Resultado de su Consulta");
 
             ResultadoConsultaController controllerlocal = (ResultadoConsultaController) cargadorEscenas.controladorGeneral;
-            // Cargar datos de la consulta con el memento
+            // Cargar datos de la consulta con el memento para poder guardar el historial
             cargarDatosConsulta();
             controllerlocal.setEscenaAnterior("ConsultarObjetoPersonal.fxml");
             controllerlocal.setTituloEscenaAnterior("Consultar Objetos");
@@ -200,48 +225,6 @@ public class ConsultarObjetoPersonalController implements ControladorGeneral {
         }
     }
 
-    /**
-     * Cargar los objetos si todos los campos estan llenos
-     * @param tipo tipo de objeto
-     * @param ubicacion ubicacion del objeto
-     * @param fecha fecha de perdida del objeto
-     * @return lista de objetos
-     */
-    public ArrayList<ObjetoPerdido> ActualizarTodosLLenos(String tipo, String ubicacion, Date fecha) {
-
-        ObjetoPerdido objetoPerdido = new ObjetoPerdido(tipo, ubicacion, fecha);
-        return repositoryObjetoPerdido.consultarListaPorEntidad(objetoPerdido);
-    }
-
-    /**
-     * Cargar los objetos si el tipo esta lleno
-     * @param tipo tipo de objeto
-     * @return lista de objetos
-     */
-    public ArrayList<ObjetoPerdido> ActualizarTipo(String tipo) {
-
-        return repositoryObjetoPerdido.consultarListaPorTipo(tipo);
-    }
-
-    /**
-     * Cargar los objetos si la ubicacion esta llena
-     * @param ubicacion ubicacion del objeto
-     * @return lista de objetos
-     */
-    public ArrayList<ObjetoPerdido> ActualizarUbicacion(String ubicacion) {
-
-        return repositoryObjetoPerdido.consultarListaPorUbicacion(ubicacion);
-    }
-
-    /**
-     * Cargar los objetos si la fecha esta llena
-     * @param fecha fecha de perdida del objeto
-     * @return lista de objetos
-     */
-    public ArrayList<ObjetoPerdido> ActualizarFecha(Date fecha) {
-
-        return repositoryObjetoPerdido.consultarListaFecha(fecha);
-    }
 
     /**
      * validar si la consulta es valida
