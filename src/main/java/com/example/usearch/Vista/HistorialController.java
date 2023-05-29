@@ -23,8 +23,6 @@ import java.util.ArrayList;
  */
 public class HistorialController implements ControladorGeneral {
 
-    RepositoryObjetoPerdido repositoryObjetoPerdido = RepositoryObjetoPerdido.getInstance();
-
     private Stage stage;
 
     @Override

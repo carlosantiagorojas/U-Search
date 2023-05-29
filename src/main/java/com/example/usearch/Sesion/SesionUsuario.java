@@ -96,6 +96,11 @@ public class SesionUsuario {
         return mensajes;
     }
 
+    public static void EliminarNotificaciones()
+    {
+        SesionUsuario.notificaciones.clear();
+    }
+
     /*
     public static void mostrarDatosUsuario(){
         System.out.println();

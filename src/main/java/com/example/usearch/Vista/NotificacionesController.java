@@ -47,9 +47,13 @@ public class NotificacionesController implements ControladorGeneral {
 
         if(!this.ListaNotificaciones.getItems().isEmpty())
         {
+            // Eliminar las notificaciones de la base de datos
             if(repositoryNotificacion.eliminarPorId(SesionUsuario.getId())) {
-                // Elimimar las notificaciones de la lista
+
+                // Elimimar las notificaciones de la lista y de la sesion del usuario
                 ListaNotificaciones.getItems().clear();
+                SesionUsuario.EliminarNotificaciones();
+
                 Alertas.informar("Notificaciones eliminadas");
             }
             else

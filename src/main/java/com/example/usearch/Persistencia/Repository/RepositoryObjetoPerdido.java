@@ -106,10 +106,10 @@ public class RepositoryObjetoPerdido implements IRepository<ObjetoPerdido> {
     @Override
     public ArrayList<ObjetoPerdido> consultarListaPorUbicacion(String ubicacion) {
         ArrayList<ObjetoPerdido> objetosPerdidosAr = new ArrayList<>();
-        String query = "SELECT * FROM objetosperdidos WHERE ubicacion = ?";
+        String query = "SELECT * FROM objetosperdidos WHERE ubicacion LIKE ?";
 
         try (PreparedStatement statement = ConexionBD.conexion.prepareStatement(query);){
-            statement.setString(1, ubicacion);
+            statement.setString(1, "%" + ubicacion + "%");
             ResultSet rs = statement.executeQuery();
 
             while (rs.next()) {
@@ -136,10 +136,10 @@ public class RepositoryObjetoPerdido implements IRepository<ObjetoPerdido> {
     public ArrayList<ObjetoPerdido> consultarListaPorTipo(String tipo) {
 
         ArrayList<ObjetoPerdido> objetosPerdidosAr = new ArrayList<>();
-        String query = "SELECT * FROM objetosperdidos WHERE tipo = ?";
+        String query = "SELECT * FROM objetosperdidos WHERE tipo LIKE ?";
 
         try (PreparedStatement statement = ConexionBD.conexion.prepareStatement(query);){
-            statement.setString(1, tipo);
+            statement.setString(1, "%" + tipo + "%");
             ResultSet rs = statement.executeQuery();
 
             while (rs.next()) {
@@ -166,7 +166,7 @@ public class RepositoryObjetoPerdido implements IRepository<ObjetoPerdido> {
     public ArrayList<ObjetoPerdido> consultarListaPorEntidad(ObjetoPerdido entity) {
 
         ArrayList<ObjetoPerdido> objetosPerdidosAr = new ArrayList<>();
-        String query = "SELECT * FROM objetosperdidos WHERE tipo = ? AND ubicacion = ? AND fechaPerdida=?";
+        String query = "SELECT * FROM objetosperdidos WHERE tipo LIKE ? AND ubicacion LIKE  ? AND fechaPerdida LIKE ?";
 
         try (PreparedStatement statement = ConexionBD.conexion.prepareStatement(query);){
             statement.setString(1, entity.getTipo());

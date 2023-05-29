@@ -4,7 +4,6 @@ import com.example.usearch.AbstractFactory.ControladorGeneral;
 import com.example.usearch.AbstractFactory.CargadorEscenas;
 import com.example.usearch.Entidades.Consulta;
 import com.example.usearch.Entidades.ObjetoPerdido;
-import com.example.usearch.Persistencia.Repository.RepositoryObjetoPerdido;
 import com.example.usearch.Utilidades.Alertas;
 import com.example.usearch.Strategy.Context;
 import com.example.usearch.Strategy.ActualizarFecha;
@@ -26,8 +25,6 @@ import java.util.ArrayList;
  * Clase controlador de la interfaz de consultar objetos perdidos
  */
 public class ConsultarObjetoPersonalController implements ControladorGeneral {
-
-    RepositoryObjetoPerdido repositoryObjetoPerdido = RepositoryObjetoPerdido.getInstance();
 
     private Stage stage;
     @Override
