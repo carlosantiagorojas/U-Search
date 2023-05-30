@@ -10,9 +10,9 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="660.0" prefWidth="385.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.usearch.Controladores.InterfazUsuarioController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="660.0" prefWidth="385.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.usearch.Vista.InterfazUsuarioController">
    <children>
-      <Pane prefHeight="85.0" prefWidth="385.0" style="-fx-background-color: lightblue;">
+      <Pane prefHeight="85.0" prefWidth="385.0" style="-fx-background-color: #1e1f22;">
          <children>
             <ImageView fitHeight="77.0" fitWidth="75.0" layoutX="297.0">
                <image>
@@ -51,10 +51,10 @@
       </Text>
       <TableView fx:id="tablaObjetos" layoutX="14.0" layoutY="121.0" prefHeight="398.0" prefWidth="357.0">
         <columns>
-            <TableColumn fx:id="estado" prefWidth="60.0" text="Estado" />
+            <TableColumn fx:id="estado" prefWidth="75.0" text="Estado" />
           <TableColumn fx:id="fecha" text="Fecha" />
             <TableColumn fx:id="ubicacion" prefWidth="150.0" text="Ubicacion" />
-            <TableColumn fx:id="tipo" prefWidth="90.0" text="Tipo" />
+            <TableColumn fx:id="tipo" prefWidth="110.0" text="Tipo" />
             <TableColumn fx:id="caracteristicas" minWidth="0.0" prefWidth="300.0" text="Caracteristicas" />
         </columns>
       </TableView>

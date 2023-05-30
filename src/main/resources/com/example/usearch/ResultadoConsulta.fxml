@@ -11,7 +11,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="660.0" prefWidth="385.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.usearch.Controladores.ResultadoConsultaController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="660.0" prefWidth="385.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.usearch.Vista.ResultadoConsultaController">
    <children>
       <Pane prefHeight="85.0" prefWidth="385.0" style="-fx-background-color: lightblue;">
          <children>
@@ -35,7 +35,7 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </ImageView>
-      <Button fx:id="ActualizarButton" layoutX="238.0" layoutY="604.0" mnemonicParsing="false" onAction="#AccionActualizar" text="Actualizar objeto" />
+      <Button fx:id="ActualizarButton" layoutX="238.0" layoutY="604.0" mnemonicParsing="false" onAction="#AccionActualizar" text="Objeto encontrado" />
       <Text fill="#0092ff" layoutX="117.0" layoutY="142.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Resultado de la consulta">
          <font>
             <Font size="14.0" />
@@ -44,10 +44,10 @@
       <Button fx:id="RegresarInicio" layoutX="44.0" layoutY="604.0" mnemonicParsing="false" onAction="#AccionRegresarInicio" text="Volver al menu" />
       <TableView fx:id="tablaObjetos" layoutX="14.0" layoutY="159.0" prefHeight="422.0" prefWidth="357.0">
          <columns>
-            <TableColumn fx:id="estado" prefWidth="60.0" text="Estado" />
+            <TableColumn fx:id="estado" prefWidth="75.0" text="Estado" />
             <TableColumn fx:id="fecha" text="Fecha" />
             <TableColumn fx:id="ubicacion" prefWidth="150.0" text="Ubicacion" />
-            <TableColumn fx:id="tipo" prefWidth="90.0" text="Tipo" />
+            <TableColumn fx:id="tipo" prefWidth="110.0" text="Tipo" />
             <TableColumn fx:id="caracteristicas" minWidth="0.0" prefWidth="300.0" text="Caracteristicas" />
          </columns>
       </TableView>

@@ -1,17 +1,17 @@
 # U-Search
-Este es un proyecto creado para la asignatura de Fundamentos de Ingeniería de Software. El objetivo del proyecto es desarrollar una aplicación web para ayudar a las personas a encontrar objetos perdidos y notificar a sus propietarios.
+Este es un proyecto creado para la asignatura de Fundamentos de Ingeniería de Software. El objetivo del proyecto es desarrollar una aplicación movil para ayudar a las personas a encontrar objetos perdidos.
+
+Intregrantes:
+
+- Santiago Molina Aranza
+- Javier Felipe Santana Díaz
+- Carlos Santiago Rojas Calderón
 
 ## Conexión a la base de datos MySQL
 Para conectarse a la base de datos MySQL, siga los siguientes pasos:
 
 1. Descargue e instale la base de datos MySQL localmente desde la página oficial de MySQL: https://dev.mysql.com/downloads/windows/installer/8.0.html. En este proyecto se usó la versión 8.0.33.0.
    Una vez instalado MySQL, configure su usuario y contraseña. En este proyecto, se usó el usuario "root" y la contraseña "1234", pero puede utilizar las que desee.
-
-2. Descargue el archivo .zip del conector J de MySQL desde la página oficial: https://dev.mysql.com/downloads/connector/j/8.0.html. Seleccione la opción "Platform Independent" y descargue el archivo .zip.
-
-3. Descomprima el archivo descargado y diríjase a IntelliJ IDEA.
-
-5. En la parte superior izquierda, seleccione "File" -> "Project Structure" -> "Modules" -> "Dependencies" -> "+" -> "JARs or directories" -> seleccione el archivo .jar que se encuentra en la carpeta "mysql-connector-java-8.0.33" -> "OK".
 
 ## Configuración de MySQL
 

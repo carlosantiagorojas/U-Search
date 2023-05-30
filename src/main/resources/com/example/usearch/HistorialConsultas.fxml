@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="660.0" prefWidth="385.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.usearch.Vista.NotificacionesController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="660.0" prefWidth="385.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.usearch.Vista.HistorialController">
    <children>
       <Pane prefHeight="85.0" prefWidth="385.0" style="-fx-background-color: lightblue;">
          <children>
@@ -25,7 +25,7 @@
             </ImageView>
          </children>
       </Pane>
-      <Text fill="#0092ff" layoutX="155.0" layoutY="119.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Notificaciones" />
+      <Text fill="#0092ff" layoutX="136.0" layoutY="130.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Historial de consultas" />
       <ImageView fx:id="RegresarButton" fitHeight="40.0" fitWidth="40.0" layoutX="14.0" layoutY="97.0" onMouseClicked="#AccionRegresar">
          <image>
             <Image url="@Imagenes/FlechaDevolver.png" />
@@ -34,7 +34,7 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </ImageView>
-      <ListView fx:id="ListaNotificaciones" layoutX="38.0" layoutY="161.0" prefHeight="413.0" prefWidth="314.0" />
-      <Button fx:id="EliminarNotificacionesButton" layoutX="211.0" layoutY="601.0" mnemonicParsing="false" onAction="#AcccionEliminar" prefHeight="25.0" prefWidth="141.0" text="Eliminar notificaciones" />
+      <ListView fx:id="ListaConsultas" layoutX="38.0" layoutY="161.0" prefHeight="413.0" prefWidth="314.0" />
+      <Button fx:id="RestaurarButton" layoutX="228.0" layoutY="608.0" mnemonicParsing="false" onAction="#AccionRestaurar" prefHeight="25.0" prefWidth="124.0" text="Restaurar Consulta" />
    </children>
 </AnchorPane>
