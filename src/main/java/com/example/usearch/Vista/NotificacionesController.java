@@ -63,7 +63,7 @@ public class NotificacionesController implements ControladorGeneral {
     }
 
     /**
-     * Muestra las notificaciones de la sesion activa del usuario
+     * Muestra las notificaciones de la sesion activa del usuario con formato de string
      */
     public void mostrarNotificaciones(){
 
