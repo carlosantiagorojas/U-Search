@@ -1,7 +1,5 @@
 package com.example.usearch.Vista;
 
-import com.example.usearch.AbstractFactory.ControladorGeneral;
-import com.example.usearch.AbstractFactory.CargadorEscenas;
 import com.example.usearch.Entidades.Usuario;
 import com.example.usearch.Persistencia.Repository.RepositoryUsuario;
 import com.example.usearch.Utilidades.Alertas;
