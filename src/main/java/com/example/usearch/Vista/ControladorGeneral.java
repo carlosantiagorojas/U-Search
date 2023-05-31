@@ -1,4 +1,4 @@
-package com.example.usearch.AbstractFactory;
+package com.example.usearch.Vista;
 
 import javafx.stage.Stage;
 

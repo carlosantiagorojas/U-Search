@@ -1,8 +1,5 @@
-package com.example.usearch.AbstractFactory;
+package com.example.usearch.Vista;
 
-import com.example.usearch.Vista.HistorialController;
-import com.example.usearch.Vista.InterfazUsuarioController;
-import com.example.usearch.Vista.NotificacionesController;
 import com.example.usearch.Main;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
