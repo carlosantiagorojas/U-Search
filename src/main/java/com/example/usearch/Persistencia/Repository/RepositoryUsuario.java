@@ -3,7 +3,6 @@ package com.example.usearch.Persistencia.Repository;
 import com.example.usearch.Sesion.SesionUsuario;
 import com.example.usearch.Entidades.Usuario;
 import com.example.usearch.Persistencia.Utilidades.ConexionBD;
-
 import java.sql.*;
 import java.util.ArrayList;
 
@@ -43,7 +42,7 @@ public class RepositoryUsuario implements IRepository<Usuario> {
                 }
             }
         } catch (SQLException e) {
-            e.printStackTrace();
+            throw new RuntimeException(e);
         }
 
         return registroExitoso;
@@ -75,7 +74,7 @@ public class RepositoryUsuario implements IRepository<Usuario> {
                 usuarioEncontrado = true;
             }
         } catch (SQLException e) {
-            e.printStackTrace();
+            throw new RuntimeException(e);
         }
 
         return usuarioEncontrado;
