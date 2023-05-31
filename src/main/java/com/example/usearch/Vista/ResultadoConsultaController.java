@@ -107,6 +107,7 @@ public class ResultadoConsultaController implements ControladorGeneral {
 
         ObjetoPerdido objetoperdido = null;
 
+        // Se identifica primero si se selecciono un objeto de la tabla
         try
         {
             objetoperdido = tablaObjetos.getSelectionModel().getSelectedItem();
@@ -117,15 +118,18 @@ public class ResultadoConsultaController implements ControladorGeneral {
 
         boolean resultadoActualizacion = false;
 
+        // Si se selecciono un objeto, se verifica que el estado sea perdido
         if (objetoperdido != null) {
             if (objetoperdido.getEstado().equals("perdido")) {
                 resultadoActualizacion = repositoryObjetoPerdido.actualizarPorId(objetoperdido.getId());
 
+                //Si se pudo realizar la actualizacion en la base de datos
                 if (resultadoActualizacion) {
 
                     ObjetoPerdido objetoActualizado = null;
                     ObservableList<ObjetoPerdido> objetosTabla = tablaObjetos.getItems();
 
+                    // Buscar en los objetos de la tabla el objeto que se actualizo
                     for (ObjetoPerdido obj : objetosTabla) {
                         if (obj.getId() == objetoperdido.getId()) {
                             obj.setEstado("encontrado");
@@ -153,6 +157,7 @@ public class ResultadoConsultaController implements ControladorGeneral {
                     Notificacion notificacion = new Notificacion(objetoperdido.getIdUsuario(), mensaje);
                     resultadoNotificacion = repositoryNotificacion.crear(notificacion);
 
+                    // Si se pudo enviar la notificacion
                     if(resultadoNotificacion)
                         System.out.println("Se ha enviado una notificacion al usuario");
                     else
