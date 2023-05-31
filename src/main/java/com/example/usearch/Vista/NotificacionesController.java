@@ -45,6 +45,7 @@ public class NotificacionesController implements ControladorGeneral {
     @FXML
     void AcccionEliminar(ActionEvent event) {
 
+        // Si el usuario tiene notificaciones
         if(!this.ListaNotificaciones.getItems().isEmpty())
         {
             // Eliminar las notificaciones de la base de datos
