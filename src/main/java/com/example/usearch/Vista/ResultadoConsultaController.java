@@ -146,11 +146,15 @@ public class ResultadoConsultaController implements ControladorGeneral {
                     // Enviar la notificacion al usuario
                     boolean resultadoNotificacion = false;
                     String mensaje;
+
+                    // Se crea el mensaje que se le enviara al usuario, este tiene de manera resumida la informacion del objeto perdido
                     mensaje = "Su objeto [" + objetoperdido.getTipo() + "] con la siguiente informacion: \n" +
                             "Fecha: " + objetoperdido.getFechaPerdida() + "\n" +
                             "Ubicacion: " + objetoperdido.getUbicacion() + "\n" +
                             "ha sido ENCONTRADO";
                     Notificacion notificacion = new Notificacion(objetoperdido.getIdUsuario(), mensaje);
+
+                    // Se crea la notificacion en la base de datos
                     resultadoNotificacion = repositoryNotificacion.crear(notificacion);
 
                     if(resultadoNotificacion)
