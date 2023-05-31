@@ -40,7 +40,7 @@ public class RepositoryNotificacion implements IRepository<Notificacion> {
             int filasAfectadas = statement.executeUpdate();
             insertado = (filasAfectadas > 0);
         } catch (SQLException e) {
-            e.printStackTrace();
+            throw new RuntimeException(e);
         }
 
         return insertado;
@@ -62,7 +62,7 @@ public class RepositoryNotificacion implements IRepository<Notificacion> {
             int filasAfectadas = statement.executeUpdate();
             eliminar = (filasAfectadas > 0);
         } catch (SQLException e) {
-            e.printStackTrace();
+            throw new RuntimeException(e);
         }
 
         return eliminar;
@@ -112,8 +112,8 @@ public class RepositoryNotificacion implements IRepository<Notificacion> {
             }
 
         } catch (SQLException e) {
-            e.printStackTrace();
             Alertas.mostrarError("Error al cargar notificaciones");
+            throw new RuntimeException(e);
         }
 
         return notifaciones;

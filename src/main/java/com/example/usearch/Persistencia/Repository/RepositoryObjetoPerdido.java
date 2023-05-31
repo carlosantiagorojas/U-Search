@@ -42,7 +42,7 @@ public class RepositoryObjetoPerdido implements IRepository<ObjetoPerdido> {
             int filasAfectadas = statement.executeUpdate();
             registroObjeto = (filasAfectadas > 0);
         } catch (SQLException e) {
-            e.printStackTrace();
+            throw new RuntimeException(e);
         }
 
         return registroObjeto;
@@ -58,7 +58,7 @@ public class RepositoryObjetoPerdido implements IRepository<ObjetoPerdido> {
             int filasAfectadas = statement.executeUpdate();
             actualizar = (filasAfectadas > 0);
         } catch (SQLException e) {
-            e.printStackTrace();
+            throw new RuntimeException(e);
         }
 
         return actualizar;
@@ -97,7 +97,7 @@ public class RepositoryObjetoPerdido implements IRepository<ObjetoPerdido> {
             }
 
         } catch (SQLException e) {
-            e.printStackTrace();
+            throw new RuntimeException(e);
         }
 
         return objetosPerdidosAr;
@@ -126,7 +126,7 @@ public class RepositoryObjetoPerdido implements IRepository<ObjetoPerdido> {
             }
 
         } catch (SQLException e) {
-            e.printStackTrace();
+            throw new RuntimeException(e);
         }
 
         return objetosPerdidosAr;
@@ -156,7 +156,7 @@ public class RepositoryObjetoPerdido implements IRepository<ObjetoPerdido> {
             }
 
         } catch (SQLException e) {
-            e.printStackTrace();
+            throw new RuntimeException(e);
         }
 
         return objetosPerdidosAr;
@@ -188,7 +188,7 @@ public class RepositoryObjetoPerdido implements IRepository<ObjetoPerdido> {
             }
 
         } catch (SQLException e) {
-            e.printStackTrace();
+            throw new RuntimeException(e);
         }
 
         return objetosPerdidosAr;
@@ -218,7 +218,7 @@ public class RepositoryObjetoPerdido implements IRepository<ObjetoPerdido> {
             }
 
         } catch (SQLException e) {
-            e.printStackTrace();
+            throw new RuntimeException(e);
         }
 
         return objetosPerdidosAr;
