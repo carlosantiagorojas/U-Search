@@ -161,11 +161,12 @@ public class ResultadoConsultaController implements ControladorGeneral {
                     resultadoNotificacion = repositoryNotificacion.crear(notificacion);
 
                     // Si se pudo enviar la notificacion
-                    if(resultadoNotificacion)
-                        System.out.println("Se ha enviado una notificacion al usuario");
-                    else
-                        System.out.println("No se pudo enviar la notificacion al usuario");
-
+                    if(resultadoNotificacion) {
+                        //System.out.println("Se ha enviado una notificacion al usuario");
+                    }
+                    else {
+                        //System.out.println("No se pudo enviar la notificacion al usuario");
+                    }
                 } else
                     Alertas.mostrarError("Error en la actualización de la base de datos");
             } else
