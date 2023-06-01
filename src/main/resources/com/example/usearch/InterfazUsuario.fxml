@@ -12,7 +12,7 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="660.0" prefWidth="385.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.usearch.Vista.InterfazUsuarioController">
    <children>
-      <Pane prefHeight="85.0" prefWidth="385.0" style="-fx-background-color: #1e1f22;">
+      <Pane prefHeight="85.0" prefWidth="385.0" style="-fx-background-color: lightblue;">
          <children>
             <ImageView fitHeight="77.0" fitWidth="75.0" layoutX="297.0">
                <image>
