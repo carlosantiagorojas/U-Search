@@ -1,6 +1,7 @@
 package com.example.usearch.Vista;
 
 import com.example.usearch.Entidades.Usuario;
+import com.example.usearch.Persistencia.Repository.IRepository;
 import com.example.usearch.Persistencia.Repository.RepositoryUsuario;
 import com.example.usearch.Utilidades.Alertas;
 import javafx.event.ActionEvent;
@@ -17,7 +18,7 @@ import javafx.stage.Stage;
  */
 public class RegistrarCuentaController implements ControladorGeneral {
 
-    RepositoryUsuario repositoryUsuario = RepositoryUsuario.getInstance();
+    IRepository repositoryUsuario = RepositoryUsuario.getInstance();
 
     private Stage stage;
 

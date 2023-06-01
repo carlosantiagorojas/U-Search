@@ -2,6 +2,7 @@ package com.example.usearch.Vista;
 
 import com.example.usearch.Entidades.Notificacion;
 import com.example.usearch.Entidades.ObjetoPerdido;
+import com.example.usearch.Persistencia.Repository.IRepository;
 import com.example.usearch.Persistencia.Repository.RepositoryNotificacion;
 import com.example.usearch.Persistencia.Repository.RepositoryObjetoPerdido;
 import com.example.usearch.Utilidades.Alertas;
@@ -24,9 +25,9 @@ import java.util.ArrayList;
  */
 public class ResultadoConsultaController implements ControladorGeneral {
 
-    RepositoryObjetoPerdido repositoryObjetoPerdido = RepositoryObjetoPerdido.getInstance();
+    IRepository repositoryObjetoPerdido = RepositoryObjetoPerdido.getInstance();
 
-    RepositoryNotificacion repositoryNotificacion = RepositoryNotificacion.getInstance();
+    IRepository repositoryNotificacion = RepositoryNotificacion.getInstance();
 
     private Stage stage;
 

@@ -1,5 +1,6 @@
 package com.example.usearch.Vista;
 
+import com.example.usearch.Persistencia.Repository.IRepository;
 import com.example.usearch.Sesion.SesionUsuario;
 import com.example.usearch.Persistencia.Repository.RepositoryNotificacion;
 import com.example.usearch.Utilidades.Alertas;
@@ -15,7 +16,7 @@ import javafx.stage.Stage;
  */
 public class NotificacionesController implements ControladorGeneral {
 
-    RepositoryNotificacion repositoryNotificacion = RepositoryNotificacion.getInstance();
+    IRepository repositoryNotificacion = RepositoryNotificacion.getInstance();
 
     private Stage stage;
 
