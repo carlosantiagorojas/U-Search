@@ -22,3 +22,20 @@ Para conectarse a la base de datos MySQL, siga los siguientes pasos:
 3. Por último, coloque el mismo nombre del "schema" que se creó (en este caso, "u-search"), la contraseña y el usuario en la clase "ConexionDB.java" en el método "conectar()".
 
 Si todo se ha realizado correctamente, ya puede ejecutar el proyecto.
+
+## Ejecucion del proyecto
+Para ver las funciones del proyecto, es necesario registrarse con las siguientes credenciales:
+
+### Usuario:
+
+Correo: ejemplo@javeriana.edu.co
+Contraseña: ejemplo
+
+El correo tiene que terminar con @javeriana.edu.co para que pueda ingresar.
+
+### Personal de objetos perdidos:
+Correo: adminejemplo@javeriana.edu.co
+Correo: ejemplo@javeriana.edu.co
+
+Tiene que incluir al inicio y de primeras la palabra admin para que pueda ingresar a la aplicación como personal de objetos perdidos.
+

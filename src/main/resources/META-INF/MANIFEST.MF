@@ -1,8 +1,3 @@
 Manifest-Version: 1.0
-Main-Class: com.example.usearch.Main
-Class-Path: javafx-base-17.0.2.jar mysql-connector-j-8.0.33.jar javafx-c
- ontrols-17.0.2.jar protobuf-java-3.21.9.jar bootstrapfx-core-0.4.0.jar 
- javafx-base-17.0.2-win.jar javafx-fxml-17.0.2.jar javafx-graphics-17.0.
- 2-win.jar controlsfx-11.1.2.jar javafx-fxml-17.0.2-win.jar javafx-graph
- ics-17.0.2.jar javafx-controls-17.0.2-win.jar
+Main-Class: com.example.usearch.Main_exportar
 

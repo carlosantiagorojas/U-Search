@@ -9,14 +9,12 @@ module com.example.usearch {
     opens com.example.usearch to javafx.fxml;
     exports com.example.usearch;
     exports com.example.usearch.Vista;
-    opens com.example.usearch.Vista to javafx.fxml;
     exports com.example.usearch.Entidades;
     opens com.example.usearch.Entidades to javafx.base;
-    exports com.example.usearch.AbstractFactory;
-    opens com.example.usearch.AbstractFactory to javafx.base, javafx.fxml;
     exports com.example.usearch.Utilidades;
     opens com.example.usearch.Utilidades to javafx.fxml;
     exports com.example.usearch.Sesion;
     opens com.example.usearch.Sesion to javafx.base;
+    opens com.example.usearch.Vista to javafx.base, javafx.fxml;
 
 }

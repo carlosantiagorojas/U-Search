@@ -1,12 +1,9 @@
 package com.example.usearch.Vista;
 
-import com.example.usearch.AbstractFactory.ControladorGeneral;
-import com.example.usearch.AbstractFactory.CargadorEscenas;
 import com.example.usearch.Entidades.Consulta;
 import com.example.usearch.Entidades.ObjetoPerdido;
 import com.example.usearch.Memento.Caretaker;
 import com.example.usearch.Memento.Originator;
-import com.example.usearch.Persistencia.Repository.RepositoryObjetoPerdido;
 import com.example.usearch.Strategy.*;
 import com.example.usearch.Utilidades.Alertas;
 import javafx.event.ActionEvent;
@@ -134,7 +131,7 @@ public class HistorialController implements ControladorGeneral {
     }
 
     /**
-     * Metodo para mostrar el historial de consultas
+     * Metodo para mostrar el historial de consultas, haciendo uso del patron de memento
      */
     public void mostrarHistorial()
     {

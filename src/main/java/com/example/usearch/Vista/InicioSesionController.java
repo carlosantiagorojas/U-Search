@@ -1,7 +1,6 @@
 package com.example.usearch.Vista;
 
-import com.example.usearch.AbstractFactory.ControladorGeneral;
-import com.example.usearch.AbstractFactory.CargadorEscenas;
+import com.example.usearch.Persistencia.Repository.IRepository;
 import com.example.usearch.Sesion.SesionUsuario;
 import com.example.usearch.Entidades.Usuario;
 import com.example.usearch.Persistencia.Repository.RepositoryNotificacion;
@@ -17,8 +16,8 @@ import java.io.IOException;
 
 public class InicioSesionController implements ControladorGeneral {
 
-    RepositoryUsuario repositoryUsuario = RepositoryUsuario.getInstance();
-    RepositoryNotificacion repositoryNotificacion = RepositoryNotificacion.getInstance();
+    IRepository repositoryUsuario = RepositoryUsuario.getInstance();
+    IRepository repositoryNotificacion = RepositoryNotificacion.getInstance();
 
     private Stage stage;
     @Override

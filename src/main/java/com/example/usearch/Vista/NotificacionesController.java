@@ -1,7 +1,6 @@
 package com.example.usearch.Vista;
 
-import com.example.usearch.AbstractFactory.ControladorGeneral;
-import com.example.usearch.AbstractFactory.CargadorEscenas;
+import com.example.usearch.Persistencia.Repository.IRepository;
 import com.example.usearch.Sesion.SesionUsuario;
 import com.example.usearch.Persistencia.Repository.RepositoryNotificacion;
 import com.example.usearch.Utilidades.Alertas;
@@ -17,7 +16,7 @@ import javafx.stage.Stage;
  */
 public class NotificacionesController implements ControladorGeneral {
 
-    RepositoryNotificacion repositoryNotificacion = RepositoryNotificacion.getInstance();
+    IRepository repositoryNotificacion = RepositoryNotificacion.getInstance();
 
     private Stage stage;
 
@@ -45,6 +44,7 @@ public class NotificacionesController implements ControladorGeneral {
     @FXML
     void AcccionEliminar(ActionEvent event) {
 
+        // Si el usuario tiene notificaciones
         if(!this.ListaNotificaciones.getItems().isEmpty())
         {
             // Eliminar las notificaciones de la base de datos
@@ -64,7 +64,7 @@ public class NotificacionesController implements ControladorGeneral {
     }
 
     /**
-     * Muestra las notificaciones de la sesion activa del usuario
+     * Muestra las notificaciones de la sesion activa del usuario con formato de string
      */
     public void mostrarNotificaciones(){
 

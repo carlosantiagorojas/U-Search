@@ -1,9 +1,8 @@
 package com.example.usearch.Vista;
 
-import com.example.usearch.AbstractFactory.ControladorGeneral;
-import com.example.usearch.AbstractFactory.CargadorEscenas;
 import com.example.usearch.Entidades.Notificacion;
 import com.example.usearch.Entidades.ObjetoPerdido;
+import com.example.usearch.Persistencia.Repository.IRepository;
 import com.example.usearch.Persistencia.Repository.RepositoryNotificacion;
 import com.example.usearch.Persistencia.Repository.RepositoryObjetoPerdido;
 import com.example.usearch.Utilidades.Alertas;
@@ -26,9 +25,9 @@ import java.util.ArrayList;
  */
 public class ResultadoConsultaController implements ControladorGeneral {
 
-    RepositoryObjetoPerdido repositoryObjetoPerdido = RepositoryObjetoPerdido.getInstance();
+    IRepository repositoryObjetoPerdido = RepositoryObjetoPerdido.getInstance();
 
-    RepositoryNotificacion repositoryNotificacion = RepositoryNotificacion.getInstance();
+    IRepository repositoryNotificacion = RepositoryNotificacion.getInstance();
 
     private Stage stage;
 
@@ -107,6 +106,7 @@ public class ResultadoConsultaController implements ControladorGeneral {
 
         ObjetoPerdido objetoperdido = null;
 
+        // Se identifica primero si se selecciono un objeto de la tabla
         try
         {
             objetoperdido = tablaObjetos.getSelectionModel().getSelectedItem();
@@ -117,15 +117,18 @@ public class ResultadoConsultaController implements ControladorGeneral {
 
         boolean resultadoActualizacion = false;
 
+        // Si se selecciono un objeto, se verifica que el estado sea perdido
         if (objetoperdido != null) {
             if (objetoperdido.getEstado().equals("perdido")) {
                 resultadoActualizacion = repositoryObjetoPerdido.actualizarPorId(objetoperdido.getId());
 
+                //Si se pudo realizar la actualizacion en la base de datos
                 if (resultadoActualizacion) {
 
                     ObjetoPerdido objetoActualizado = null;
                     ObservableList<ObjetoPerdido> objetosTabla = tablaObjetos.getItems();
 
+                    // Buscar en los objetos de la tabla el objeto que se actualizo
                     for (ObjetoPerdido obj : objetosTabla) {
                         if (obj.getId() == objetoperdido.getId()) {
                             obj.setEstado("encontrado");
@@ -146,18 +149,24 @@ public class ResultadoConsultaController implements ControladorGeneral {
                     // Enviar la notificacion al usuario
                     boolean resultadoNotificacion = false;
                     String mensaje;
+
+                    // Se crea el mensaje que se le enviara al usuario, este tiene de manera resumida la informacion del objeto perdido
                     mensaje = "Su objeto [" + objetoperdido.getTipo() + "] con la siguiente informacion: \n" +
                             "Fecha: " + objetoperdido.getFechaPerdida() + "\n" +
                             "Ubicacion: " + objetoperdido.getUbicacion() + "\n" +
                             "ha sido ENCONTRADO";
                     Notificacion notificacion = new Notificacion(objetoperdido.getIdUsuario(), mensaje);
+
+                    // Se crea la notificacion en la base de datos
                     resultadoNotificacion = repositoryNotificacion.crear(notificacion);
 
-                    if(resultadoNotificacion)
-                        System.out.println("Se ha enviado una notificacion al usuario");
-                    else
-                        System.out.println("No se pudo enviar la notificacion al usuario");
-
+                    // Si se pudo enviar la notificacion
+                    if(resultadoNotificacion) {
+                        //System.out.println("Se ha enviado una notificacion al usuario");
+                    }
+                    else {
+                        //System.out.println("No se pudo enviar la notificacion al usuario");
+                    }
                 } else
                     Alertas.mostrarError("Error en la actualización de la base de datos");
             } else

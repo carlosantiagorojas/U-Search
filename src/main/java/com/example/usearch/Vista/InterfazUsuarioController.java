@@ -1,8 +1,7 @@
 package com.example.usearch.Vista;
 
-import com.example.usearch.AbstractFactory.ControladorGeneral;
-import com.example.usearch.AbstractFactory.CargadorEscenas;
 import com.example.usearch.Entidades.ObjetoPerdido;
+import com.example.usearch.Persistencia.Repository.IRepository;
 import com.example.usearch.Sesion.SesionUsuario;
 import com.example.usearch.Persistencia.Repository.RepositoryObjetoPerdido;
 import javafx.collections.FXCollections;
@@ -21,7 +20,7 @@ import java.sql.Date;
  */
 public class InterfazUsuarioController implements ControladorGeneral {
 
-    RepositoryObjetoPerdido repositoryObjetoPerdido = RepositoryObjetoPerdido.getInstance();
+    IRepository repositoryObjetoPerdido = RepositoryObjetoPerdido.getInstance();
 
     private Stage stage;
 
