@@ -31,6 +31,8 @@ Para ver las funciones del proyecto, es necesario registrarse con las siguientes
 Correo: ejemplo@javeriana.edu.co
 Contraseña: ejemplo
 
+El correo tiene que terminar con @javeriana.edu.co para que pueda ingresar.
+
 ### Personal de objetos perdidos:
 Correo: adminejemplo@javeriana.edu.co
 Correo: ejemplo@javeriana.edu.co
